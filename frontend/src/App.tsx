@@ -9,8 +9,6 @@ export function App() {
     return (
         <Routes>
             <Route path="/" element={<Navbar />}>  
-                <Route index element={<FormularioRegistro />} />
-                <Route path="registrar" element={<FormularioRegistro />} />
             </Route>    
              <Route path="/registrar" element={<NavbarSesion />}>  
                 <Route index element={<FormularioRegistro />} />

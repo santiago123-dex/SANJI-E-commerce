@@ -5,24 +5,38 @@ import "../styles/NavbarSesion.css"
 
 
 export function NavbarSesion() {
-
+    /*ESTE ES UN ESTADO QUE SE USA PARA QUE EL OTRO LINK QUE ESTA EN UN LI SE MUESTRE*/
     const [showLi, setShowLi] = useState(true) 
+    /*ESTADO PARA EL MENU DESPLEGABLE*/
+    const [menuAbierto, setMenuAbierto] = useState(false)
 
     function clicRegistro(){
         setShowLi(true)
+        setMenuAbierto(false)
     }
 
     function clicHome(){
         setShowLi(false)
+        setMenuAbierto(false) /*SE OCULTA EL MENU CUANDO VAMOS A HOME*/
+    }
+
+    function toggleMenu(){
+        setMenuAbierto(!menuAbierto)
+    }
+    function cerrarMenu(){
+        setMenuAbierto(false)
     }
 
     return (
         <div>
             <div className="header">    
+                <div className="hamburger" onClick={toggleMenu}>
+                    ☰
+                </div>
                 <div className="header-logo">
                     <img src="../img/logo.png" alt=""></img>
                 </div>
-                <nav>
+                <nav className={menuAbierto ? "nav-menu open" : "nav-menu"}>
                     <ul>
                         <li><Link to="/inicio" onClick={clicHome}>Inicio</Link></li>
                         <li><Link to="/inicio" onClick={clicHome}>registrarse</Link></li>
@@ -34,6 +48,7 @@ export function NavbarSesion() {
                     </ul>
                 </nav>
             </div>
+            {menuAbierto && <div className="overlay" onClick={cerrarMenu}></div>}
                <Outlet />
         </div>
     )

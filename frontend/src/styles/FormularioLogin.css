@@ -10,10 +10,10 @@ html,
 
 /* Contenedor principal */
 .box {
+    width: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 20px;
+    justify-content: center;
     box-sizing: border-box;
 }
 
@@ -62,7 +62,7 @@ html,
 }
 
 .box_formulario_inputs:focus {
-    box-shadow: 0 0 0 3px rgb(0,113,206,0.48);
+    box-shadow: 0 0 0 3px rgb(0, 113, 206, 0.48);
     outline: none;
     z-index: 1;
     transition: 0.2s;
