@@ -8,7 +8,7 @@ import rutasEventos from './routes/rutasEventos'
 
 //CONFIGURAMOS VARIABLES DE ENTORNO PARA CONECTARNOS A LA DB Y OTRAS CONFIGURACIONES
 dotenv.config()
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3000
 const app = express()
 
 //CORS PARA RUTAS Y EXPRESS.JSON PARA DECIR QUE LOS DATOS QUE RECIBIMOS SON EN FORMATO JSON
