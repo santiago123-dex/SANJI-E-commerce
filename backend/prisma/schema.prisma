@@ -1,0 +1,146 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model administradores {
+  id_admin       Int    @id @default(autoincrement())
+  nombre_admin   String @db.Char(50)
+  email_admin    String @unique(map: "email_admin_UNIQUE") @db.VarChar(100)
+  password_admin String @db.VarChar(256)
+}
+
+model boletos {
+  id_boleto          Int                @id @default(autoincrement())
+  id_evento          Int
+  id_tipo            Int
+  precio_boleto      Decimal            @db.Decimal(11, 2)
+  stock              Int
+  descripcion_boleto String             @db.VarChar(150)
+  fecha_creado       DateTime?          @default(now()) @db.Timestamp(0)
+  fecha_actualizado  DateTime?          @default(now()) @db.Timestamp(0)
+  eventos            eventos            @relation(fields: [id_evento], references: [id_evento], map: "fk_boleto_evento")
+  tipos              tipos              @relation(fields: [id_tipo], references: [id_tipos], map: "fk_boleto_tipo")
+  carrito            carrito[]
+  detalles_pedidos   detalles_pedidos[]
+
+  @@index([id_evento], map: "fk_boleto_evento_idx")
+  @@index([id_tipo], map: "fk_boleto_tipo_idx")
+}
+
+model carrito {
+  id_carrito        Int       @id @default(autoincrement())
+  id_usuario        Int
+  id_boleto         Int
+  cantidad          Int
+  fecha_creado      DateTime? @default(now()) @db.Timestamp(0)
+  fecha_actualizado DateTime? @default(now()) @db.Timestamp(0)
+  boletos           boletos   @relation(fields: [id_boleto], references: [id_boleto], map: "fk_carrito_boleto")
+  usuarios          usuarios  @relation(fields: [id_usuario], references: [id_usuario], onDelete: Cascade, map: "fk_carrito_usuario")
+
+  @@index([id_boleto], map: "fk_carrito_boleto_idx")
+  @@index([id_usuario], map: "fk_carrito_usuario_idx")
+}
+
+model categorias {
+  id_categoria     Int       @id @default(autoincrement())
+  nombre_categoria String    @unique(map: "nombre_categoria_UNIQUE") @db.Char(50)
+  eventos          eventos[]
+}
+
+model detalles_pedidos {
+  id_detalles   Int     @id @default(autoincrement())
+  id_pedido     Int
+  id_boleto     Int
+  cantidad      Int
+  precio_unidad Decimal @db.Decimal(12, 2)
+  subtotal      Decimal @db.Decimal(12, 2)
+  boletos       boletos @relation(fields: [id_boleto], references: [id_boleto], map: "fk_detallesp_boleto")
+  pedidos       pedidos @relation(fields: [id_pedido], references: [id_pedido], onDelete: Cascade, map: "fk_detallesp_pedido")
+
+  @@index([id_boleto], map: "fk_detallesp_boleto_idx")
+  @@index([id_pedido], map: "fk_detallesp_pedido_idx")
+}
+
+model eventos {
+  id_evento          Int        @id @default(autoincrement())
+  id_categoria       Int
+  nombre_evento      String     @db.VarChar(100)
+  descripcion_evento String?    @db.VarChar(255)
+  fecha_evento       DateTime   @db.DateTime(0)
+  ubicacion          String     @db.VarChar(150)
+  imagen_evento      String?    @db.VarChar(255)
+  estado_evento      Int        @default(1) @db.TinyInt
+  fecha_creado       DateTime?  @default(now()) @db.Timestamp(0)
+  fecha_actualizado  DateTime?  @default(now()) @db.Timestamp(0)
+  boletos            boletos[]
+  categorias         categorias @relation(fields: [id_categoria], references: [id_categoria], map: "id_categoria")
+
+  @@index([id_categoria], map: "fk_evento_categoria_idx")
+}
+
+model metodos_pago {
+  id_metodo     Int     @id @default(autoincrement())
+  nombre_metodo String  @unique(map: "nombre_metodo_UNIQUE") @db.Char(30)
+  pagos         pagos[]
+}
+
+model pagos {
+  id_pago          Int                  @id @default(autoincrement())
+  id_pedido        Int?
+  id_metodo        Int
+  nombre_paga      String               @db.Char(50)
+  tipo_documento   pagos_tipo_documento
+  numero_documento String               @db.Char(20)
+  monto            Decimal              @db.Decimal(12, 2)
+  estado           Int                  @default(2) @db.TinyInt
+  fecha_pago       DateTime             @default(now()) @db.Timestamp(0)
+  metodos_pago     metodos_pago         @relation(fields: [id_metodo], references: [id_metodo], map: "fk_pago_metodo")
+  pedidos          pedidos?             @relation(fields: [id_pedido], references: [id_pedido], map: "fk_pago_pedido")
+
+  @@index([id_metodo], map: "fk_pago_metodo_idx")
+  @@index([id_pedido], map: "fk_pago_pedido_idx")
+}
+
+model pedidos {
+  id_pedido        Int                @id @default(autoincrement())
+  id_usuario       Int
+  total_pedido     Decimal            @default(0.00) @db.Decimal(12, 2)
+  estado_pedido    Int                @default(2) @db.TinyInt
+  fecha_creado     DateTime?          @default(now()) @db.Timestamp(0)
+  detalles_pedidos detalles_pedidos[]
+  pagos            pagos[]
+  usuarios         usuarios           @relation(fields: [id_usuario], references: [id_usuario], onDelete: Cascade, map: "fk_pedido_usuario")
+
+  @@index([id_usuario], map: "fk_pedido_usuario_idx")
+}
+
+model tipos {
+  id_tipos    Int       @id @default(autoincrement())
+  nombre_tipo String    @unique(map: "nombre_tipo_UNIQUE") @db.Char(30)
+  boletos     boletos[]
+}
+
+model usuarios {
+  id_usuario        Int       @id @default(autoincrement())
+  nombre_usuario    String    @db.Char(50)
+  apellido_usuario  String    @db.Char(50)
+  email_usuario     String    @unique(map: "email_usuario_UNIQUE") @db.VarChar(100)
+  password_usuario  String    @db.VarChar(256)
+  telefono          String?   @db.Char(15)
+  fecha_creado      DateTime? @default(now()) @db.Timestamp(0)
+  fecha_actualizado DateTime? @default(now()) @db.Timestamp(0)
+  carrito           carrito[]
+  pedidos           pedidos[]
+}
+
+enum pagos_tipo_documento {
+  cc
+  ce
+  ti
+  te
+}
