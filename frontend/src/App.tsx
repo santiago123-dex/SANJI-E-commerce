@@ -19,8 +19,6 @@ export function App() {
                 <Route path="login" element={<Formulario />}/>
 
             </Route>
-            <Route path="/inicio" element={<Navbar />} />
-            <Route path="/navbar" element={<Navbar />} />
         </Routes>
 
     )

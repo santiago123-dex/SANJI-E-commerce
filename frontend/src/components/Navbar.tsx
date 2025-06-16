@@ -9,14 +9,14 @@ export function Navbar() {
                 <div className="navbar">
                     <nav>
                         <ul className="eventos">
-                            <li><Link to="/inicio">Conciertos</Link></li>
-                            <li><Link to="/inicio">Teatro</Link></li>
-                            <li><Link to="/inicio">Deportes</Link></li>
+                            <li><Link to="/">Conciertos</Link></li>
+                            <li><Link to="/">Teatro</Link></li>
+                            <li><Link to="/">Deportes</Link></li>
                         </ul>
                         <ul>
-                            <li><Link to="/inicio">Inicio</Link></li>
+                            <li><Link to="/">Inicio</Link></li>
                             <li><Link to="/registrar">Registrar</Link></li>
-                            <li><Link to="/sobre-nosotros">Sobre nosotros</Link></li>
+                            <li><Link to="/">Sobre nosotros</Link></li>
                         </ul>
                     </nav>
                 </div>
