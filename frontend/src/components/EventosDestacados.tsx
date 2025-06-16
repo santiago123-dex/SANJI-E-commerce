@@ -11,16 +11,12 @@ interface EventoDestacadoProps {
 export const EventoDestacado: React.FC<EventoDestacadoProps> = ({ titulo, fecha, ubicacion, imagen }) => {
     return (
         <div className="evento-destacado">
-            {imagen ? (
-            <img src={imagen} alt={titulo} className="evento-imagen" />
-        ) : (
-            <div className="img-placeholder"></div>
-        )}
-        <div className="evento-info">
-            <h3>{titulo}</h3>
-            <p>Fecha: {fecha}</p>
-            <p>Lugar: {ubicacion}</p>
-        </div>
+            <img src={imagen} alt={titulo} loading="lazy" className="evento-imagen" />
+            <div className="evento-info">
+                <h3>{titulo}</h3>
+                <p>Fecha: {fecha}</p>
+                <p>Lugar: {ubicacion}</p>
+            </div>
         </div>
     );
 };
