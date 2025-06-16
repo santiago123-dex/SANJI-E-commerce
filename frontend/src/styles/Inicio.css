@@ -1,0 +1,57 @@
+main {
+  flex: 1;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* hero seccion */
+
+.hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  color: white;
+  text-shadow: 1px 1px 4px #000;
+  margin-top: 20px;
+}
+
+.hero-text {
+  text-align: center;
+  background-color: #48f;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* categorias */
+
+.categorias, .eventos-destacados {
+  padding: 40px 0px 20px 0px;
+  text-align: center;
+}
+
+.grid-categorias, .grid-eventos {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.categoria {
+  background-color: #eef;
+  padding: 20px 30px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.categoria:hover {
+  background-color: #0033cc;
+  color: white;
+}
+
