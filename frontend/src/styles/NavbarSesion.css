@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    font-family: sans-serif;
+    background-color: #f9f9f9;
+}
+
+.header {
+    background: #48f;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+}
+
+.header-logo {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    margin-left: 4rem;
+    margin-right: 1rem;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    transition: none;
+}
+
+.nav-menu ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-menu li {
+    margin-left: 10px;
+}
+
+.nav-menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/*Boton hamburguesa*/
+
+.hamburger {
+    display: none;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+@media(max-width:768px) {
+    .hamburger {
+        display: block;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 2000;
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        /* semitransparente */
+        z-index: 1000;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 250px;
+        height: 100vh;
+        background-color: #48f;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
+        padding-top: 80px;
+        transition: left 1s ease-out;
+        z-index: 1000;
+    }
+
+    .nav-menu.open {
+        left: 0;
+        z-index: 1001;
+        transition: ease-out 1s;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        gap: 15px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav-menu ul li {
+        margin: 0;
+        width: 250px;
+        text-align: center;
+        border-bottom: 2px solid rgba(217, 215, 215, 0.5);
+    }
+}

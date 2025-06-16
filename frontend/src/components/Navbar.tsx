@@ -1,15 +1,13 @@
-import { Link } from "react-router-dom"
-import { Outlet } from "react-router-dom"
-import "../styles/Navbar.css"
+import { Link, Outlet } from "react-router-dom";
+import "../styles/Navbar.css";
 import { LogoMiboleta } from "./LogoMiboleta";
 
-export function Navbar () {
+export function Navbar() {
     return (
         <div>
             <div className="container-header">
                 <div className="navbar">
                     <nav>
-
                         <div>
                             <LogoMiboleta />
                         </div>
@@ -29,7 +27,5 @@ export function Navbar () {
             </div>
             <Outlet />
         </div>
-    )
+    );
 }
-
-

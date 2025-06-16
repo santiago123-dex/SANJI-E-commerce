@@ -42,6 +42,7 @@ model carrito {
   boleto           boletos   @relation(fields: [id_boleto], references: [id_boleto], map: "fk_carrito_boleto")
   usuario          usuarios  @relation(fields: [id_usuario], references: [id_usuario], onDelete: Cascade, map: "fk_carrito_usuario")
 
+
   @@index([id_boleto], map: "fk_carrito_boleto_idx")
   @@index([id_usuario], map: "fk_carrito_usuario_idx")
 }
