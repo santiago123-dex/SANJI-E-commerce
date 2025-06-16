@@ -12,10 +12,9 @@ const PORT = process.env.PORT || 3000
 const app = express()
 
 //CORS PARA RUTAS Y EXPRESS.JSON PARA DECIR QUE LOS DATOS QUE RECIBIMOS SON EN FORMATO JSON
-app.use(cors({
-    origin: 'http://localhost:5173',
-    credentials: true
-}))
+
+app.use(cors())
+
 app.use(express.json())
 
 //RUTAS DE REGISTRO Y LOGIN
