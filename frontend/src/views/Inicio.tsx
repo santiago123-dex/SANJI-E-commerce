@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Footer } from '../components/Footer'
 import { EventoDestacado } from '../components/EventosDestacados.tsx'
 import "../styles/Inicio.css"
@@ -49,35 +50,7 @@ export function Inicio() {
                                     ubicacion={evento.ubicacion}
                                     imagen={evento.imagen_evento}
                                 />
-                                 <EventoDestacado
-                                    key={evento.id_evento}
-                                    titulo={evento.nombre_evento}
-                                    fecha={new Date(evento.fecha_evento).toLocaleDateString()}
-                                    ubicacion={evento.ubicacion}
-                                    imagen={evento.imagen_evento}
-                                />
-                                 <EventoDestacado
-                                    key={evento.id_evento}
-                                    titulo={evento.nombre_evento}
-                                    fecha={new Date(evento.fecha_evento).toLocaleDateString()}
-                                    ubicacion={evento.ubicacion}
-                                    imagen={evento.imagen_evento}
-                                />
-                                 <EventoDestacado
-                                    key={evento.id_evento}
-                                    titulo={evento.nombre_evento}
-                                    fecha={new Date(evento.fecha_evento).toLocaleDateString()}
-                                    ubicacion={evento.ubicacion}
-                                    imagen={evento.imagen_evento}
-                                />
-                                 <EventoDestacado
-                                    key={evento.id_evento}
-                                    titulo={evento.nombre_evento}
-                                    fecha={new Date(evento.fecha_evento).toLocaleDateString()}
-                                    ubicacion={evento.ubicacion}
-                                    imagen={evento.imagen_evento}
-                                />
-                                 <EventoDestacado
+                                <EventoDestacado
                                     key={evento.id_evento}
                                     titulo={evento.nombre_evento}
                                     fecha={new Date(evento.fecha_evento).toLocaleDateString()}
@@ -94,10 +67,10 @@ export function Inicio() {
                 <section className='categorias'>
                     <h2>Categorías</h2>
                     <div className='grid-categorias'>
-                        <div className='categoria'>Conciertos</div>
-                        <div className='categoria'>Deporte</div>
-                        <div className='categoria'>Teatro</div>
-                        <div className='categoria'>Familia</div>
+                        <div className='categoria'><Link to="">Conciertos</Link></div>
+                        <div className='categoria'><Link to="">Teatro</Link></div>
+                        <div className='categoria'><Link to="">Deportes</Link></div>
+                        <div className='categoria'><Link to="">Conciertos</Link></div>
                     </div>
                 </section>
 

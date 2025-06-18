@@ -10,14 +10,14 @@ interface Usuario {
 
 
 export function Formulario() {
-    
+
     const [login, setLogin] = useState<Usuario>({
         email_usuario: "",
         password_usuario: "",
     })
-    
+
     const [mensaje, setMensaje] = useState("")
-    const navigate= useNavigate()
+    const navigate = useNavigate()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -44,7 +44,9 @@ export function Formulario() {
 
             const data = await res.json()
 
-            if (res.ok) {
+
+            if (res.ok && data.token) {
+                localStorage.setItem("token", data.token)
                 setMensaje(data.message)
 
                 setLogin({
@@ -52,7 +54,7 @@ export function Formulario() {
                     password_usuario: "",
                 })
                 navigate("/")
-                
+
             } else {
                 setMensaje(data.message || "Error al iniciar sesión")
             }

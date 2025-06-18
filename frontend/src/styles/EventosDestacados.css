@@ -3,26 +3,35 @@
   align-items: center;
   text-align: left;
   gap: 1.5rem;
-  background: rgba(255,255,255,0.7);
+  background: rgba(255, 255, 255, 0.7);
   border-radius: 2rem;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   padding: 1.5rem 2rem;
+  flex: 1 1 300px;
+  max-width: 400px;
+  min-width: 400px;
   transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
 }
 
 .evento-destacado:hover {
   transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-  background: rgba(255,255,255,0.95);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.95);
 }
 
-.evento-imagen{
+.evento-imagen {
   width: fit-content;
   height: 100px;
   object-fit: cover;
   background: #555;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+.evento-info {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .evento-info h3 {
@@ -35,4 +44,5 @@
   margin: 0.2rem 0;
   color: #555;
   font-size: 1rem;
+  flex-wrap: wrap;
 }

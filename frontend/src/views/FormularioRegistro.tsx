@@ -44,7 +44,6 @@ export const FormularioRegistro = () => {
     const handelSubmit = async (e: React.FormEvent) => {
         /*EVITA QUE LA PAGINA SE RECARGUE AUTOMATIXAMENTE*/
         e.preventDefault()
-
         try {
             /*USAMOS EL FETCH PARA ENVIAR UNA PETICION HTTP AL SERVIDOR BACKEND */
             const res = await fetch("http://localhost:3000/aut/registro", {
