@@ -10,10 +10,19 @@ body {
     background-color: #f9f9f9;
 }
 
+.container{
+    width: 6    0%;
+    height: auto;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .logo-perfil {
-    width: 200px;
+    width: 100%;
     height: 200px;
-    margin: 50px;
+    margin:3rem 0 3rem 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,4 +31,18 @@ body {
 .logo-perfil img {
     width: 200px;
     height: 200px;
+    grid-column: 2/4;
+}
+
+.datos-usuario{
+    width: 100%;
+    height: auto;
+}
+
+.datos-usuario strong{
+    font-size:2rem;
+}
+
+.datos-usuario p{
+    font-size: 2rem;
 }

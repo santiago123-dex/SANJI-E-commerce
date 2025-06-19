@@ -1,7 +1,8 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation} from "react-router-dom";
 import "../styles/Navbar.css";
 import { LogoMiboleta } from "./LogoMiboleta";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 
 export function Navbar() {
 
@@ -10,6 +11,18 @@ export function Navbar() {
     function toggle() {
         setMenuAbierto(!menuAbierto)
     }
+
+
+    const [logueo, setLogueo] = useState(false)
+    /*LOCATION ME DA ACCESO A LA RUTA ACTUAL*/
+    const location = useLocation()
+
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        /*LO CONVIERTE EN BOOLEANO*/
+        setLogueo(!!token)
+        /*VUELVE EJECUTAR CADA QUE CAMBIE LOCATION*/
+    }, [location])
 
     return (
         <div>
@@ -20,15 +33,20 @@ export function Navbar() {
                 <div>
                     <LogoMiboleta />
                 </div>
-                <nav className={menuAbierto ? "nav-menu open" : "nav-menu"}>
+                <nav className={menuAbierto ? "nav-menu open" : "nav-menu-inicio"}>
                     <ul className="eventos">
-                        <li><Link to="/inicio">Conciertos</Link></li>
-                        <li><Link to="/inicio">Teatro</Link></li>
-                        <li><Link to="/inicio">Deportes</Link></li>
+                        <li><Link to="/inicio">CONCIERTOS</Link></li>
+                        <li><Link to="/inicio">TEATRO</Link></li>
+                        <li><Link to="/inicio">DEPORTES</Link></li>
                     </ul>
                     <ul>
-                        <li><Link to="/inicio">Contactanos</Link></li>
-                        <li><Link to="/registrar">Registrar</Link></li>
+                        <li><Link to="/inicio">CONTACTANOS</Link></li>
+                        {!logueo && (
+                            <>
+                                <li><Link to="/registrar">REGISTRARSE</Link></li>
+                                <li><Link to="/login">INICIO SESION</Link></li>
+                            </>
+                        )}
                     </ul>
                 </nav>
                 <div className="logo-user">

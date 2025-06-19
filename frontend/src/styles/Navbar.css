@@ -24,7 +24,7 @@
     color: #fff
 }
 
-.nav-menu {
+.nav-menu-inicio {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -32,7 +32,7 @@
     transition: none;
 }
 
-.nav-menu ul {
+.nav-menu-inicio ul {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
@@ -41,11 +41,11 @@
     margin-left: 20px;
 }
 
-.nav-menu li {
+.nav-menu-inicio li {
     margin-left: 10px;
 }
 
-.nav-menu ul li a {
+.nav-menu-inicio ul li a {
     text-decoration: none;
     color: #fff;
     font-size: 16px;
@@ -96,7 +96,7 @@
         z-index: 1000;
     }
 
-    .nav-menu {
+    .nav-menu-inicio {
         position: fixed;
         top: 0;
         left: -100%;
@@ -116,13 +116,13 @@
         left: 0;
         z-index: 1001;
     }
-    .nav-menu ul{
+    .nav-menu-inicio ul{
         flex-direction:column;
         gap: 15px;
         padding: 0;
         margin: 0;
     }
-    .nav-menu ul li{
+    .nav-menu-inicio ul li{
         margin: 0;
         width: 250px;
         text-align: center;

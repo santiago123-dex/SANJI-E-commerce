@@ -27,13 +27,8 @@ export function NavbarSesion() {
                 </div>
                 <nav className={menuAbierto ? "nav-menu open" : "nav-menu"}>
                     <ul>
-                        <li><Link to="/" onClick={cerrarMenu}>Inicio</Link></li>
-                        <li><Link to="/" onClick={cerrarMenu}>Registrarse</Link></li>
-                    </ul>
-                    <ul>
-                        <li> <Link to="/" onClick={cerrarMenu}>About</Link></li>
-                        <li><Link to="/registrar" onClick={cerrarMenu}>Registrase</Link></li>
-                        <li><Link to="/login" onClick={cerrarMenu}>Iniciar Sesion</Link></li>
+                        <li><Link to="/registrar" onClick={cerrarMenu}>REGISTRARSE</Link></li>
+                        <li><Link to="/login" onClick={cerrarMenu}>INICIAR SESION</Link></li>
                     </ul>
                 </nav>
                 <div className="logo-usuario">
