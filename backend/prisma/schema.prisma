@@ -41,6 +41,10 @@ model carrito {
   fecha_actualizado DateTime? @default(now()) @db.Timestamp(0)
   boleto           boletos   @relation(fields: [id_boleto], references: [id_boleto], map: "fk_carrito_boleto")
   usuario          usuarios  @relation(fields: [id_usuario], references: [id_usuario], onDelete: Cascade, map: "fk_carrito_usuario")
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8b5552058f167ab714494e00bd6980f920775990
 
   @@index([id_boleto], map: "fk_carrito_boleto_idx")
   @@index([id_usuario], map: "fk_carrito_usuario_idx")

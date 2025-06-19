@@ -20,17 +20,14 @@ router.get("/eventos", async (_req: Request, res: Response) => {
 })
 
 router.post("/eventos", async (req: Request, res: Response) => {
-    const {tipo_dato, dato_busqueda} = req.body
-    let eventos: any
+    const {dato_busqueda} = req.body
+    if(!dato_busqueda){
+        res.status(400).json({message: "Ingrese un dato para buscar"})
+        return
+    }
 
     try{
-        if(tipo_dato == 'nombre' && dato_busqueda){
-            eventos = await prisma.$queryRaw`SELECT * FROM eventos WHERE nombre_evento LIKE ${'%' + dato_busqueda + '%'}`
-        }else if(tipo_dato == 'categoria' && dato_busqueda){
-            eventos = await prisma.$queryRaw`SELECT * FROM eventos e JOIN categorias c ON e.id_categoria = c.id_categoria WHERE c.nombre_categoria LIKE ${'%' + dato_busqueda + '%'}`
-        }else{
-            eventos = await prisma.eventos.findMany()
-        }
+        const eventos: [] = await prisma.$queryRaw`SELECT * FROM eventos WHERE nombre_evento LIKE ${'%' + dato_busqueda + '%'}`
 
         if(eventos.length === 0) {
             return res.status(404).json({message: "No se encontraron eventos relacionados con la búsqueda"})

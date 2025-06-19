@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.container-header{
+    padding: 40px 43.75px 30px;
+    background-color: #48f;
+    justify-content: space-between;
+}
+
+.eventos{
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar{
+    padding: 15px;
+    background-color: #48f;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.navbar h1{
+    color:  #fff
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+nav ul{
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 20px;
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: #fff;
+}

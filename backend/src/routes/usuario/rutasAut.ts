@@ -79,7 +79,7 @@ router.post("/login", async (req: Request, res: Response) => {
             },
             process.env.JWT_SECRET || "esta es la otra clave secreta que se usa para firmar el token",
             {
-                expiresIn: "2m",
+                expiresIn: "1h",
             },
         )
 
