@@ -18,7 +18,7 @@ router.get("/eventos", async (_req: Request, res: Response) => {
         res.status(500).json({message: "Error al obtener eventos", error})
     }
 })
-
+ // RUTA PARA LA BUSQUEDA POR NOMBRE
 router.post("/eventos", async (req: Request, res: Response) => {
     const {dato_busqueda} = req.body
     if(!dato_busqueda){

@@ -19,3 +19,4 @@ export const verificarTokenUsuario = (req: RequestExtended, res: Response, next:
         res.status(400).json({message: "Ha ocurrido un error al verificar el token", error})
     }
 }
+

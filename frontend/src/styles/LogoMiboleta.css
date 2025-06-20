@@ -1,3 +1,9 @@
+.containerLogo{
+  margin-left: 3rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .logo-tubo {
   color: #fff;
   font-weight: bold;
