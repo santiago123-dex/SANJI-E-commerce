@@ -1,11 +1,14 @@
+import { Link } from "react-router-dom";
 import "../styles/LogoMiboleta.css";
 
-export function LogoMiboleta () {
+export function LogoMiboleta() {
   return (
-    <span>
-      <span className="logo-tubo">Mibo</span>
-      <span className="logo-leta">leta</span>
-    </span>
+    <div>
+      <Link to="/inicio" className="containerLogo">
+        <span className="logo-tubo">MiBo</span>
+        <span className="logo-leta">leta</span>
+      </Link>
+    </div>
   )
 };
 
