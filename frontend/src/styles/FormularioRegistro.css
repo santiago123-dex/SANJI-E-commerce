@@ -1,0 +1,138 @@
+body,
+html,
+#root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Contenedor principal */
+.box {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* Contenedor del formulario */
+.box_form {
+    background-color: #fff;
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+    min-height: 400px;
+    text-align: center;
+}
+
+/* Título del formulario */
+.box_form h2 {
+    margin-bottom: 20px;
+    color: rgb(111, 154, 229);
+    font-size: 1.8rem;
+    font-weight: 100;
+}
+
+/* Formulario */
+.box_formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+/*Labels*/
+
+.box_formulario label {
+    width: 70%;
+    text-align: left;
+}
+
+/* Inputs */
+.box_formulario_inputs {
+    width: 70%;
+    padding: 8px 12px;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.box_formulario_inputs:focus {
+    box-shadow: 0 0 0 3px rgb(0, 113, 206, 0.48);
+    outline: none;
+    z-index: 1;
+    transition: 0.2s;
+}
+
+/* Botón */
+.box_formulario_boton {
+    width: 70%;
+    padding: 12px;
+    background-color: #007BFF;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.box_formulario_boton:hover {
+    background-color: #0056b3;
+}
+
+/* Texto debajo del formulario */
+.box_formulario p {
+    margin-top: 10px;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+/* Datos mostrados después del login */
+.mostrarDatos {
+    margin-top: 20px;
+    text-align: left;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.mostrarDatos p {
+    margin-bottom: 8px;
+}
+
+
+
+/* Responsivo para pantallas pequeñas */
+
+@media (max-width: 480px) {
+
+    .box {
+        min-height: 80dvh;
+    }
+
+    .box_form {
+        width: 100%;
+        max-width: 90%;
+        padding: 30px 20px;
+        margin: auto;
+    }
+
+    .box_form h2 {
+        font-size: 1.5rem;
+    }
+    .box_formulario label{
+        width: 100%;
+    }
+    .box_formulario_inputs{
+        width: 100%;
+    }
+}
