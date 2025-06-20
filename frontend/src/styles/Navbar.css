@@ -5,7 +5,9 @@
     font-family: sans-serif;
 }
 
+
 .eventos {
+
     display: flex;
     justify-content: space-between;
 }

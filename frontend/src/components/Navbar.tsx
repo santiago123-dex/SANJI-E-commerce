@@ -26,12 +26,14 @@ export function Navbar() {
 
     return (
         <div>
+
             <div className="navbar">
                 <div className="hamburger" onClick={toggle}>
                     {menuAbierto ? '✖' : '☰'}
                 </div>
                 <div>
                     <LogoMiboleta />
+
                 </div>
                 <nav className={menuAbierto ? "nav-menu open" : "nav-menu-inicio"}>
                     <ul className="eventos">

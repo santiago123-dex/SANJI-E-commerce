@@ -1,6 +1,8 @@
 import { NavbarSesion } from "./components/NavbarSesion"
+
 import { Formulario } from "./views/FormularioLogin"
 import { FormularioRegistro } from "./views/FormularioRegistro"
+
 import { Navbar } from "./components/Navbar"
 import { Routes, Route } from "react-router-dom"
 import { Inicio } from "./views/Inicio"
@@ -24,6 +26,11 @@ export function App() {
             <Route path="login" element={<NavbarSesion />}>
                 <Route index element={<Formulario />} />
                 <Route path="login" element={<Formulario />} />
+            </Route>
+
+            <Route path="admin-login" element={<NavbarSesion />}>
+                <Route index element={<FormularioLoginAdmin />} />
+                <Route path="login" element={<FormularioLoginAdmin />} />
             </Route>
         </Routes>
     )

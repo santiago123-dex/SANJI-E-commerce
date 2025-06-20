@@ -1,5 +1,22 @@
+/* Contenedor general de los eventos */
+.eventos {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  max-width: 1400px;
+}
+
+.eventos-destacados {
+  padding: 40px 0px 20px 0px;
+  text-align: center;
+}
+
+/* Cada tarjeta */
 .evento-destacado {
   display: flex;
+
   align-items: center;
   text-align: left;
   gap: 1.5rem;
@@ -11,10 +28,12 @@
   max-width: 400px;
   min-width: 400px;
   transition: transform 0.2s, box-shadow 0.2s;
+
   cursor: pointer;
 }
 
 .evento-destacado:hover {
+
   transform: translateY(-4px) scale(1.03);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   background: rgba(255, 255, 255, 0.95);
@@ -32,17 +51,20 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+
 }
 
 .evento-info h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.3rem;
-  color: #222;
+  margin: 0;
+  font-size: 1.1rem;
+  color: #111;
 }
 
 .evento-info p {
+
   margin: 0.2rem 0;
   color: #555;
   font-size: 1rem;
   flex-wrap: wrap;
 }
+

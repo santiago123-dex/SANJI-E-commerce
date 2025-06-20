@@ -40,7 +40,7 @@ export function Inicio() {
                 <section className='eventos-destacados'>
                     <h2>Eventos destacados</h2>
                     {error && <p style={{ color: 'red' }}>{error}</p>}
-                    <div className='grid-eventos'>
+                    <div className='eventos'>
                         {eventos.map(evento => (
                             <>
                                 <EventoDestacado
