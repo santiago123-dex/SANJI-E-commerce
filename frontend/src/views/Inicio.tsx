@@ -39,7 +39,7 @@ export function Inicio() {
                 <section className='eventos-destacados'>
                     <h2>Eventos destacados</h2>
                     {error && <p style={{ color: 'red' }}>{error}</p>}
-                    <div className='grid-eventos'>
+                    <div className='eventos'>
                         {eventos.map(evento => (
                             <>
                                 <EventoDestacado
@@ -49,35 +49,7 @@ export function Inicio() {
                                     ubicacion={evento.ubicacion}
                                     imagen={evento.imagen_evento}
                                 />
-                                 <EventoDestacado
-                                    key={evento.id_evento}
-                                    titulo={evento.nombre_evento}
-                                    fecha={new Date(evento.fecha_evento).toLocaleDateString()}
-                                    ubicacion={evento.ubicacion}
-                                    imagen={evento.imagen_evento}
-                                />
-                                 <EventoDestacado
-                                    key={evento.id_evento}
-                                    titulo={evento.nombre_evento}
-                                    fecha={new Date(evento.fecha_evento).toLocaleDateString()}
-                                    ubicacion={evento.ubicacion}
-                                    imagen={evento.imagen_evento}
-                                />
-                                 <EventoDestacado
-                                    key={evento.id_evento}
-                                    titulo={evento.nombre_evento}
-                                    fecha={new Date(evento.fecha_evento).toLocaleDateString()}
-                                    ubicacion={evento.ubicacion}
-                                    imagen={evento.imagen_evento}
-                                />
-                                 <EventoDestacado
-                                    key={evento.id_evento}
-                                    titulo={evento.nombre_evento}
-                                    fecha={new Date(evento.fecha_evento).toLocaleDateString()}
-                                    ubicacion={evento.ubicacion}
-                                    imagen={evento.imagen_evento}
-                                />
-                                 <EventoDestacado
+                                <EventoDestacado
                                     key={evento.id_evento}
                                     titulo={evento.nombre_evento}
                                     fecha={new Date(evento.fecha_evento).toLocaleDateString()}

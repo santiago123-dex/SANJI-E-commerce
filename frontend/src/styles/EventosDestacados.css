@@ -1,38 +1,57 @@
+/* Contenedor general de los eventos */
+.eventos {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  max-width: 1400px;
+}
+
+.eventos-destacados {
+  padding: 40px 0px 20px 0px;
+  text-align: center;
+}
+
+/* Cada tarjeta */
 .evento-destacado {
   display: flex;
-  align-items: center;
-  text-align: left;
-  gap: 1.5rem;
-  background: rgba(255,255,255,0.7);
-  border-radius: 2rem;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-  padding: 1.5rem 2rem;
-  transition: transform 0.2s, box-shadow 0.2s;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
 }
 
 .evento-destacado:hover {
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-  background: rgba(255,255,255,0.95);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-.evento-imagen{
-  width: fit-content;
-  height: 100px;
+.evento-imagen {
+  width: 100%;
+  height: 150px;
   object-fit: cover;
-  background: #555;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  border-radius: 5px;
+}
+
+.evento-info {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .evento-info h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.3rem;
-  color: #222;
+  margin: 0;
+  font-size: 1.1rem;
+  color: #111;
 }
 
 .evento-info p {
-  margin: 0.2rem 0;
-  color: #555;
-  font-size: 1rem;
+  margin: 0.3rem 0 0;
+  font-size: 0.9rem;
+  color: #444;
 }

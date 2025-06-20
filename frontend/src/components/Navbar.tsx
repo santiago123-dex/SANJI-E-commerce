@@ -12,7 +12,7 @@ export function Navbar() {
                             <LogoMiboleta />
                         </div>
 
-                        <ul className="eventos">
+                        <ul className="categorias-navbar">
                             <li><Link to="/inicio">Conciertos</Link></li>
                             <li><Link to="/inicio">Teatro</Link></li>
                             <li><Link to="/inicio">Deportes</Link></li>
