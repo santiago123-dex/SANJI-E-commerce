@@ -28,12 +28,12 @@ body {
 
 /* categorias */
 
-.categorias, .eventos-destacados {
+.categorias {
   padding: 40px 0px 20px 0px;
   text-align: center;
 }
 
-.grid-categorias, .grid-eventos {
+.grid-categorias {
   display: flex;
   gap: 20px;
   justify-content: center;

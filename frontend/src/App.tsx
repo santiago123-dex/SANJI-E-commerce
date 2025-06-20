@@ -1,5 +1,6 @@
 import { NavbarSesion } from "./components/NavbarSesion"
 import { Formulario } from "./components/FormularioLogin"
+import { FormularioLoginAdmin } from "./components/FormularioLoginAdmin";
 import { FormularioRegistro } from "./components/FormularioRegistro"
 import { Navbar } from "./components/Navbar"
 import { Routes, Route } from "react-router-dom"
@@ -21,6 +22,11 @@ export function App() {
             <Route path="login" element={<NavbarSesion />}>
                 <Route index element={<Formulario />} />
                 <Route path="login" element={<Formulario />} />
+            </Route>
+
+            <Route path="admin-login" element={<NavbarSesion />}>
+                <Route index element={<FormularioLoginAdmin />} />
+                <Route path="login" element={<FormularioLoginAdmin />} />
             </Route>
         </Routes>
     )
