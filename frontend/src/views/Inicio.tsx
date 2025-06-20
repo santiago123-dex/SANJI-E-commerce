@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Footer } from '../components/Footer'
 import { EventoDestacado } from '../components/EventosDestacados.tsx'
 import "../styles/Inicio.css"
 
-type Evento = {
+interface Evento {
     id_evento: number
     nombre_evento: string
     fecha_evento: string
@@ -66,10 +67,10 @@ export function Inicio() {
                 <section className='categorias'>
                     <h2>Categorías</h2>
                     <div className='grid-categorias'>
-                        <div className='categoria'>Conciertos</div>
-                        <div className='categoria'>Deporte</div>
-                        <div className='categoria'>Teatro</div>
-                        <div className='categoria'>Familia</div>
+                        <Link to="" className='categoria'>CONCIERTOS</Link>
+                        <Link to="" className='categoria'>TEATRO</Link>
+                        <Link to="" className='categoria'>DEPORTES</Link>
+                        <Link to="" className='categoria'>OTROS</Link>
                     </div>
                 </section>
 

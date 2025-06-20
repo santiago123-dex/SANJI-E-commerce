@@ -3,11 +3,10 @@
 import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import rutasAut from './routes/usuario/rutasAut'
+import rutasUsuario from './routes/usuario/rutasUsuario'
 import rutasEventos from './routes/eventos/rutasEventos'
-import rutasAdminLogin from './routes/admin/rutasAdminLogin'
-import rutasPerfil from './routes/usuario/rutasPerfil'
-
+import rutasAdmin from './routes/admin/rutasAdmin'
+import rutasAdminEvento from './routes/admin/rutasAdminEvento'
 
 //CONFIGURAMOS VARIABLES DE ENTORNO PARA CONECTARNOS A LA DB Y OTRAS CONFIGURACIONES
 dotenv.config()
@@ -21,13 +20,11 @@ app.use(cors())
 app.use(express.json())
 
 //RUTAS DE REGISTRO Y LOGIN
-app.use("/usuario/aut", rutasAut)
+app.use("/api/usuario", rutasUsuario)
 
-app.use("/admin", rutasAdminLogin)
+app.use("/api/admin", rutasAdmin)
 
-app.use("/usuario/perfil", rutasPerfil)
-
-app.use("/api", rutasEventos) //en proceso
+app.use("/api/eventos", rutasEventos) //en proceso
 
 //RUTA DE PRUEBA PARA VERIFICAR QUE EL SERVIDOR ESTÁ CORRIENDO
 // app.get("/api", (_req, res) => {
