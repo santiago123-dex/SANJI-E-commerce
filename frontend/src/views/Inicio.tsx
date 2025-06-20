@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Footer } from '../components/Footer'
 import { EventoDestacado } from '../components/EventosDestacados.tsx'
 import "../styles/Inicio.css"
 
-type Evento = {
+interface Evento {
     id_evento: number
     nombre_evento: string
     fecha_evento: string
@@ -39,7 +40,7 @@ export function Inicio() {
                 <section className='eventos-destacados'>
                     <h2>Eventos destacados</h2>
                     {error && <p style={{ color: 'red' }}>{error}</p>}
-                    <div className='grid-eventos'>
+                    <div className='eventos'>
                         {eventos.map(evento => (
                             <>
                                 <EventoDestacado
@@ -49,35 +50,7 @@ export function Inicio() {
                                     ubicacion={evento.ubicacion}
                                     imagen={evento.imagen_evento}
                                 />
-                                 <EventoDestacado
-                                    key={evento.id_evento}
-                                    titulo={evento.nombre_evento}
-                                    fecha={new Date(evento.fecha_evento).toLocaleDateString()}
-                                    ubicacion={evento.ubicacion}
-                                    imagen={evento.imagen_evento}
-                                />
-                                 <EventoDestacado
-                                    key={evento.id_evento}
-                                    titulo={evento.nombre_evento}
-                                    fecha={new Date(evento.fecha_evento).toLocaleDateString()}
-                                    ubicacion={evento.ubicacion}
-                                    imagen={evento.imagen_evento}
-                                />
-                                 <EventoDestacado
-                                    key={evento.id_evento}
-                                    titulo={evento.nombre_evento}
-                                    fecha={new Date(evento.fecha_evento).toLocaleDateString()}
-                                    ubicacion={evento.ubicacion}
-                                    imagen={evento.imagen_evento}
-                                />
-                                 <EventoDestacado
-                                    key={evento.id_evento}
-                                    titulo={evento.nombre_evento}
-                                    fecha={new Date(evento.fecha_evento).toLocaleDateString()}
-                                    ubicacion={evento.ubicacion}
-                                    imagen={evento.imagen_evento}
-                                />
-                                 <EventoDestacado
+                                <EventoDestacado
                                     key={evento.id_evento}
                                     titulo={evento.nombre_evento}
                                     fecha={new Date(evento.fecha_evento).toLocaleDateString()}
@@ -94,10 +67,10 @@ export function Inicio() {
                 <section className='categorias'>
                     <h2>Categorías</h2>
                     <div className='grid-categorias'>
-                        <div className='categoria'>Conciertos</div>
-                        <div className='categoria'>Deporte</div>
-                        <div className='categoria'>Teatro</div>
-                        <div className='categoria'>Familia</div>
+                        <Link to="" className='categoria'>CONCIERTOS</Link>
+                        <Link to="" className='categoria'>TEATRO</Link>
+                        <Link to="" className='categoria'>DEPORTES</Link>
+                        <Link to="" className='categoria'>OTROS</Link>
                     </div>
                 </section>
 

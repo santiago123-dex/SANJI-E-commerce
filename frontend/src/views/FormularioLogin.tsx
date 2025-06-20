@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/FormularioLogin.css"
@@ -10,14 +10,13 @@ interface Usuario {
 
 
 export function Formulario() {
-    
     const [login, setLogin] = useState<Usuario>({
         email_usuario: "",
         password_usuario: "",
     })
-    
+
     const [mensaje, setMensaje] = useState("")
-    const navigate= useNavigate()
+    const navigate = useNavigate()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -33,7 +32,7 @@ export function Formulario() {
         e.preventDefault()
 
         try {
-            const res = await fetch("http://localhost:3000/aut/login", {
+            const res = await fetch("http://localhost:3000/usuario/aut/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -44,7 +43,9 @@ export function Formulario() {
 
             const data = await res.json()
 
-            if (res.ok) {
+
+            if (res.ok && data.token) {
+                localStorage.setItem("token", data.token)
                 setMensaje(data.message)
 
                 setLogin({
@@ -52,7 +53,7 @@ export function Formulario() {
                     password_usuario: "",
                 })
                 navigate("/")
-                
+
             } else {
                 setMensaje(data.message || "Error al iniciar sesión")
             }
@@ -61,6 +62,24 @@ export function Formulario() {
         }
     }
 
+
+    const [logueado, setLogueado] = useState(false)
+
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+
+        if (token) {
+            try {
+                if (token) {
+                    setLogueado(true)
+                    navigate("/")
+                }
+            } catch (error) {
+                localStorage.removeItem("token")
+                setLogueado(false)
+            }
+        }
+    }, [navigate])
 
     return (
         <div className="box">
@@ -90,6 +109,7 @@ export function Formulario() {
                     <button className="box_formulario_boton" type="submit">Login</button>
                     <p>Don't have an account?</p>
                     {mensaje && <p>{mensaje}</p>}
+                    {logueado && <p>Usuario ya esta logueado</p>}
                 </form>
             </div>
         </div>
