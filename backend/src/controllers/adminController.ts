@@ -1,6 +1,7 @@
 import { Request, Response} from "express"
 import * as adminServices from '../services/adminServices'
-import {generarToken} from '../utils/generarToken'
+import {generarTokenAcceso, generarTokenRefresh} from '../utils/generarToken'
+import { HttpError } from "../utils/errorManager"
 
 export const loginAdmin = async (req: Request, res: Response) => {
     try{
@@ -11,14 +12,37 @@ export const loginAdmin = async (req: Request, res: Response) => {
 
         if(!admin) return res.status(404).json({message: "Usuario no encontrado"});
         
-        const token = generarToken(admin)
-
-        if(!token) return res.status(400).json({message: "No se ha generado el token"});
-
-        res.status(200).json({message: "Inicio de sesión exitoso", token})
+        const tokenAcceso = generarTokenAcceso(admin)
+        const tokenRefresh = generarTokenRefresh(admin)
+        
+        res.cookie('tokenRefresh', tokenRefresh, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            maxAge: 1000 * 60 * 60 * 24 * 7   // para mantener la sesion por 7 dias
+        })
+        
+        res.cookie('tokenAcceso', tokenAcceso, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            maxAge: 1000 * 60 * 15
+        })
+        
+        res.status(200).json({message: 'Inicio de sesion exitoso'})
         
     }catch(error){
-        res.status(500).json({message: "Ha ocurrido un error al iniciar sesión", error})
+        if(error instanceof HttpError){
+            res.status(error.codigoEstado).json({message: error.message})
+        }else{
+            res.status(500).json({message: "Ha ocurrido un error al iniciar sesión"})
+        }
     }
     
+}
+
+export const logoutAdmin = async (_req: Request, res: Response) => {
+    res.clearCookie('tokenAcceso')
+    res.clearCookie('tokenRefresh')
+    res.status(200).json({ message: 'Sesión cerrada correctamente' })
 }

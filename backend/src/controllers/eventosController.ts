@@ -1,16 +1,21 @@
 import {Request, Response} from 'express'
 import * as eventoServices from '../services/eventoServices'
+import { HttpError } from '../utils/errorManager';
 
 export const mostrarEventos = async (_req: Request, res: Response) => {
     try{
         const eventos = await eventoServices.mostrarEventos()
 
-        if(!eventos) return res.status(404).json({message: "No seencontraron eventos"});
+        if(!eventos) return res.status(404).json({message: "No se encontraron eventos"});
 
         res.status(200).json(eventos)
 
     }catch(error){
-        res.status(500).json({message: "Ha ocurrido un error al obtener los eventos", error: error})
+        if(error instanceof HttpError){
+            res.status(error.codigoEstado).json({message: error.message})
+        }else{
+            res.status(500).json({message: "Ha ocurrido un error al obtener los eventos"})
+        }
     }
 }
 
@@ -27,7 +32,11 @@ export const mostrarEventosNombre = async (req: Request, res: Response) => {
         res.status(200).json(eventos)
 
     }catch(error){
-        res.status(500).json({message: "Ha ocurrido un error al obtener los eventos", error: error})
+        if(error instanceof HttpError){
+            res.status(error.codigoEstado).json({message: error.message})
+        }else{
+            res.status(500).json({message: "Ha ocurrido un error al obtener los eventos"})
+        }
     }
 }
 
@@ -39,6 +48,10 @@ export const mostrarCategorias = async (_req: Request, res: Response) => {
 
         res.status(200).json(categorias)
     }catch(error){
-        res.status(500).json({message: "Ha ocurrido un error al obtener las categorias", error: error})
+        if(error instanceof HttpError){
+            res.status(error.codigoEstado).json({message: error.message})
+        }else{
+            res.status(500).json({message: "Ha ocurrido un error al obtener las categorias"})
+        }
     }
 }

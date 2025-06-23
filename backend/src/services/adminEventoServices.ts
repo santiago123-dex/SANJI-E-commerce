@@ -1,5 +1,6 @@
 import {PrismaClient} from '@prisma/client'
 import { EventoCompleto } from '../types/adminEventoType'
+import { HttpError } from '../utils/errorManager'
 
 const prisma = new PrismaClient()
 
@@ -8,7 +9,7 @@ export const crearEvento = async (data: EventoCompleto) => {
 
     const fechaFormateada = new Date(fecha_evento)
 
-    if(isNaN(fechaFormateada.getDate())) throw new Error("Fecha invalida");
+    if(isNaN(fechaFormateada.getDate())) throw new HttpError("Fecha invalida", 400);
 
     return prisma.eventos.create({
         data: {
