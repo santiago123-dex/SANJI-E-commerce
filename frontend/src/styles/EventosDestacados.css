@@ -16,7 +16,6 @@
 /* Cada tarjeta */
 .evento-destacado {
   display: flex;
-
   align-items: center;
   text-align: left;
   gap: 1.5rem;
@@ -28,7 +27,6 @@
   max-width: 400px;
   min-width: 400px;
   transition: transform 0.2s, box-shadow 0.2s;
-
   cursor: pointer;
 }
 
