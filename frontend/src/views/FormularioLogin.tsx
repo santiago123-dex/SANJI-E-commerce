@@ -30,7 +30,7 @@ export function Formulario() {
         e.preventDefault()
 
         try {
-            const res = await fetch("http://localhost:3000/usuario/aut/login", {
+            const res = await fetch("http://localhost:3000/api/usuario/login", {    
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -40,7 +40,7 @@ export function Formulario() {
             })
 
             const data = await res.json()
-
+            console.log("Respuesta del back:", data)
 
             if (res.ok && data.token) {
                 localStorage.setItem("token", data.token)

@@ -1,28 +1,51 @@
-import { Link, Outlet, useLocation} from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import "../styles/Navbar.css";
 import { LogoMiboleta } from "./LogoMiboleta";
 import { useEffect, useState } from "react";
 
-
 export function Navbar() {
+    const [menuAbierto, setMenuAbierto] = useState(false);
+    const [logueo, setLogueo] = useState(false);
 
-    const [menuAbierto, setMenuAbierto] = useState(false)
+    const location = useLocation();
+    const navigate = useNavigate(); // 👈 Para redirigir
 
     function toggle() {
-        setMenuAbierto(!menuAbierto)
+        setMenuAbierto(!menuAbierto);
     }
 
-
-    const [logueo, setLogueo] = useState(false)
-    /*LOCATION ME DA ACCESO A LA RUTA ACTUAL*/
-    const location = useLocation()
-
     useEffect(() => {
-        const token = localStorage.getItem("token")
-        /*LO CONVIERTE EN BOOLEANO*/
-        setLogueo(!!token)
-        /*VUELVE EJECUTAR CADA QUE CAMBIE LOCATION*/
-    }, [location])
+        const verificarToken = async () => {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                setLogueo(false);
+                return;
+            }
+
+            try {
+                const response = await fetch("http://localhost:3000/api/usuario/perfil", {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                if (response.status === 401) {
+                    localStorage.removeItem("token");
+                    setLogueo(false);
+                    navigate("/inicio");
+                } else {
+                    setLogueo(true);
+                }
+            } catch (error) {
+                localStorage.removeItem("token");
+                setLogueo(false);
+                navigate("/inicio");
+            }
+        };
+
+        verificarToken();
+    }, [location, navigate]);
 
     return (
         <div>
@@ -49,9 +72,7 @@ export function Navbar() {
                     <img className="LogoUser" src="../../public/logoUser.png" alt="" />
                 </Link>
             </div>
-            <div>
-                {menuAbierto && <div className="overlay"></div>}
-            </div>
+            {menuAbierto && <div className="overlay"></div>}
             <Outlet />
         </div>
     );
