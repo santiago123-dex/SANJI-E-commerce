@@ -1,8 +1,7 @@
 import { NavbarSesion } from "./components/NavbarSesion"
-
 import { Formulario } from "./views/FormularioLogin"
 import { FormularioRegistro } from "./views/FormularioRegistro"
-
+import { FormularioLoginAdmin } from "./components/FormularioLoginAdmin"
 import { Navbar } from "./components/Navbar"
 import { Routes, Route } from "react-router-dom"
 import { Inicio } from "./views/Inicio"
