@@ -2,6 +2,7 @@ import {PrismaClient} from '@prisma/client'
 import bcrypt from 'bcrypt'
 import {DatosUsuario, DatosUsuarioLogin} from '../types/usuarioType'
 import { DatosToken } from '../types/tokenType'
+import { HttpError } from '../utils/errorManager'
 
 const prisma = new PrismaClient()
 
@@ -10,7 +11,7 @@ export const registrarUsuario = async (data: DatosUsuario) => {
 
     const usuarioExistente = await prisma.usuarios.findUnique({where: {email_usuario}})
 
-    if(usuarioExistente) throw new Error("Ya existe un usuario con este correo");   
+    if(usuarioExistente) throw new HttpError("Ya existe un usuario con este correo", 409);   
 
     const pwEncriptado = await bcrypt.hash(password_usuario, 10)
 
@@ -30,11 +31,11 @@ export const loginUsuario = async (data: DatosUsuarioLogin) => {
 
     const usuarioExiste = await prisma.usuarios.findUnique({where: {email_usuario}})
 
-    if(!usuarioExiste) throw new Error("Usuario no encontrado");
+    if(!usuarioExiste) throw new HttpError("Usuario no encontrado", 404);
 
     const passwordValido = await bcrypt.compare(password_usuario, usuarioExiste.password_usuario)
 
-    if(!passwordValido) throw new Error("Contraseña incorrecta");
+    if(!passwordValido) throw new HttpError("Contraseña incorrecta", 401);
 
     return {id_usuario: usuarioExiste.id_usuario, email_usuario: usuarioExiste.email_usuario}
 }
@@ -44,7 +45,7 @@ export const perfilUsuario = async (data: DatosToken) => {
 
     const usuario= await prisma.usuarios.findUnique({where: {id_usuario}})
     
-    if(!usuario || usuario == null) throw new Error("Usuario no encontrado")
+    if(!usuario || usuario == null) throw new HttpError("Usuario no encontrado", 404)
 
     return usuario
 }
