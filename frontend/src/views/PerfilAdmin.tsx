@@ -29,9 +29,9 @@ export function PerfilAdmin() {
     const crearEvento = async () => {
         const res = await fetch("http://localhost:3000/api/admin/eventos/crearEvento", {
             method: "POST",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: "Bearer" + localStorage.getItem("tokenAdmin"),
             },
             body: JSON.stringify(nuevoEvento)
         })
