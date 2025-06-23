@@ -14,6 +14,7 @@ export const verificarUsuario = (req: Request, res: Response, next: NextFunction
             req.usuario = decoded as DatosToken
             return next()
         }
+
         throw new HttpError("Token mal formado", 400)
     }catch(error){
         res.status(500).json({message: "Token invalido o expirado"})
@@ -25,7 +26,7 @@ export const verificarAdmin = (req: Request, res: Response, next: NextFunction) 
 
     if(!token) return res.status(401).json({message: "No se ha recibido el token"});
 
-    try{
+    try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET as string)
         if (typeof decoded === 'object' && decoded !== null && decoded.tipo_admin === 'admin') {
             req.usuarioAdmin = decoded as DatosTokenAdmin
