@@ -19,9 +19,7 @@ export function Formulario() {
     const navigate = useNavigate()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-
         const { name, value } = e.target
-
         setLogin((prev) => ({
             ...prev,
             [name]: value
