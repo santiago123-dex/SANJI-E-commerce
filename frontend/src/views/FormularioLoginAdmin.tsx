@@ -28,7 +28,7 @@ import "../styles/FormularioLogin.css";
         e.preventDefault();
 
         try {
-            const res = await fetch("http://localhost:3000/admin/login", {
+            const res = await fetch("http://localhost:3000/api/admin/login", {
                 method: "POST",
                 headers: {
                 "Content-Type": "application/json",
