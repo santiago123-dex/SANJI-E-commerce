@@ -1,5 +1,4 @@
 import { NavbarSesion } from "./components/NavbarSesion"
-
 import { Formulario } from "./views/FormularioLogin"
 import { FormularioRegistro } from "./views/FormularioRegistro"
 import { FormularioLoginAdmin } from "./views/FormularioLoginAdmin"

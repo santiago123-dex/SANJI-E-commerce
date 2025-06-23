@@ -17,9 +17,10 @@ const app = express()
 //CORS PARA RUTAS Y EXPRESS.JSON PARA DECIR QUE LOS DATOS QUE RECIBIMOS SON EN FORMATO JSON
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'htpp://localhost/5175',
     credentials: true
 }))
+
 app.use(cookieParser())
 
 app.use(express.json())

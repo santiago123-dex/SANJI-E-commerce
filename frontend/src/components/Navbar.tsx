@@ -49,34 +49,28 @@ export function Navbar() {
 
     return (
         <div>
-            <div className="navbar">
-                <div className="hamburger" onClick={toggle}>
+            <div className="NavBar">
+                <div className="Hamburger" onClick={toggle}>
                     {menuAbierto ? '✖' : '☰'}
                 </div>
                 <div>
                     <LogoMiboleta />
                 </div>
-                <nav className={menuAbierto ? "nav-menu open" : "nav-menu-inicio"}>
-                    <ul className="eventos">
-                        <li><Link to="/inicio">CONCIERTOS</Link></li>
-                        <li><Link to="/inicio">TEATRO</Link></li>
-                        <li><Link to="/inicio">DEPORTES</Link></li>
-                    </ul>
-                    <ul>
-                        <li><Link to="/inicio">CONTACTANOS</Link></li>
+                <nav className={menuAbierto ? "NavBar__Menu--Open" : "NavBar__Menu--Close"}>
+                        <Link className='Menu__Item' to="/inicio">CONCIERTOS</Link>
+                        <Link className='Menu__Item' to="/inicio">TEATRO</Link>
+                        <Link className='Menu__Item' to="/inicio">DEPORTES</Link>
+                        <Link className='Menu__Item' to="/inicio">CONTACTANOS</Link>
                         {!logueo && (
                             <>
-                                <li><Link to="/registrar">REGISTRARSE</Link></li>
-                                <li><Link to="/login">INICIO SESION</Link></li>
+                                <Link className='Menu__Item' to="/registrar">REGISTRARSE</Link>
+                                <Link className='Menu__Item' to="/login">INICIO SESION</Link>
                             </>
                         )}
-                    </ul>
                 </nav>
-                <div className="logo-user">
-                    <Link to="/perfil">
-                        <img src="../../public/logoUser.png" alt="" />
-                    </Link>
-                </div>
+                <Link to="/perfil">
+                    <img className="LogoUser" src="../../public/logoUser.png" alt="" />
+                </Link>
             </div>
             {menuAbierto && <div className="overlay"></div>}
             <Outlet />
