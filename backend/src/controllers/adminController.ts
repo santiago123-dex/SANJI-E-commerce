@@ -17,8 +17,16 @@ export const loginAdmin = async (req: Request, res: Response) => {
 
         res.status(200).json({message: "Inicio de sesión exitoso", token})
         
-    }catch(error){
-        res.status(500).json({message: "Ha ocurrido un error al iniciar sesión", error})
+    } catch (error: any) {
+        console.error("Error al iniciar sesión:", error.message)
+        if (error.message === "Usuario no encontrado") {
+            return res.status(404).json({ message: "Usuario no encontrado" })
+        }
+
+        if (error.message === "Contraseña incorrecta") {
+            return res.status(401).json({ message: "Contraseña incorrecta" })
+        }
+
+        return res.status(500).json({ message: "Error del servidor", error: error.message })
     }
-    
 }
