@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser'
 import rutasUsuario from './routes/usuario/rutasUsuario'
 import rutasEventos from './routes/eventos/rutasEventos'
 import rutasAdmin from './routes/admin/rutasAdmin'
+import rutasAdminEvento from './routes/admin/rutasAdminEvento'
 import rutasDEV from './DEV/datosdb'
 
 //CONFIGURAMOS VARIABLES DE ENTORNO PARA CONECTARNOS A LA DB Y OTRAS CONFIGURACIONES
