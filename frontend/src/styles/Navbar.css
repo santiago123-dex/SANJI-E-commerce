@@ -3,131 +3,134 @@
     padding: 0;
     box-sizing: border-box;
     font-family: sans-serif;
+    transition-duration: 0.5s;
 }
 
-
-.eventos {
-
-    display: flex;
-    justify-content: space-between;
-}
-
-.navbar {
+.NavBar {
     background-color: #48f;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 20px;
+    align-items: center;
+    padding: 25px;
 }
 
-.navbar h1 {
-    color: #fff
+nav {
+    transition-duration: 0s;
 }
 
-.nav-menu-inicio {
+.NavBar__Menu--Close {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
-    width: 80%;
-    transition: none;
 }
 
-.nav-menu-inicio ul {
+.Menu__Item {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
     align-items: center;
     gap: 20px;
-    margin-left: 20px;
-}
-
-.nav-menu-inicio li {
-    margin-left: 10px;
-}
-
-.nav-menu-inicio ul li a {
     text-decoration: none;
     color: #fff;
     font-size: 16px;
     font-weight: bold;
-    padding: 10px;
     cursor: pointer;
 }
 
-.logo-user {
-    width: 80px;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.logo-user img {
+.LogoUser {
     width: 30px;
-    height: 30px;
     filter: invert(1);
 }
 
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    width: 100dvw;
+    height: 100dvh;
+    z-index: 1000;
+}
+
 /*Boton Hamburguesa*/
-.hamburger {
+.Hamburger {
     display: none;
     font-size: 2rem;
     color: #fff;
     cursor: pointer;
-    margin-right: 1rem;
 }
 
-@media(max-width:768px) {
-    .hamburger {
+@media (min-width:1000px) {
+    .NavBar {
+        align-items: center;
+        gap: 30px;
+        height: 10%;
+    }
+
+    .NavBar__Menu--Close { 
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .Menu__Item {
+        border-radius: 100px;
+    }
+
+    .Menu__Item:hover {
+        padding: 10px 15px;
+        letter-spacing: 3px;
+        background-color: #fff;
+        color: #48f;
+    }
+}
+
+@media (max-width: 1000px) {
+
+    .Hamburger {
         display: block;
-        position: absolute;
-        top: 45px;
-        left: 20px;
         z-index: 2000;
     }
 
     .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-        width: 100%;
-        height: 100%;
-        z-index: 1000;
+        background-color: #000a;
     }
 
-    .nav-menu-inicio {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 250px;
-        height: 100%;
+    nav {
+        transition-duration: 0.5s;
         background-color: #48f;
+        position: fixed;
+        display: flex;
+        flex-direction: row;
+        padding-top: 100px;
+        top: 0;
+        height: 100dvh;
+        gap: 20px;
+    }
+
+    .NavBar__Menu--Close {
+        left: -100%;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        gap: 20px;
-        padding: 100px;
-        transition: left 1s ease-out;
-        z-index: 1000;
+        z-index: 1001;
     }
 
-    .nav-menu.open{
+    .NavBar__Menu--Open {
+        flex-direction: column;
         left: 0;
         z-index: 1001;
     }
-    .nav-menu-inicio ul{
-        flex-direction:column;
+
+    .Menu__Item {
+        flex-direction: column;
         gap: 15px;
-        padding: 0;
-        margin: 0;
-    }
-    .nav-menu-inicio ul li{
+        padding: 10px;
         margin: 0;
         width: 250px;
         text-align: center;
-        border-bottom:2px solid rgba(217, 215, 215, 0.5);
+    }
+    .Menu__Item:hover {
+        letter-spacing: 3px;
     }
 }

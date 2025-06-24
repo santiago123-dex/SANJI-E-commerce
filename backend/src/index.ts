@@ -3,10 +3,10 @@
 import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
+import cookieParser from 'cookie-parser'
 import rutasUsuario from './routes/usuario/rutasUsuario'
 import rutasEventos from './routes/eventos/rutasEventos'
 import rutasAdmin from './routes/admin/rutasAdmin'
-import rutasAdminEvento from './routes/admin/rutasAdminEvento'
 import rutasDEV from './DEV/datosdb'
 
 //CONFIGURAMOS VARIABLES DE ENTORNO PARA CONECTARNOS A LA DB Y OTRAS CONFIGURACIONES
@@ -16,7 +16,12 @@ const app = express()
 
 //CORS PARA RUTAS Y EXPRESS.JSON PARA DECIR QUE LOS DATOS QUE RECIBIMOS SON EN FORMATO JSON
 
-app.use(cors())
+app.use(cors({
+    origin: 'htpp://localhost/5175',
+    credentials: true
+}))
+
+app.use(cookieParser())
 
 app.use(express.json())
 

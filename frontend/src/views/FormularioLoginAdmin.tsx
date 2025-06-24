@@ -28,7 +28,7 @@ import "../styles/FormularioLogin.css";
         e.preventDefault();
 
         try {
-            const res = await fetch("http://localhost:3000/admin/login", {
+            const res = await fetch("http://localhost:3000/api/admin/login", {
                 method: "POST",
                 headers: {
                 "Content-Type": "application/json",
@@ -41,7 +41,7 @@ import "../styles/FormularioLogin.css";
         if (res.ok && data.token) {
             setMensaje("Login exitoso");
             localStorage.setItem("tokenAdmin", data.token);
-            navigate("/admin-panel"); // Aquí se dirige a la futura interfaz del admin (Fajisfaaa)
+            navigate("/perfil-admin");
         } else {
             setMensaje(data.message || "Credenciales incorrectas");
         }
@@ -49,6 +49,7 @@ import "../styles/FormularioLogin.css";
             setMensaje("Error al conectar con el servidor");
         }
     };
+    
 
     return (
         <div className="box">

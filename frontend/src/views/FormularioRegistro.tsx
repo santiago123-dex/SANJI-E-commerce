@@ -46,7 +46,7 @@ export const FormularioRegistro = () => {
         e.preventDefault()
         try {
             /*USAMOS EL FETCH PARA ENVIAR UNA PETICION HTTP AL SERVIDOR BACKEND */
-            const res = await fetch("http://localhost:3000/usuario/aut/registro", {  
+            const res = await fetch("http://localhost:3000/api/usuario/registro", {  
                 /*USAMOS METODO POST PARA DECIR QUE VAMOS A ENVIAR DATOS*/
                 method: "POST",
                 /*LE DECIMOS AL BACK QUE ESTAMOS ENVIANDO DATOS EN FORMATO JSON*/
