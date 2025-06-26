@@ -37,6 +37,12 @@ nav {
     cursor: pointer;
 }
 
+.Menu__Item__Father{
+    display: flex;
+    gap: 5rem;
+    margin-left: 3rem;
+}
+
 .LogoUser {
     width: 30px;
     filter: invert(1);

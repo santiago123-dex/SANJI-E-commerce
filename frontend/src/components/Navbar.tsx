@@ -8,12 +8,12 @@ export function Navbar() {
     const [logueo, setLogueo] = useState(false);
 
     const location = useLocation();
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     function toggle() {
         setMenuAbierto(!menuAbierto);
     }
-    
+
     useEffect(() => {
         const verificarSesion = async () => {
             try {
@@ -25,9 +25,9 @@ export function Navbar() {
                     }
                 );
                 console.log(response)
-                if(response.status === 200){
+                if (response.status === 200) {
                     setLogueo(true)
-                }else{
+                } else {
                     setLogueo(false)
                 }
             } catch {
@@ -47,20 +47,21 @@ export function Navbar() {
                     <LogoMiboleta />
                 </div>
                 <nav className={menuAbierto ? "NavBar__Menu--Open" : "NavBar__Menu--Close"}>
-                    <Link className='Menu__Item' to="/inicio">CONCIERTOS</Link>
-                    <Link className='Menu__Item' to="/inicio">TEATRO</Link>
-                    <Link className='Menu__Item' to="/inicio">DEPORTES</Link>
-                    <Link className='Menu__Item' to="/inicio">CONTACTANOS</Link>
+                    <ul className="Menu__Item__Father">
+                        <Link className='Menu__Item' to="/inicio">CONCIERTOS</Link>
+                        <Link className='Menu__Item' to="/inicio">TEATRO</Link>
+                        <Link className='Menu__Item' to="/inicio">DEPORTES</Link>
+                    </ul>
                     {!logueo && (
-                        <>
+                        <ul className="Menu__Item__Father">
                             <Link className='Menu__Item' to="/registrar">REGISTRARSE</Link>
                             <Link className='Menu__Item' to="/login">INICIO SESION</Link>
-                        </>
+                        </ul>
                     )}
+                    <Link to="/perfil">
+                        <img className="LogoUser" src="../../public/logoUser.png" alt="" />
+                    </Link>
                 </nav>
-                <Link to="/perfil">
-                    <img className="LogoUser" src="../../public/logoUser.png" alt="" />
-                </Link>
             </div>
             {menuAbierto && <div className="overlay"></div>}
             <Outlet />
