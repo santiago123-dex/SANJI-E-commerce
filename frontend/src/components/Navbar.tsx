@@ -77,20 +77,18 @@ export function Navbar() {
                 <div className="Hamburger" onClick={toggle}>
                     {menuAbierto ? '✖' : '☰'}
                 </div>
-
                 <div>
                     <LogoMiboleta />
                 </div>
-
-                <form className="form-busqueda" onSubmit={handleBuscar}>
+                <form className="Search" onSubmit={handleBuscar}>
                     <input
                         type="text"
                         placeholder="Buscar evento..."
                         value={busqueda}
                         onChange={(e) => setBusqueda(e.target.value)}
-                        className="input-busqueda"
+                        className="Search__Input"
                     />
-                    <button type="submit" className="boton-busqueda">🔍</button>
+                    <button type="submit" className="Search__Button">🔍</button>
                 </form>
 
                 <nav className={menuAbierto ? "NavBar__Menu--Open" : "NavBar__Menu--Close"}>
@@ -105,7 +103,6 @@ export function Navbar() {
                         </>
                     )}
                 </nav>
-
                 <Link to="/perfil">
                     <img className="LogoUser" src="../../public/logoUser.png" alt="" />
                 </Link>
