@@ -16,7 +16,7 @@ export const refreshCookie = async (req: Request, res: Response) => {
             res.cookie('tokenAcceso', nuevotokenAcceso, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
-                sameSite: "strict",
+                sameSite: "lax",
                 maxAge: 1000 * 60 * 15
             })
         }else if(typeof decoded === 'object' && decoded !== null){
@@ -24,7 +24,7 @@ export const refreshCookie = async (req: Request, res: Response) => {
             res.cookie('tokenAcceso', nuevotokenAcceso, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
-                sameSite: "strict",
+                sameSite: "lax",
                 maxAge: 1000 * 60 * 15
             })
         }
