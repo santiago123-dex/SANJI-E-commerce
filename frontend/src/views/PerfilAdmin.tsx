@@ -51,6 +51,8 @@ export function PerfilAdmin() {
                 estado_evento: 1,
             })
 
+            alert("Evento creado correctamente")
+
         } else {
             alert("ha ocurrido un error")
         }

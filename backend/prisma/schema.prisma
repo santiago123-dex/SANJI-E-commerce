@@ -20,7 +20,7 @@ model boletos {
   id_tipo            Int
   precio_boleto      Decimal            @db.Decimal(11, 2)
   stock              Int
-  descripcion_boleto String             @db.VarChar(150)
+  descripcion_boleto String             @db.VarChar(255)
   fecha_creado       DateTime?          @default(now()) @db.Timestamp(0)
   fecha_actualizado  DateTime?          @default(now()) @db.Timestamp(0)
   evento             eventos            @relation(fields: [id_evento], references: [id_evento], map: "fk_boleto_evento")
@@ -39,9 +39,8 @@ model carrito {
   cantidad          Int
   fecha_creado      DateTime? @default(now()) @db.Timestamp(0)
   fecha_actualizado DateTime? @default(now()) @db.Timestamp(0)
-  boleto           boletos   @relation(fields: [id_boleto], references: [id_boleto], map: "fk_carrito_boleto")
-  usuario          usuarios  @relation(fields: [id_usuario], references: [id_usuario], onDelete: Cascade, map: "fk_carrito_usuario")
-
+  boleto            boletos   @relation(fields: [id_boleto], references: [id_boleto], map: "fk_carrito_boleto")
+  usuario           usuarios  @relation(fields: [id_usuario], references: [id_usuario], onDelete: Cascade, map: "fk_carrito_usuario")
 
   @@index([id_boleto], map: "fk_carrito_boleto_idx")
   @@index([id_usuario], map: "fk_carrito_usuario_idx")
@@ -76,8 +75,6 @@ model eventos {
   ubicacion          String     @db.VarChar(150)
   imagen_evento      String?    @db.VarChar(1000)
   estado_evento      Int        @default(1) @db.TinyInt
-  fecha_creado       DateTime?  @default(now()) @db.Timestamp(0)
-  fecha_actualizado  DateTime?  @default(now()) @db.Timestamp(0)
   boletos            boletos[]
   categoria          categorias @relation(fields: [id_categoria], references: [id_categoria], map: "id_categoria")
 

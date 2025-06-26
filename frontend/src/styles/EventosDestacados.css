@@ -6,11 +6,16 @@
   flex-wrap: wrap;
   margin-top: 20px;
   max-width: 1400px;
+  margin: auto;
 }
 
 .eventos-destacados {
   padding: 40px 0px 20px 0px;
   text-align: center;
+}
+
+.eventos-destacados h2{
+  margin-bottom: 1rem;
 }
 
 /* Cada tarjeta */
