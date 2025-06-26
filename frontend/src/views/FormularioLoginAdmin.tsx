@@ -31,7 +31,6 @@ import "../styles/FormularioLogin.css";
             const res = await fetch("http://localhost:3000/api/admin/login", {
                 method: "POST",
                 credentials: "include",
-                
                 headers: {
                 "Content-Type": "application/json",
             },
@@ -40,14 +39,14 @@ import "../styles/FormularioLogin.css";
 
         const data = await res.json();
 
-        if (res.ok && data.token) {
+        if (res.ok) {
             setMensaje("Login exitoso");
-            localStorage.setItem("tokenAdmin", data.token);
             navigate("/perfil-admin");
         } else {
             setMensaje(data.message || "Credenciales incorrectas");
         }
         } catch (error) {
+            console.log("Error real", error)
             setMensaje("Error al conectar con el servidor");
         }
     };

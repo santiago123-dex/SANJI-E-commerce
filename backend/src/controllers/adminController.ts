@@ -2,6 +2,7 @@ import { Request, Response} from "express"
 import * as adminServices from '../services/adminServices'
 import {generarTokenAcceso, generarTokenRefresh} from '../utils/generarToken'
 import { HttpError } from "../utils/errorManager"
+import { error } from "console"
 
 export const loginAdmin = async (req: Request, res: Response) => {
     try{
@@ -29,7 +30,7 @@ export const loginAdmin = async (req: Request, res: Response) => {
             maxAge: 1000 * 60 * 15
         })
         
-        res.status(200).json({message: 'Inicio de sesion exitoso'})
+        res.status(200).json({message: 'Inicio de sesion exitoso', error:error})
         
     }catch(error){
         if(error instanceof HttpError){
