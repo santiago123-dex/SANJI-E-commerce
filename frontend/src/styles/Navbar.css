@@ -12,13 +12,15 @@
     justify-content: space-between;
     align-items: center;
     padding: 25px;
+    width: 100%;
 }
 
 nav {
     transition-duration: 0s;
 }
 
-.NavBar__Menu--Close {
+.NavBar__Menu--Close,
+.NavBar__Menu--Open {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -26,10 +28,8 @@ nav {
 
 .Menu__Item {
     display: flex;
-    flex-wrap: wrap;
     list-style: none;
     align-items: center;
-    gap: 20px;
     text-decoration: none;
     color: #fff;
     font-size: 16px;
@@ -37,10 +37,11 @@ nav {
     cursor: pointer;
 }
 
-.Menu__Item__Father{
+.Menu__Item__Father {
     display: flex;
     gap: 5rem;
     margin-left: 3rem;
+    margin-right: 5rem;
 }
 
 .LogoUser {
@@ -52,35 +53,24 @@ nav {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #000;
-    width: 100dvw;
-    height: 100dvh;
-    z-index: 1000;
+    background-color: #000a;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
 }
 
-/*Boton Hamburguesa*/
 .Hamburger {
     display: none;
     font-size: 2rem;
     color: #fff;
     cursor: pointer;
+    z-index: 1001;
 }
 
-@media (min-width:1000px) {
-    .NavBar {
-        align-items: center;
-        gap: 30px;
-        height: 10%;
-    }
-
-    .NavBar__Menu--Close { 
-        width: 100%;
+@media (min-width: 1000px) {
+    .NavBar__Menu--Close {
         justify-content: space-around;
         align-items: center;
-    }
-
-    .Menu__Item {
-        border-radius: 100px;
     }
 
     .Menu__Item:hover {
@@ -88,55 +78,51 @@ nav {
         letter-spacing: 3px;
         background-color: #fff;
         color: #48f;
+        border-radius: 100px;
     }
 }
 
 @media (max-width: 1000px) {
-
     .Hamburger {
         display: block;
-        z-index: 2000;
     }
 
-    .overlay {
-        background-color: #000a;
-    }
-
-    nav {
-        transition-duration: 0.5s;
-        background-color: #48f;
+    .NavBar__Menu--Close,
+    .NavBar__Menu--Open {
         position: fixed;
-        display: flex;
-        flex-direction: row;
-        padding-top: 100px;
         top: 0;
-        height: 100dvh;
-        gap: 20px;
-    }
-
-    .NavBar__Menu--Close {
         left: -100%;
+        width: 250px;
+        height: 100vh;
         flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        z-index: 1001;
+        background-color: #48f;
+        padding-top: 80px;
+        gap: 20px;
+        transition: left 1s ease-in-out;
+        z-index: 1000;
     }
 
     .NavBar__Menu--Open {
-        flex-direction: column;
         left: 0;
-        z-index: 1001;
+       text-align: center;
     }
 
     .Menu__Item {
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
         padding: 10px;
-        margin: 0;
-        width: 250px;
+        width: 100%;
         text-align: center;
     }
+
+    .Menu__Item__Father {
+        flex-direction: column;
+        gap: 15px;
+        margin: 0 auto;
+        align-items: center;
+    }
+
     .Menu__Item:hover {
-        letter-spacing: 3px;
+        letter-spacing: 2px;
     }
 }

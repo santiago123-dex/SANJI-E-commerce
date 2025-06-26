@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../styles/PerfilAdmin.css";
 import { EventoDestacado } from "../components/EventosDestacados";
+import { EventoAdmin } from "../components/EventosAdmin";
 
 interface Evento {
     id_evento: number
@@ -70,64 +71,72 @@ export function PerfilAdmin() {
 
 
     return (
-        <div className="perfil-admin">
-            <h2>Panel del Administrador</h2>
-            <div className="evento-contenedor">
-                {eventos.map(evento => (
-                    
-                        <EventoDestacado
-                            titulo={evento.nombre_evento}
-                            fecha={new Date(evento.fecha_evento).toLocaleDateString()}
-                            ubicacion={evento.ubicacion}
-                            imagen={evento.imagen_evento}
+        <main>
+            <section className='Hero'>
+                <h1 className='Hero__title'>Bienvenido a Miboleta</h1>
+                <p className='Hero__description'>Compra entradas para tus eventos favoritos</p>
+            </section>
+            <section className='FeaturedEvents'>
+                <h2 className="FeaturedEvents__Title">Eventos destacados</h2>
+                <div className="FeaturedEvents__Content">
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                    {eventos.map(evento => (
+                        <>
+                            <EventoAdmin
+                                key={evento.id_evento}
+                                titulo={evento.nombre_evento}
+                                fecha={new Date(evento.fecha_evento).toLocaleDateString()}
+                                ubicacion={evento.ubicacion}
+                                imagen={evento.imagen_evento}
+                            />
+                        </>
+
+                    ))}
+                    <div className="crear-evento">
+                        <button onClick={() => setMostrarModalCrear(true)}>➕ Crear nuevo evento</button>
+                    </div>
+                </div>
+            </section>
+            {mostrarModalCrear && (
+                <div className="modal-overlay">
+                    <div className="modal-contenido">
+                        <h3>Crear nuevo evento</h3>
+                        <input
+                            type="text"
+                            placeholder="Nombre del evento"
+                            value={nuevoEvento.nombre_evento}
+                            onChange={(e) => setNuevoEvento({ ...nuevoEvento, nombre_evento: e.target.value })}
+                        />
+                        <textarea
+                            placeholder="Descripción"
+                            value={nuevoEvento.descripcion_evento}
+                            onChange={(e) => setNuevoEvento({ ...nuevoEvento, descripcion_evento: e.target.value })}
+                        />
+                        <input
+                            type="date"
+                            value={nuevoEvento.fecha_evento}
+                            onChange={(e) => setNuevoEvento({ ...nuevoEvento, fecha_evento: e.target.value })}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Ubicación"
+                            value={nuevoEvento.ubicacion}
+                            onChange={(e) => setNuevoEvento({ ...nuevoEvento, ubicacion: e.target.value })}
+                        />
+                        <input
+                            type="text"
+                            placeholder="URL de imagen"
+                            value={nuevoEvento.imagen_evento}
+                            onChange={(e) => setNuevoEvento({ ...nuevoEvento, imagen_evento: e.target.value })}
                         />
 
-                ))}
-                <div className="crear-evento">
-                    <button onClick={() => setMostrarModalCrear(true)}>➕ Crear nuevo evento</button>
-                </div>
-                {mostrarModalCrear && (
-                    <div className="modal-overlay">
-                        <div className="modal-contenido">
-                            <h3>Crear nuevo evento</h3>
-                            <input
-                                type="text"
-                                placeholder="Nombre del evento"
-                                value={nuevoEvento.nombre_evento}
-                                onChange={(e) => setNuevoEvento({ ...nuevoEvento, nombre_evento: e.target.value })}
-                            />
-                            <textarea
-                                placeholder="Descripción"
-                                value={nuevoEvento.descripcion_evento}
-                                onChange={(e) => setNuevoEvento({ ...nuevoEvento, descripcion_evento: e.target.value })}
-                            />
-                            <input
-                                type="date"
-                                value={nuevoEvento.fecha_evento}
-                                onChange={(e) => setNuevoEvento({ ...nuevoEvento, fecha_evento: e.target.value })}
-                            />
-                            <input
-                                type="text"
-                                placeholder="Ubicación"
-                                value={nuevoEvento.ubicacion}
-                                onChange={(e) => setNuevoEvento({ ...nuevoEvento, ubicacion: e.target.value })}
-                            />
-                            <input
-                                type="text"
-                                placeholder="URL de imagen"
-                                value={nuevoEvento.imagen_evento}
-                                onChange={(e) => setNuevoEvento({ ...nuevoEvento, imagen_evento: e.target.value })}
-                            />
-
-                            <div className="botones">
-                                <button className="boton-crear" onClick={crearEvento}>Crear</button>
-                                <button className="boton-cancelar" onClick={() => setMostrarModalCrear(false)}>Cancelar</button>
-                            </div>
+                        <div className="botones">
+                            <button className="boton-crear" onClick={crearEvento}>Crear</button>
+                            <button className="boton-cancelar" onClick={() => setMostrarModalCrear(false)}>Cancelar</button>
                         </div>
                     </div>
-                )}
-            </div>
-
-        </div>
+                </div>
+            )}
+        </main>
     );
 }

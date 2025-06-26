@@ -37,6 +37,10 @@ export function Navbar() {
         verificarSesion();
     }, [location, navigate]);
 
+    useEffect(() => {
+        document.body.style.overflow = menuAbierto ? "hidden" : "auto";
+    }, [menuAbierto]);
+
     return (
         <div>
             <div className="NavBar">
@@ -63,7 +67,7 @@ export function Navbar() {
                     </Link>
                 </nav>
             </div>
-            {menuAbierto && <div className="overlay"></div>}
+            {menuAbierto && <div className="overlay" onClick={toggle}></div>}
             <Outlet />
         </div>
     );
