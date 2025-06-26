@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/PerfilAdmin.css";
-import { EventoDestacado } from "../components/EventosDestacados";
+import { EventosDestacados } from "../components/EventosDestacados";
 
 interface Evento {
     id_evento: number
@@ -63,7 +63,7 @@ const guardarCambios = async () => {
             <div className="evento-contenedor">
                 {eventos.map(evento => (
                 <>
-                    <EventoDestacado
+                    <EventosDestacados
                         key={evento.id_evento}
                         titulo={evento.nombre_evento}
                         fecha={new Date(evento.fecha_evento).toLocaleDateString()}

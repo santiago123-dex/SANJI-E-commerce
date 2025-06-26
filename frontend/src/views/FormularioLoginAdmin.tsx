@@ -30,6 +30,8 @@ import "../styles/FormularioLogin.css";
         try {
             const res = await fetch("http://localhost:3000/api/admin/login", {
                 method: "POST",
+                credentials: "include",
+                
                 headers: {
                 "Content-Type": "application/json",
             },
