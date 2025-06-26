@@ -10,12 +10,12 @@ interface EventoDestacadoProps {
 
 export const EventoDestacado: React.FC<EventoDestacadoProps> = ({ titulo, fecha, ubicacion, imagen }) => {
     return (
-        <div className="evento-destacado">
-            <img src={imagen} alt={titulo} loading="lazy" className="evento-imagen" />
-            <div className="evento-info">
-                <h3>{titulo}</h3>
-                <p>Fecha: {fecha}</p>
-                <p>Lugar: {ubicacion}</p>
+        <div className="FeaturedEvent">
+            <img src={imagen} alt={titulo} loading="lazy" className="FeaturedEvent__Img" />
+            <div className="FeaturedEvent__Info">
+                <h3 className="Info__Title">{titulo}</h3>
+                <p className="Info__Date">Fecha: {fecha}</p>
+                <p className="Info__Place">Lugar: {ubicacion}</p>
             </div>
         </div>
     );
