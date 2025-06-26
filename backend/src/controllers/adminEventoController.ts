@@ -1,4 +1,4 @@
-import {Request, Response} from 'express'
+import { Request, Response } from 'express'
 import * as adminEventoServices from '../services/adminEventoServices'
 import { HttpError } from '../utils/errorManager';
 

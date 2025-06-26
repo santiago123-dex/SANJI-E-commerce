@@ -2,6 +2,7 @@ import { Request, Response} from "express"
 import * as adminServices from '../services/adminServices'
 import {generarTokenAcceso, generarTokenRefresh} from '../utils/generarToken'
 import { HttpError } from "../utils/errorManager"
+import { error } from "console"
 
 export const loginAdmin = async (req: Request, res: Response) => {
     try{
@@ -18,18 +19,18 @@ export const loginAdmin = async (req: Request, res: Response) => {
         res.cookie('tokenRefresh', tokenRefresh, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
+            sameSite: 'lax',
             maxAge: 1000 * 60 * 60 * 24 * 7   // para mantener la sesion por 7 dias
         })
         
         res.cookie('tokenAcceso', tokenAcceso, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
+            sameSite: 'lax',
             maxAge: 1000 * 60 * 15
         })
         
-        res.status(200).json({message: 'Inicio de sesion exitoso'})
+        res.status(200).json({message: 'Inicio de sesion exitoso', error:error})
         
     }catch(error){
         if(error instanceof HttpError){

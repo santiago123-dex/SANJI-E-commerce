@@ -3,6 +3,6 @@ import {refreshCookie} from '../controllers/cookieController'
 
 const router = Router()
 
-router.post("/refresh", refreshCookie)
+router.get("/refresh", refreshCookie)
 
 export default router
