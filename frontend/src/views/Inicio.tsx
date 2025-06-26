@@ -46,13 +46,6 @@ export function Inicio() {
                                     ubicacion={evento.ubicacion}
                                     imagen={evento.imagen_evento}
                                 />
-                                <EventoDestacado
-                                    key={evento.id_evento}
-                                    titulo={evento.nombre_evento}
-                                    fecha={new Date(evento.fecha_evento).toLocaleDateString()}
-                                    ubicacion={evento.ubicacion}
-                                    imagen={evento.imagen_evento}
-                                />
                             </>
 
                     ))}

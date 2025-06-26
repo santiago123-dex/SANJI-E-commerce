@@ -32,6 +32,7 @@ export function Formulario() {
         try {
             const res = await fetch("http://localhost:3000/api/usuario/login", {    
                 method: "POST",
+                credentials: "include",
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -40,18 +41,17 @@ export function Formulario() {
             })
 
             const data = await res.json()
-            console.log("Respuesta del back:", data)
+            console.log("Respuesta del login:", res.status, data)
 
-            if (res.ok && data.token) {
-                localStorage.setItem("token", data.token)
+            if (res.ok) {
                 setMensaje(data.message)
 
                 setLogin({
                     email_usuario: "",
                     password_usuario: "",
                 })
-                navigate("/")
 
+                navigate("/inicio")
             } else {
                 setMensaje(data.message || "Error al iniciar sesión")
             }
@@ -64,20 +64,26 @@ export function Formulario() {
     const [logueado, setLogueado] = useState(false)
 
     useEffect(() => {
-        const token = localStorage.getItem("token")
+        const token = async () =>{
+            try{
+                const res = await fetch("http://localhost:3000/api/usuario/perfil", {
+                    method: "GET",
+                    credentials: "include"
+                })
 
-        if (token) {
-            try {
-                if (token) {
+                if(res.ok){
+                    const data = await res.json()
                     setLogueado(true)
-                    navigate("/")
+                    navigate("/", {replace: true})
+                }else{
+                    setLogueado(false)
                 }
-            } catch (error) {
-                localStorage.removeItem("token")
+            }catch(error){
                 setLogueado(false)
             }
         }
-    }, [navigate])
+        token()
+        }, [navigate])
 
     return (
         <div className="box">

@@ -1,3 +1,4 @@
+
 * {
   box-sizing: border-box;
 }
@@ -17,6 +18,7 @@
   color: #48f;
   margin: 50px auto;
 }
+
 
 .FeaturedEvents__Content {
   margin: 20px;

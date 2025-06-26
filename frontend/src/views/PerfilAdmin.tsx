@@ -13,99 +13,121 @@ interface Evento {
 
 export function PerfilAdmin() {
     const [eventos, setEventos] = useState<Evento[]>([]);
-    const [eventoEditando, setEventoEditando] = useState<Evento | null>(null);
+    const [error, setError] = useState<string>("")
+    const [mostrarModalCrear, setMostrarModalCrear] = useState(false)
 
-useEffect(() => {
-    fetch("http://localhost:3000/api/eventos")
-    .then((res) => res.json())
-    .then((data) => setEventos(data));
-}, []);
+    const [nuevoEvento, setNuevoEvento] = useState({
+        id_categoria: 1,
+        nombre_evento: "",
+        descripcion_evento: "",
+        fecha_evento: "",
+        ubicacion: "",
+        imagen_evento: "",
+        estado_evento: 1
+    })
 
-const eliminarEvento = async (id: number) => {
-    const confirmar = confirm("¿Estás seguro de eliminar este evento?");
-    if (!confirmar) return;
-
-const res = await fetch(`http://localhost:3000/api/eventos/${id}`, {
-    method: "DELETE",
-    headers: {
-        Authorization: "Bearer " + localStorage.getItem("tokenAdmin"),
-    },
-});
-    if (res.ok) {
-        setEventos(eventos.filter((e) => e.id_evento !== id));
-    }   
-}
-
-const guardarCambios = async () => {
-    if (!eventoEditando) return
-
-    const res = await fetch(`http://localhost:3000/api/eventos/${eventoEditando.id_evento}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("tokenAdmin"),
-        },
-            body: JSON.stringify(eventoEditando),
-        });
+    const crearEvento = async () => {
+        const res = await fetch("http://localhost:3000/api/admin/eventos/crearEvento", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(nuevoEvento)
+        })
 
         if (res.ok) {
-        const nuevosEventos = eventos.map((e) =>
-            e.id_evento === eventoEditando.id_evento ? eventoEditando : e
-        );
-        setEventos(nuevosEventos);
-        setEventoEditando(null); // Cerrar formulario
+            const eventoCreado = await res.json()
+            setEventos([...eventos, eventoCreado])
+            setMostrarModalCrear(false)
+
+            setNuevoEvento({
+                id_categoria: 1,
+                nombre_evento: "",
+                descripcion_evento: "",
+                fecha_evento: "",
+                ubicacion: "",
+                imagen_evento: "",
+                estado_evento: 1,
+            })
+
+            alert("Evento creado correctamente")
+
+        } else {
+            alert("ha ocurrido un error")
         }
-    };
+    }
+
+    useEffect(() => {
+        fetch("http://localhost:3000/api/eventos")
+            .then(res => {
+                if (!res.ok) throw new Error("Error al cargar eventos")
+                return res.json()
+            })
+            .then(data => setEventos(data))
+            .catch(err => setError(err.message))
+    }, [])
+
 
     return (
         <div className="perfil-admin">
-        <h2>Panel del Administrador</h2>
+            <h2>Panel del Administrador</h2>
             <div className="evento-contenedor">
                 {eventos.map(evento => (
-                <>
-                    <EventoDestacado
-                        key={evento.id_evento}
-                        titulo={evento.nombre_evento}
-                        fecha={new Date(evento.fecha_evento).toLocaleDateString()}
-                        ubicacion={evento.ubicacion}
-                        imagen={evento.imagen_evento}
-                    />  
-                    <div className="botones-admin">
-                        <button onClick={() => setEventoEditando(evento)}>✏️ Editar</button>
-                        <button onClick={() => eliminarEvento(evento.id_evento)}>🗑️ Eliminar</button>
+                    
+                        <EventoDestacado
+                            titulo={evento.nombre_evento}
+                            fecha={new Date(evento.fecha_evento).toLocaleDateString()}
+                            ubicacion={evento.ubicacion}
+                            imagen={evento.imagen_evento}
+                        />
+
+                ))}
+                <div className="crear-evento">
+                    <button onClick={() => setMostrarModalCrear(true)}>➕ Crear nuevo evento</button>
+                </div>
+                {mostrarModalCrear && (
+                    <div className="modal-overlay">
+                        <div className="modal-contenido">
+                            <h3>Crear nuevo evento</h3>
+                            <input
+                                type="text"
+                                placeholder="Nombre del evento"
+                                value={nuevoEvento.nombre_evento}
+                                onChange={(e) => setNuevoEvento({ ...nuevoEvento, nombre_evento: e.target.value })}
+                            />
+                            <textarea
+                                placeholder="Descripción"
+                                value={nuevoEvento.descripcion_evento}
+                                onChange={(e) => setNuevoEvento({ ...nuevoEvento, descripcion_evento: e.target.value })}
+                            />
+                            <input
+                                type="date"
+                                value={nuevoEvento.fecha_evento}
+                                onChange={(e) => setNuevoEvento({ ...nuevoEvento, fecha_evento: e.target.value })}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Ubicación"
+                                value={nuevoEvento.ubicacion}
+                                onChange={(e) => setNuevoEvento({ ...nuevoEvento, ubicacion: e.target.value })}
+                            />
+                            <input
+                                type="text"
+                                placeholder="URL de imagen"
+                                value={nuevoEvento.imagen_evento}
+                                onChange={(e) => setNuevoEvento({ ...nuevoEvento, imagen_evento: e.target.value })}
+                            />
+
+                            <div className="botones">
+                                <button className="boton-crear" onClick={crearEvento}>Crear</button>
+                                <button className="boton-cancelar" onClick={() => setMostrarModalCrear(false)}>Cancelar</button>
+                            </div>
+                        </div>
                     </div>
-                </>
-            ))}
+                )}
             </div>
 
-        {eventoEditando && (
-            <div className="modal">
-            <h3>Editar evento</h3>
-            <input
-                type="text"
-                value={eventoEditando.nombre_evento}
-                onChange={(e) =>
-                setEventoEditando({ ...eventoEditando, nombre_evento: e.target.value })
-                }
-            />
-            <input
-                type="date"
-                value={eventoEditando.fecha_evento}
-                onChange={(e) =>
-                setEventoEditando({ ...eventoEditando, fecha_evento: e.target.value })
-                }
-            />
-            <input
-                type="text"
-                value={eventoEditando.ubicacion}
-                onChange={(e) =>
-                setEventoEditando({ ...eventoEditando, ubicacion: e.target.value })
-                }
-            />
-            <button onClick={guardarCambios}>Guardar</button>
-            <button onClick={() => setEventoEditando(null)}>Cancelar</button>
-            </div>
-        )}
         </div>
     );
-    }
+}

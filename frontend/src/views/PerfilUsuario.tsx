@@ -12,11 +12,6 @@ export function PerfilUsuario() {
 
     const navigate = useNavigate()
 
-    const handleLogout = () => {
-        localStorage.removeItem("token")
-        navigate("/inicio")
-    }
-
     const [perfil, setPerfil] = useState<Perfil | null>(null)
     const [loading, setLoading] = useState<boolean>(true)
     const [error, setError] = useState<string>("")
@@ -24,12 +19,9 @@ export function PerfilUsuario() {
     useEffect(() => {
         const obtenerPerfil = async () => {
             try {
-                const token = localStorage.getItem('token')
                 const response = await fetch('http://localhost:3000/api/usuario/perfil', {
                     method: "GET",
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
+                    credentials: "include"
                 })
 
                 if (!response.ok) throw new Error("Error al obtener el perfil")
@@ -54,6 +46,25 @@ export function PerfilUsuario() {
     if (!perfil) {
         return null
     }
+
+    
+    const handleLogout = async () => {
+        try {
+            const logout = await fetch('http://localhost:3000/api/usuario/logout', {
+                method: "GET",
+                credentials: "include"
+            })
+            if (logout.ok) {
+                alert("se cerro la sesion correctamente")
+                navigate("/inicio")
+            } else {
+                alert("Error al cerrar la sesion")
+            }
+        } catch (error) {
+            setError("No se pudo cerrar sesion")
+        }
+    }
+
     return (
         <div>
             <div className="container">

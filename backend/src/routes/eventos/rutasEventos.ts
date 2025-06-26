@@ -1,7 +1,9 @@
 import {Router} from 'express'
 import { mostrarEventos, mostrarEventosNombre, mostrarCategorias, mostrarEventosCategoria, mostrarEventosId, mostrarBoletosPorEvento } from '../../controllers/eventosController'
 
+
 const router = Router()
+
 
 router.get("/", mostrarEventos)
 router.get("/:nombre_evento", mostrarEventosNombre)
