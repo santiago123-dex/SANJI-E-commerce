@@ -29,19 +29,15 @@ export function Inicio() {
 
     return (
         <main>
-            <div>
-                <section className='hero'>
-                    <div className='hero-text'>
-                        <h1>Bienvenido a Miboleta</h1>
-                        <p>Compra entradas para tus eventos favoritos</p>
-                    </div>
-                </section>
-
-                <section className='eventos-destacados'>
-                    <h2>Eventos destacados</h2>
+            <section className='Hero'>
+                <h1 className='Hero__title'>Bienvenido a Miboleta</h1>
+                <p  className='Hero__description'>Compra entradas para tus eventos favoritos</p>
+            </section>
+            <section className='FeaturedEvents'>
+                <h2 className="FeaturedEvents__Title">Eventos destacados</h2>
+                <div className="FeaturedEvents__Content">
                     {error && <p style={{ color: 'red' }}>{error}</p>}
-                    <div className='eventos'>
-                        {eventos.map(evento => (
+                    {eventos.map(evento => (
                             <>
                                 <EventoDestacado
                                     key={evento.id_evento}
@@ -59,24 +55,20 @@ export function Inicio() {
                                 />
                             </>
 
-                        ))}
-                    </div>
+                    ))}
+                </div>
+            </section>
 
-                </section>
-
-                <section className='categorias'>
-                    <h2>Categorías</h2>
-                    <div className='grid-categorias'>
-                        <Link to="" className='categoria'>CONCIERTOS</Link>
-                        <Link to="" className='categoria'>TEATRO</Link>
-                        <Link to="" className='categoria'>DEPORTES</Link>
-                        <Link to="" className='categoria'>OTROS</Link>
-                    </div>
-                </section>
-
-                <Footer />
-
-            </div>
+            <section className='categorias'>
+                <h2>Categorías</h2>
+                <div className='grid-categorias'>
+                    <Link to="" className='categoria'>CONCIERTOS</Link>
+                    <Link to="" className='categoria'>TEATRO</Link>
+                    <Link to="" className='categoria'>DEPORTES</Link>
+                    <Link to="" className='categoria'>OTROS</Link>
+                </div>
+            </section>
+            <Footer />
         </main>
     )
 }
