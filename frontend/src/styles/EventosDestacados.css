@@ -1,72 +1,83 @@
-/* Contenedor general de los eventos */
-.eventos {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 20px;
-  max-width: 1400px;
-  margin: auto;
+
+* {
+  box-sizing: border-box;
 }
 
-.eventos-destacados {
-  padding: 40px 0px 20px 0px;
+/* Eventos Destacados */
+
+.FeaturedEvents {
+  width: 100%;
+}
+
+.FeaturedEvents__Title {
   text-align: center;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #48f;
+  margin: 50px auto;
 }
 
-.eventos-destacados h2{
-  margin-bottom: 1rem;
+
+.FeaturedEvents__Content {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-auto-flow: row;
+  gap: 20px;
 }
 
-/* Cada tarjeta */
-.evento-destacado {
+/* Evento Destacado */
+
+.FeaturedEvent {
   display: flex;
-  align-items: center;
-  text-align: left;
+  flex-direction: row;
   gap: 1.5rem;
-  background: rgba(255, 255, 255, 0.7);
+  background: #fffb;
   border-radius: 2rem;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-  padding: 1.5rem 2rem;
-  flex: 1 1 300px;
-  max-width: 400px;
-  min-width: 400px;
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 10px #48f;
+  padding: 1.5rem;
+  transition-duration: 0.2s;
   cursor: pointer;
 }
 
-.evento-destacado:hover {
-
+.FeaturedEvent:hover {
   transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 32px #48f;
+  outline: 3px solid #48f;
+  background: #fff2;
+  .FeaturedEvent__Img {
+    box-shadow: 0 0 20px 2px #48f;
+  }
 }
 
-.evento-imagen {
-  width: fit-content;
-  height: 100px;
+.FeaturedEvent__Img {
+  overflow: hidden;
+  flex: 1 1 50%;
+  border-radius: 1rem;
   object-fit: cover;
   background: #555;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
 }
 
-.evento-info {
+.FeaturedEvent__Info {
+  flex: 1 1 50%;
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-
+  flex-flow: column wrap;
+  justify-content: space-around;
+  align-items: stretch;
 }
 
-.evento-info h3 {
+.Info__Title {
   margin: 0;
-  font-size: 1.1rem;
-  color: #111;
+  font-size: 1.3rem;
+  color: #48f;
+  text-transform: uppercase;
 }
 
-.evento-info p {
-
+.Info__Date, .Info__Place {
   margin: 0.2rem 0;
   color: #555;
-  font-size: 1rem;
+  font-size: 0.9rem;
   flex-wrap: wrap;
 }
