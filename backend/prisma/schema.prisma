@@ -21,8 +21,6 @@ model boletos {
   precio_boleto      Decimal            @db.Decimal(11, 2)
   stock              Int
   descripcion_boleto String             @db.VarChar(255)
-  fecha_creado       DateTime?          @default(now()) @db.Timestamp(0)
-  fecha_actualizado  DateTime?          @default(now()) @db.Timestamp(0)
   evento             eventos            @relation(fields: [id_evento], references: [id_evento], map: "fk_boleto_evento")
   tipo               tipos              @relation(fields: [id_tipo], references: [id_tipos], map: "fk_boleto_tipo")
   carrito            carrito[]
@@ -33,14 +31,12 @@ model boletos {
 }
 
 model carrito {
-  id_carrito        Int       @id @default(autoincrement())
-  id_usuario        Int
-  id_boleto         Int
-  cantidad          Int
-  fecha_creado      DateTime? @default(now()) @db.Timestamp(0)
-  fecha_actualizado DateTime? @default(now()) @db.Timestamp(0)
-  boleto            boletos   @relation(fields: [id_boleto], references: [id_boleto], map: "fk_carrito_boleto")
-  usuario           usuarios  @relation(fields: [id_usuario], references: [id_usuario], onDelete: Cascade, map: "fk_carrito_usuario")
+  id_carrito Int      @id @default(autoincrement())
+  id_usuario Int
+  id_boleto  Int
+  cantidad   Int
+  boleto     boletos  @relation(fields: [id_boleto], references: [id_boleto], map: "fk_carrito_boleto")
+  usuario    usuarios @relation(fields: [id_usuario], references: [id_usuario], onDelete: Cascade, map: "fk_carrito_usuario")
 
   @@index([id_boleto], map: "fk_carrito_boleto_idx")
   @@index([id_usuario], map: "fk_carrito_usuario_idx")
@@ -124,16 +120,14 @@ model tipos {
 }
 
 model usuarios {
-  id_usuario        Int       @id @default(autoincrement())
-  nombre_usuario    String    @db.Char(50)
-  apellido_usuario  String    @db.Char(50)
-  email_usuario     String    @unique(map: "email_usuario_UNIQUE") @db.VarChar(100)
-  password_usuario  String    @db.VarChar(256)
-  telefono          String?   @db.Char(15)
-  fecha_creado      DateTime? @default(now()) @db.Timestamp(0)
-  fecha_actualizado DateTime? @default(now()) @db.Timestamp(0)
-  carrito           carrito[]
-  pedidos           pedidos[]
+  id_usuario       Int       @id @default(autoincrement())
+  nombre_usuario   String    @db.Char(50)
+  apellido_usuario String    @db.Char(50)
+  email_usuario    String    @unique(map: "email_usuario_UNIQUE") @db.VarChar(100)
+  password_usuario String    @db.VarChar(256)
+  telefono         String?   @db.Char(15)
+  carrito          carrito[]
+  pedidos          pedidos[]
 }
 
 enum pagos_tipo_documento {
