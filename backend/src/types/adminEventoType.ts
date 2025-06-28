@@ -16,4 +16,5 @@ export interface BoletoCompleto{
     precio_boleto: number
     stock: number
     descripcion_boleto: string
+    estado_boleto: number
 }
