@@ -19,8 +19,8 @@ export const mostrarEventoId = async (id_evento: number) => {
     return evento
 }
 
-export const mostrarEventosNombre = async (nombre: string) => {
-    const eventos = await prisma.eventos.findMany({where: {nombre_evento: {contains: nombre}}})
+export const mostrarEventosNombre = async (nombre_evento: string) => {
+    const eventos = await prisma.eventos.findMany({where: {nombre_evento: {contains: nombre_evento}}})
 
     if(eventos.length === 0) throw new HttpError("No hay eventos registrados hasta el momento con ese nombre", 404);
 

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import "../styles/PerfilAdmin.css";
+
 import { EventoDestacado } from "../components/EventosDestacados";
 import { EventoAdmin } from "../components/EventosAdmin";
+
 
 interface Evento {
     id_evento: number
@@ -96,6 +98,7 @@ export function PerfilAdmin() {
                         <button onClick={() => setMostrarModalCrear(true)}>➕ Crear nuevo evento</button>
                         <button>➕ Crear Boleto</button>
                     </div>
+
                 </div>
             </section>
             {mostrarModalCrear && (

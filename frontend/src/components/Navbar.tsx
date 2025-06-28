@@ -6,9 +6,43 @@ import { useEffect, useState } from "react";
 export function Navbar() {
     const [menuAbierto, setMenuAbierto] = useState(false);
     const [logueo, setLogueo] = useState(false);
-
+    const [busqueda, setBusqueda] = useState("");
     const location = useLocation();
     const navigate = useNavigate();
+
+    const handleBuscar = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            const res = await fetch(`http://localhost:3000/api/eventos/buscar-nombre?nombre_evento=${encodeURIComponent(busqueda)}`,
+            {
+                method: "GET",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                },   
+            }
+            );
+
+            const data = await res.json();
+
+            if (res.ok) {
+                // Guardar resultados en localStorage
+                localStorage.setItem("resultadosBusqueda", JSON.stringify(data));
+                localStorage.setItem("nombreBuscado", busqueda);
+                navigate("/resultados"); // Redirigir a la página de resultados
+            } else {
+                alert(data.message || "No se encontraron resultados");
+            }
+        } catch (error) {
+            alert("Error al buscar eventos");
+        }
+    };
+
+    useEffect(() => {
+    if (location.pathname === "/resultados") {
+        setBusqueda("");
+    }
+    }, [location]);
 
     function toggle() {
         setMenuAbierto(!menuAbierto);
@@ -50,6 +84,17 @@ export function Navbar() {
                 <div className="Logo-principal">
                     <LogoMiboleta />
                 </div>
+                <form className="Search" onSubmit={handleBuscar}>
+                    <input
+                        type="text"
+                        placeholder="Buscar evento..."
+                        value={busqueda}
+                        onChange={(e) => setBusqueda(e.target.value)}
+                        className="Search__Input"
+                    />
+                    <button type="submit" className="Search__Button">🔍</button>
+                </form>
+
                 <nav className={menuAbierto ? "NavBar__Menu--Open" : "NavBar__Menu--Close"}>
 
                     <Link className='Menu__Item' to="/inicio">CONCIERTOS</Link>
@@ -68,6 +113,7 @@ export function Navbar() {
                 </nav>
             </div>
             {menuAbierto && <div className="overlay" onClick={toggle}></div>}
+
             <Outlet />
         </div>
     );

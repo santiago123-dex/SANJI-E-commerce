@@ -21,7 +21,7 @@ export const mostrarEventos = async (_req: Request, res: Response) => {
 
 export const mostrarEventosNombre = async (req: Request, res: Response) => {
     try{
-        const {nombre_evento} = req.params
+        const nombre_evento = req.query.nombre_evento as string;
 
         if(!nombre_evento) return res.status(400).json({message: "No se ha recibido el nombre del evento"});
 

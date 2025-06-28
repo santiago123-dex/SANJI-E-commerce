@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Footer } from '../components/Footer'
-import { EventoDestacado } from '../components/EventosDestacados.tsx'
+import { EventosDestacados } from '../components/EventosDestacados.tsx'
 import "../styles/Inicio.css"
 
 interface Evento {
@@ -18,7 +17,10 @@ export function Inicio() {
     const [error, setError] = useState<string>("")
 
     useEffect(() => {
-        fetch("http://localhost:3000/api/eventos")
+        fetch("http://localhost:3000/api/eventos", { 
+            method: "GET",
+            credentials: "include"
+        })
             .then(res => {
                 if (!res.ok) throw new Error("Error al cargar eventos")
                 return res.json()
@@ -38,16 +40,14 @@ export function Inicio() {
                 <div className="FeaturedEvents__Content">
                     {error && <p style={{ color: 'red' }}>{error}</p>}
                     {eventos.map(evento => (
-                            <>
-                                <EventoDestacado
+                                <EventosDestacados
                                     key={evento.id_evento}
+                                    id={evento.id_evento}
                                     titulo={evento.nombre_evento}
                                     fecha={new Date(evento.fecha_evento).toLocaleDateString()}
                                     ubicacion={evento.ubicacion}
                                     imagen={evento.imagen_evento}
                                 />
-                            </>
-
                     ))}
                 </div>
             </section>
@@ -61,7 +61,6 @@ export function Inicio() {
                     <Link to="" className='categoria'>OTROS</Link>
                 </div>
             </section>
-            <Footer />
         </main>
     )
 }

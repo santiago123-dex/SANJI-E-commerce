@@ -79,3 +79,47 @@ export const perfilUsuario =  async (req: Request, res: Response) => {
         }
     }
 }
+
+export const actualizarPerfil = async (req: Request, res: Response) => {
+    const id_usuario = req.usuario?.id_usuario
+    if(!id_usuario || id_usuario == undefined) return res.status(401).json({message: 'Primero inicia sesión'});
+
+    const {nombre_usuario, apellido_usuario, email_usuario, password_usuario, telefono} = req.body
+
+    if(!id_usuario || !nombre_usuario || !apellido_usuario || !email_usuario || !password_usuario) return res.status(400).json({message: 'Faltan datos'});
+
+    try{
+        const usuario = await usuarioServices.actualizarPerfil(id_usuario, req.body)
+
+        res.status(200).json({message: 'Perfil actualizado correctamente'})
+
+    }catch(error){
+        if(error instanceof HttpError){
+            res.status(error.codigoEstado).json(error.message)
+        }else{
+            res.status(500).json({message: 'Algo salio mal al actualizar el perfil'})
+        }
+    }
+}
+
+export const borrarCuenta = async (req: Request, res: Response) => {
+    try{
+        const id_usuario = req.usuario?.id_usuario
+
+        if(!id_usuario) return res.status(401).json({message: 'Primero inicia sesión'});
+
+        await usuarioServices.borrarCuenta(id_usuario)
+
+        res.clearCookie('tokenAcceso')
+        res.clearCookie('tokenRefresh')
+
+        res.status(200).json({message: 'Cuenta borrada correctamente'})
+
+    }catch(error){
+        if(error instanceof HttpError){
+            res.status(error.codigoEstado).json({message: error.message})
+        }else{
+            res.status(500).json({message: 'Algo salio mal al borrar la cuenta'})
+        }
+    }
+}

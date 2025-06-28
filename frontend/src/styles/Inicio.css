@@ -1,5 +1,6 @@
 main {
   flex: 1;
+  min-height: calc(100dvh - 87px);
 }
 
 body {
@@ -27,11 +28,15 @@ body {
 
 .Hero__title {
   text-transform: uppercase;
+  text-align: center;
+  text-wrap: balance;
   font-size: 2rem;
 }
 
 .Hero__description {
   text-transform: uppercase;
+  text-wrap: balance;
+  text-align: center;
   letter-spacing: 6px;
 }
 

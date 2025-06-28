@@ -6,11 +6,10 @@ const router = Router()
 
 
 router.get("/", mostrarEventos)
-router.get("/:nombre_evento", mostrarEventosNombre)
-router.get("/:evento_categoria", mostrarEventosCategoria)
-router.get("/:id_evento", mostrarEventosId)
-router.get("/:id_evento_boleto", mostrarBoletosPorEvento)
-
+router.get("/buscar-nombre", mostrarEventosNombre)
+router.get("/evento_categoria", mostrarEventosCategoria)
+router.get("/id_evento", mostrarEventosId)
+router.get("/id_evento_boleto", mostrarBoletosPorEvento)
 router.get("/categorias", mostrarCategorias)
 
 export default router
