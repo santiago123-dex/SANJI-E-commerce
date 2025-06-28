@@ -63,7 +63,7 @@ export const eliminarEvento = async (data: number) => {
 }
 
 export const crearBoleto = async (data: BoletoCompleto) => {
-    const {id_evento, id_tipo, precio_boleto, stock, descripcion_boleto} = data
+    const {id_evento, id_tipo, precio_boleto, stock, descripcion_boleto, estado_boleto} = data
 
     const existeBoleto: [] = await prisma.$queryRaw`SELECT * FROM boletos b WHERE b.id_evento = ${id_evento} AND b.id_tipo = ${id_tipo}`
 
@@ -76,6 +76,7 @@ export const crearBoleto = async (data: BoletoCompleto) => {
             precio_boleto,
             stock,
             descripcion_boleto,
+            estado_boleto,
         }
     })
 
@@ -84,7 +85,7 @@ export const crearBoleto = async (data: BoletoCompleto) => {
 
 export const actualizarBoleto = async (data: BoletoCompleto) => {
     try{
-        const {id_boleto, id_evento, id_tipo, precio_boleto, stock, descripcion_boleto} = data
+        const {id_boleto, id_evento, id_tipo, precio_boleto, stock, descripcion_boleto, estado_boleto} = data
 
         const existeBoleto = await prisma.boletos.findUnique({where: {id_boleto}})
 
@@ -100,6 +101,7 @@ export const actualizarBoleto = async (data: BoletoCompleto) => {
                 precio_boleto,
                 stock,
                 descripcion_boleto,
+                estado_boleto,
             }
         })
     }catch(error){
