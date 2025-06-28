@@ -13,7 +13,7 @@ body {
 
 .Hero {
   display: flex;
-  width: 75%;
+  width: 55%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -30,7 +30,7 @@ body {
   text-transform: uppercase;
   text-align: center;
   text-wrap: balance;
-  font-size: 4rem;
+  font-size: 2rem;
 }
 
 .Hero__description {
