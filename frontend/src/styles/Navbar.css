@@ -6,21 +6,44 @@
     transition-duration: 0.5s;
 }
 
+.form-busqueda {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    }
+
+.input-busqueda {
+    padding: 0.4rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.boton-busqueda {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.Logo-principal{
+    display: flex;
+    margin: auto;
+}
+
 .NavBar {
     background-color: #48f;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 25px;
-    width: 100%;
 }
 
 nav {
     transition-duration: 0s;
 }
 
-.NavBar__Menu--Close,
-.NavBar__Menu--Open {
+.NavBar__Menu--Close {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -28,20 +51,15 @@ nav {
 
 .Menu__Item {
     display: flex;
+    flex-wrap: wrap;
     list-style: none;
     align-items: center;
+    gap: 20px;
     text-decoration: none;
     color: #fff;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-}
-
-.Menu__Item__Father {
-    display: flex;
-    gap: 5rem;
-    margin-left: 3rem;
-    margin-right: 5rem;
 }
 
 .LogoUser {
@@ -53,24 +71,35 @@ nav {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #000a;
-    width: 100vw;
-    height: 100vh;
-    z-index: 999;
+    background-color: #000;
+    width: 100dvw;
+    height: 100dvh;
+    z-index: 1000;
 }
 
+/*Boton Hamburguesa*/
 .Hamburger {
     display: none;
     font-size: 2rem;
     color: #fff;
     cursor: pointer;
-    z-index: 1001;
 }
 
-@media (min-width: 1000px) {
-    .NavBar__Menu--Close {
+@media (min-width:1000px) {
+    .NavBar {
+        align-items: center;
+        gap: 30px;
+        height: 10%;
+    }
+
+    .NavBar__Menu--Close { 
+        width: 100%;
         justify-content: space-around;
         align-items: center;
+    }
+
+    .Menu__Item {
+        border-radius: 100px;
     }
 
     .Menu__Item:hover {
@@ -78,51 +107,55 @@ nav {
         letter-spacing: 3px;
         background-color: #fff;
         color: #48f;
-        border-radius: 100px;
     }
 }
 
 @media (max-width: 1000px) {
+
     .Hamburger {
         display: block;
+        z-index: 2000;
     }
 
-    .NavBar__Menu--Close,
-    .NavBar__Menu--Open {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 250px;
-        height: 100vh;
-        flex-direction: column;
+    .overlay {
+        background-color: #000a;
+    }
+
+    nav {
+        transition-duration: 1s;
         background-color: #48f;
-        padding-top: 80px;
+        position: fixed;
+        display: flex;
+        flex-direction: row;
+        padding-top: 100px;
+        top: 0;
+        height: 100dvh;
         gap: 20px;
-        transition: left 1s ease-in-out;
-        z-index: 1000;
+    }
+
+    .NavBar__Menu--Close {
+        left: -100%;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        z-index: 1001;
     }
 
     .NavBar__Menu--Open {
+        flex-direction: column;
         left: 0;
-       text-align: center;
+        z-index: 1001;
     }
 
     .Menu__Item {
         flex-direction: column;
-        gap: 10px;
+        gap: 15px;
         padding: 10px;
-        width: 100%;
+        margin: 0;
+        width: 250px;
         text-align: center;
     }
-
-    .Menu__Item__Father {
-        flex-direction: column;
-        gap: 15px;
-        margin: 0 auto;
-        align-items: center;
-    }
-
     .Menu__Item:hover {
-        letter-spacing: 2px;
+        letter-spacing: 3px;
     }
 }

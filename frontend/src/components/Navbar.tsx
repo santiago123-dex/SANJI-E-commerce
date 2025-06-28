@@ -47,20 +47,20 @@ export function Navbar() {
                 <div className="Hamburger" onClick={toggle}>
                     {menuAbierto ? '✖' : '☰'}
                 </div>
-                <div>
+                <div className="Logo-principal">
                     <LogoMiboleta />
                 </div>
                 <nav className={menuAbierto ? "NavBar__Menu--Open" : "NavBar__Menu--Close"}>
-                    <ul className="Menu__Item__Father">
-                        <Link className='Menu__Item' to="/inicio">CONCIERTOS</Link>
-                        <Link className='Menu__Item' to="/inicio">TEATRO</Link>
-                        <Link className='Menu__Item' to="/inicio">DEPORTES</Link>
-                    </ul>
+
+                    <Link className='Menu__Item' to="/inicio">CONCIERTOS</Link>
+                    <Link className='Menu__Item' to="/inicio">TEATRO</Link>
+                    <Link className='Menu__Item' to="/inicio">DEPORTES</Link>
+
                     {!logueo && (
-                        <ul className="Menu__Item__Father">
+                        <>
                             <Link className='Menu__Item' to="/registrar">REGISTRARSE</Link>
                             <Link className='Menu__Item' to="/login">INICIO SESION</Link>
-                        </ul>
+                        </>
                     )}
                     <Link to="/perfil">
                         <img className="LogoUser" src="../../public/logoUser.png" alt="" />

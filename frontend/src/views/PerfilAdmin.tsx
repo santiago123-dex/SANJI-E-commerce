@@ -94,6 +94,7 @@ export function PerfilAdmin() {
                     ))}
                     <div className="crear-evento">
                         <button onClick={() => setMostrarModalCrear(true)}>➕ Crear nuevo evento</button>
+                        <button>➕ Crear Boleto</button>
                     </div>
                 </div>
             </section>
