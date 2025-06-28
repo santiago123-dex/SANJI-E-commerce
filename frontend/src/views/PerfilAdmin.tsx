@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../styles/PerfilAdmin.css";
 
-import { EventoDestacado } from "../components/EventosDestacados";
+
 import { EventoAdmin } from "../components/EventosAdmin";
 
 
@@ -70,7 +70,6 @@ export function PerfilAdmin() {
             .then(data => setEventos(data))
             .catch(err => setError(err.message))
     }, [])
-
 
     return (
         <main>
