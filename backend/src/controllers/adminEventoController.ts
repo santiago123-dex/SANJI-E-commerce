@@ -59,8 +59,8 @@ export const eliminarEvento = async (req: Request, res: Response) => {
 
 export const crearBoleto = async (req: Request, res: Response) => {
     try{
-        const {id_evento, id_tipo, precio_boleto, stock, descripcion_boleto} = req.body
-        if(!id_evento || !id_tipo || !precio_boleto || !stock || !descripcion_boleto) return res.status(400).json({message: 'Faltan datos'});
+        const {id_evento, id_tipo, precio_boleto, stock, descripcion_boleto, estado_boleto} = req.body
+        if(!id_evento || !id_tipo || !precio_boleto || !stock || !descripcion_boleto || !estado_boleto) return res.status(400).json({message: 'Faltan datos'});
     
         const boleto = await adminEventoServices.crearBoleto(req.body)
 
@@ -78,9 +78,9 @@ export const crearBoleto = async (req: Request, res: Response) => {
 }
 
 export const actualizarBoleto = async (req: Request, res: Response) => {
-    const {id_boleto, id_evento, id_tipo, precio_boleto, stock, descripcion_boleto} = req.body
+    const {id_boleto, id_evento, id_tipo, precio_boleto, stock, descripcion_boleto, estado_boleto} = req.body
 
-    if(!id_boleto || !id_evento || !id_tipo || !precio_boleto || !stock || !descripcion_boleto) return res.status(400).json({message: 'Faltan datos'});
+    if(!id_boleto || !id_evento || !id_tipo || !precio_boleto || !stock || !descripcion_boleto || !estado_boleto) return res.status(400).json({message: 'Faltan datos'});
 
     try{
         await adminEventoServices.actualizarBoleto(req.body)

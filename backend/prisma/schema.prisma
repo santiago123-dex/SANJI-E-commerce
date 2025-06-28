@@ -21,6 +21,7 @@ model boletos {
   precio_boleto      Decimal            @db.Decimal(11, 2)
   stock              Int
   descripcion_boleto String             @db.VarChar(255)
+  estado_boleto      Int                @db.TinyInt
   evento             eventos            @relation(fields: [id_evento], references: [id_evento], map: "fk_boleto_evento")
   tipo               tipos              @relation(fields: [id_tipo], references: [id_tipos], map: "fk_boleto_tipo")
   carrito            carrito[]
