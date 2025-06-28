@@ -8,7 +8,7 @@ export function Navbar() {
     const [logueo, setLogueo] = useState(false);
     const [busqueda, setBusqueda] = useState("");
     const location = useLocation();
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const handleBuscar = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -47,7 +47,7 @@ export function Navbar() {
     function toggle() {
         setMenuAbierto(!menuAbierto);
     }
-    
+
     useEffect(() => {
         const verificarSesion = async () => {
             try {
@@ -59,9 +59,9 @@ export function Navbar() {
                     }
                 );
                 console.log(response)
-                if(response.status === 200){
+                if (response.status === 200) {
                     setLogueo(true)
-                }else{
+                } else {
                     setLogueo(false)
                 }
             } catch {
@@ -71,47 +71,49 @@ export function Navbar() {
         verificarSesion();
     }, [location, navigate]);
 
+    useEffect(() => {
+        document.body.style.overflow = menuAbierto ? "hidden" : "auto";
+    }, [menuAbierto]);
+
     return (
         <div>
             <div className="NavBar">
                 <div className="Hamburger" onClick={toggle}>
                     {menuAbierto ? '✖' : '☰'}
                 </div>
-
-                <div>
+                <div className="Logo-principal">
                     <LogoMiboleta />
                 </div>
-
-                <form className="form-busqueda" onSubmit={handleBuscar}>
+                <form className="Search" onSubmit={handleBuscar}>
                     <input
                         type="text"
                         placeholder="Buscar evento..."
                         value={busqueda}
                         onChange={(e) => setBusqueda(e.target.value)}
-                        className="input-busqueda"
+                        className="Search__Input"
                     />
-                    <button type="submit" className="boton-busqueda">🔍</button>
+                    <button type="submit" className="Search__Button">🔍</button>
                 </form>
 
                 <nav className={menuAbierto ? "NavBar__Menu--Open" : "NavBar__Menu--Close"}>
+
                     <Link className='Menu__Item' to="/inicio">CONCIERTOS</Link>
                     <Link className='Menu__Item' to="/inicio">TEATRO</Link>
                     <Link className='Menu__Item' to="/inicio">DEPORTES</Link>
-                    <Link className='Menu__Item' to="/inicio">CONTACTANOS</Link>
+
                     {!logueo && (
                         <>
                             <Link className='Menu__Item' to="/registrar">REGISTRARSE</Link>
                             <Link className='Menu__Item' to="/login">INICIO SESION</Link>
                         </>
                     )}
+                    <Link to="/perfil">
+                        <img className="LogoUser" src="../../public/logoUser.png" alt="" />
+                    </Link>
                 </nav>
-
-                <Link to="/perfil">
-                    <img className="LogoUser" src="../../public/logoUser.png" alt="" />
-                </Link>
             </div>
+            {menuAbierto && <div className="overlay" onClick={toggle}></div>}
 
-            {menuAbierto && <div className="overlay"></div>}
             <Outlet />
         </div>
     );

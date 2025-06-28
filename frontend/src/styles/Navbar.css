@@ -6,20 +6,27 @@
     transition-duration: 0.5s;
 }
 
-.form-busqueda {
+.Search {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    }
-
-.input-busqueda {
-    padding: 0.4rem 1rem;
-    border-radius: 1rem;
-    border: 1px solid #ccc;
-    font-size: 1rem;
 }
 
-.boton-busqueda {
+.Search__Input {
+    color: #fff;
+    outline: none;
+    padding: 0.4rem 1rem;
+    border-radius: 1rem;
+    border: 2px solid #ffffff;
+    font-size: 1rem;
+    background-color: transparent;
+}
+.Search__Input::placeholder {
+    color: #fff9;
+}
+
+.Search__Button {
+
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -80,7 +87,7 @@ nav {
     cursor: pointer;
 }
 
-@media (min-width:1000px) {
+@media (min-width: 1300px) {
     .NavBar {
         align-items: center;
         gap: 30px;
@@ -105,7 +112,7 @@ nav {
     }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1300px) {
 
     .Hamburger {
         display: block;
@@ -117,7 +124,7 @@ nav {
     }
 
     nav {
-        transition-duration: 0.5s;
+        transition-duration: 1s;
         background-color: #48f;
         position: fixed;
         display: flex;
