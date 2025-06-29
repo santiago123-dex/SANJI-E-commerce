@@ -1,5 +1,6 @@
 import {PrismaClient} from '@prisma/client'
 import { HttpError } from '../utils/errorManager'
+import { DatosAgregarCarrito } from '../types/carritoType'
 
 const prisma = new PrismaClient()
 
@@ -13,7 +14,7 @@ export const mostrarCarrito = async (id: number) => {
     return carrito
 }
 
-export const agregarProductoCarrito = async (id: number, data: any) => {
+export const agregarProductoCarrito = async (id: number, data: DatosAgregarCarrito) => {
     try{
         const id_usuario = id
         const {id_boleto, cantidad} = data
@@ -29,4 +30,18 @@ export const agregarProductoCarrito = async (id: number, data: any) => {
         throw new HttpError("Error al agregar el producto al carrito", 409);
     }
 
+}
+
+export const eliminarCarrito = async (id: number) => {
+    const id_carrito = id
+
+    const productoExisteAntes = await prisma.carrito.findUnique({where: {id_carrito}})
+
+    if(!productoExisteAntes) throw new HttpError("El producto que intentas eliminar no existe", 404);
+
+    await prisma.carrito.delete({where: {id_carrito}})
+
+    const productoExiste = await prisma.carrito.findUnique({where: {id_carrito}})
+
+    if(productoExiste) throw new HttpError("No se pudo eliminar el carrito", 400);
 }
