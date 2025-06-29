@@ -29,4 +29,9 @@ router.get("/boletos", async(_req: Request, res: Response) => {
     res.json(eventos)
 })
 
+router.get("/carrito", async(_req: Request, res: Response) => {
+    const eventos = await prisma.carrito.findMany()
+    res.json(eventos)
+})
+
 export default router
