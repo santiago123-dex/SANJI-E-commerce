@@ -29,4 +29,9 @@ router.get("/boletos", async(_req: Request, res: Response) => {
     res.json(eventos)
 })
 
+router.get("/tipos", async(_req: Request, res: Response) => {
+    const eventos = await prisma.tipos.findMany()
+    res.json(eventos)
+})
+
 export default router

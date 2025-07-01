@@ -8,7 +8,9 @@ export const crearEvento = async (req: Request, res: Response) => {
         
         if(!id_categoria || !nombre_evento || !fecha_evento || !ubicacion || !estado_evento) return res.status(400).json({message: 'Faltan datos'});
     
-        await adminEventoServices.crearEvento(req.body)
+        const evento = await adminEventoServices.crearEvento(req.body)
+
+        res.status(201).json(evento)
 
     }catch(error){
         if(error instanceof HttpError){
