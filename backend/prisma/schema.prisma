@@ -131,6 +131,12 @@ model usuarios {
   pedidos          pedidos[]
 }
 
+model tarjetas {
+  id_tarjeta     Int    @id @default(autoincrement())
+  numero_tarjeta String @db.Char(16)
+  cvc            String @db.Char(3)
+}
+
 enum pagos_tipo_documento {
   cc
   ce
