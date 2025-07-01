@@ -45,3 +45,14 @@ export const eliminarCarrito = async (id: number) => {
 
     if(productoExiste) throw new HttpError("No se pudo eliminar el carrito", 400);
 }
+
+export const eliminarTodoCarrito = async (id: number) => {
+    try{
+        const id_usuario = id
+
+        await prisma.carrito.deleteMany({where: {id_usuario}})
+    
+    }catch{
+        throw new HttpError("Error al eliminar el carrito", 409);
+    }
+}

@@ -60,3 +60,22 @@ export const eliminarCarrito = async (req: Request, res: Response) => {
         }
     }
 }
+
+export const eliminarTodoCarrito = async (req: Request, res: Response) => {
+    try{
+        const id_usuario = req.usuario?.id_usuario
+
+        if(!id_usuario) return res.status(401).json({message: 'Primero inicia sesión'});
+
+        await carritoUsuarioServices.eliminarTodoCarrito(id_usuario)
+
+        res.status(200).json({message: 'Carrito eliminado correctamente'})
+
+    }catch(error){
+        if(error instanceof HttpError){
+            res.status(error.codigoEstado).json({message: error.message})
+        }else{
+            res.status(409).json({message: "Error al eliminar todo el carrito"})
+        }
+    }
+}
