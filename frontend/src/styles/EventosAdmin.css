@@ -18,6 +18,7 @@
   margin: 50px auto;
 }
 
+
 .FeaturedEvents__Content {
   margin: 20px;
   display: grid;
@@ -47,8 +48,6 @@
 }
 
 .FeaturedEvent__Img {
-  max-width: 300px;
-  max-height: 140px;
   overflow: hidden;
   flex: 1 1 50%;
   border-radius: 1rem;
@@ -78,3 +77,10 @@
   font-size: 0.9rem;
   flex-wrap: wrap;
 }
+
+/**/
+
+
+
+
+

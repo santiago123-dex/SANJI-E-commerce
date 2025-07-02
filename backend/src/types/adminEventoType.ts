@@ -8,3 +8,13 @@ export interface EventoCompleto {
     imagen_evento?: string
     estado_evento: number
 }
+
+export interface BoletoCompleto{
+    id_boleto: number
+    id_evento: number
+    id_tipo: number
+    precio_boleto: number
+    stock: number
+    descripcion_boleto: string
+    estado_boleto: number
+}
