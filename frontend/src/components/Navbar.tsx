@@ -26,10 +26,7 @@ export function Navbar() {
             const data = await res.json();
 
             if (res.ok) {
-                // Guardar resultados en localStorage
-                localStorage.setItem("resultadosBusqueda", JSON.stringify(data));
-                localStorage.setItem("nombreBuscado", busqueda);
-                navigate("/resultados"); // Redirigir a la página de resultados
+                navigate(`/resultados?nombre_evento=${encodeURIComponent(busqueda)}`);
             } else {
                 alert(data.message || "No se encontraron resultados");
             }
