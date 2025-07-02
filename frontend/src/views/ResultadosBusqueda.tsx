@@ -17,7 +17,8 @@ export function ResultadosBusqueda() {
     const location = useLocation();
 
     useEffect(() => {
-        const nombre = localStorage.getItem("nombreBuscado");
+        const params = new URLSearchParams(location.search);
+        const nombre = params.get("nombre_evento");
 
     if (!nombre) {
         setError("No se encontró término de búsqueda");
@@ -25,7 +26,7 @@ export function ResultadosBusqueda() {
         return;
     }
     
-
+    
     fetch(`http://localhost:3000/api/eventos/buscar-nombre?nombre_evento=${encodeURIComponent(nombre)}`, {
         method: "GET",
         credentials: "include",
@@ -36,14 +37,14 @@ export function ResultadosBusqueda() {
         .then(async (res) => {
             const json = await res.json();
             if (!res.ok) {
-                console.error("Respuesta con error:", json);
                 throw new Error(json.message || "Error al cargar eventos");
             }
             setEventos(json);
+            setError("");
         })
         .catch((err) => {
-            console.error("Error en fetch:", err);
             setError(err.message);
+            setEventos([]);
         });
 }, [location]);
 

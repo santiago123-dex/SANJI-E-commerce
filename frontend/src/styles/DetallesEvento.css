@@ -1,4 +1,4 @@
-/* .detalle-evento {
+.detalle-evento {
     max-width: 1000px;
     margin: auto;
     padding: 2rem;
@@ -60,4 +60,27 @@ th, td {
 
 th {
     background-color: #f4f4f4;
-} */
+}
+
+.detalle-cargando {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    color: #444;
+    font-size: 1.2rem;
+}
+
+.spinner {
+    border: 4px solid #eee;
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 16px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
