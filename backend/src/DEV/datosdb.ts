@@ -29,8 +29,33 @@ router.get("/boletos", async(_req: Request, res: Response) => {
     res.json(eventos)
 })
 
+router.get("/carrito", async(_req: Request, res: Response) => {
+    const eventos = await prisma.carrito.findMany()
+    res.json(eventos)
+})
+
 router.get("/tipos", async(_req: Request, res: Response) => {
     const eventos = await prisma.tipos.findMany()
+    res.json(eventos)
+})
+
+router.get("/detallesPedidos", async(_req: Request, res: Response) => {
+    const eventos = await prisma.detalles_pedidos.findMany()
+    res.json(eventos)
+})
+
+router.get("/pedidos", async(_req: Request, res: Response) => {
+    const eventos = await prisma.pedidos.findMany()
+    res.json(eventos)
+})
+
+router.get("/pagos", async(_req: Request, res: Response) => {
+    const eventos = await prisma.pagos.findMany()
+    res.json(eventos)
+})
+
+router.get("/tarjetas", async(_req: Request, res: Response) => {
+    const eventos = await prisma.tarjetas.findMany()
     res.json(eventos)
 })
 
