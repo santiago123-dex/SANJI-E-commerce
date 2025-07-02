@@ -1,38 +1,37 @@
 import React from "react";
 import { useState } from "react";
-import "../styles/EventosDestacados.css"
+import "../styles/EventosAdmin.css"
 
 interface EventoDestacadoProps {
+    id_evento: number;
     titulo: string;
     fecha: string;
     ubicacion: string;
     imagen?: string;
+    onEditar: () => void
 }
 
-export const EventoAdmin: React.FC<EventoDestacadoProps> = ({ titulo, fecha, ubicacion, imagen }) => {
+export const EventoAdmin: React.FC<EventoDestacadoProps> = ({ id_evento, titulo, fecha, ubicacion, imagen, onEditar, }) => {
 
-    const [modalAbierto, setModalAbierto] = useState(false);
-    const [nuevoTitulo, setNuevoTitulo] = useState(titulo);
-    const [nuevaFecha, setNuevaFecha] = useState(fecha);
-    const [nuevaUbicacion, setNuevaUbicacion] = useState(ubicacion);
+    const [error, setError] = useState<string>("")
 
-    const confirmarEliminacion = () => {
-        const confirmacion = window.confirm("¿Estás seguro de eliminar este evento?");
-        if (confirmacion) {
-            // Aquí llamas a tu función para eliminar (ej. fetch DELETE)
-            alert("Evento eliminado");
+    const eliminarEvento = async () => {
+        try {
+            const eliminar = await fetch(`http://localhost:3000/api/admin/eventos/eliminarEvento?id_evento=${id_evento}`, {
+                method: "GET",
+                credentials: "include"
+            });
+            if (eliminar.ok) {
+                alert("El evento se eliminó correctamente");
+                window.location.reload(); // Recarga la página automáticamente
+            } else {
+                alert("Error al borrar el evento");
+            }
+        } catch (error) {
+            setError("No se pudo eliminar el evento");
         }
     };
 
-    const guardarCambios = () => {
-        // Aquí haces el fetch PUT o PATCH para actualizar el evento
-        console.log("Cambios guardados:", {
-            nuevoTitulo,
-            nuevaFecha,
-            nuevaUbicacion,
-        });
-        setModalAbierto(false);
-    };
 
 
     return (
@@ -43,50 +42,14 @@ export const EventoAdmin: React.FC<EventoDestacadoProps> = ({ titulo, fecha, ubi
                 <p className="Info__Date">Fecha: {fecha}</p>
                 <p className="Info__Place">Lugar: {ubicacion}</p>
                 <div className="AdminButtons">
-                    <button className="btn-editar" onClick={() => setModalAbierto(true)}>
+                    <button className="btn-editar" onClick={onEditar}>
                         ✏️ Editar
                     </button>
-                    <button className="btn-eliminar" onClick={confirmarEliminacion}>
+                    <button className="btn-eliminar" onClick={eliminarEvento}>
                         🗑️ Eliminar
                     </button>
                 </div>
             </div>
-            {modalAbierto && (
-                <div className="modal-overlay">
-                    <div className="modal">
-                        <h2>Editar Evento</h2>
-                        <label>Título:</label>
-                        <input
-                            type="text"
-                            value={nuevoTitulo}
-                            onChange={(e) => setNuevoTitulo(e.target.value)}
-                        />
-
-                        <label>Fecha:</label>
-                        <input
-                            type="date"
-                            value={nuevaFecha}
-                            onChange={(e) => setNuevaFecha(e.target.value)}
-                        />
-
-                        <label>Ubicación:</label>
-                        <input
-                            type="text"
-                            value={nuevaUbicacion}
-                            onChange={(e) => setNuevaUbicacion(e.target.value)}
-                        />
-
-                        <div className="modal-actions">
-                            <button className="btn-guardar" onClick={guardarCambios}>
-                                💾 Guardar
-                            </button>
-                            <button className="btn-cancelar" onClick={() => setModalAbierto(false)}>
-                                ❌ Cancelar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };
