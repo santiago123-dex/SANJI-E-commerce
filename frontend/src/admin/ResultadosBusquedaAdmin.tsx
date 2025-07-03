@@ -12,7 +12,7 @@ interface Evento {
     imagen_evento?: string;
 }
 
-export function ResultadosBusqueda() {
+export function ResultadosBusquedaAdmin() {
     const [eventos, setEventos] = useState<Evento[]>([]);
     const [error, setError] = useState<string>("")
     const location = useLocation();
