@@ -6,10 +6,12 @@ import { Navbar } from "./components/Navbar"
 import { NavbarSesion } from "./components/NavbarSesion"
 import { Formulario } from "./views/FormularioLogin"
 import { FormularioRegistro } from "./views/FormularioRegistro"
-import { FormularioLoginAdmin } from "./views/FormularioLoginAdmin"
+import { FormularioLoginAdmin } from "./admin/FormularioLoginAdmin"
 import { PerfilUsuario } from "./views/PerfilUsuario"
-import { PerfilAdmin } from "./views/PerfilAdmin"
+import { InicioAdmin } from "./admin/InicioAdmin"
 import { Footer } from "./components/Footer"
+import { NavbarAdmin } from "./admin/NavbarAdmin"
+import { ResultadosBusquedaAdmin } from "./admin/ResultadosBusquedaAdmin"
 
 function Layout() {
     return (
@@ -29,6 +31,15 @@ function LayoutSesion() {
     );
 }
 
+function LayoutAdmin() {
+    return (
+        <>
+            <NavbarAdmin />
+            <Footer />
+        </>
+    );
+}
+
 export function App() {
     return (
         <Routes>
@@ -42,8 +53,11 @@ export function App() {
             <Route element={<LayoutSesion />}>
                 <Route path="registrar" element={<FormularioRegistro />} />
                 <Route path="login" element={<Formulario />} />
-                <Route path="admin-login" element={<FormularioLoginAdmin />} />
-                <Route path="perfil-admin" element={<PerfilAdmin />} />
+            </Route>
+            <Route element={<LayoutAdmin />}>
+                <Route path="admin_login" element={<FormularioLoginAdmin />} />
+                <Route path="inicio_admin" element={<InicioAdmin />} />
+                <Route path="resultados_admin" element={<ResultadosBusquedaAdmin />} />
             </Route>
         </Routes>
     );

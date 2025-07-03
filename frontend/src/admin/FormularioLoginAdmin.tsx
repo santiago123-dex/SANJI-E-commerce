@@ -41,7 +41,7 @@ import "../styles/FormularioLogin.css";
 
         if (res.ok) {
             setMensaje("Login exitoso");
-            navigate("/perfil-admin");
+            navigate("/inicio_admin");
         } else {
             setMensaje(data.message || "Credenciales incorrectas");
         }

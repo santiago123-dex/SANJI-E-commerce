@@ -19,15 +19,20 @@ export function DetallesEvento() {
     const [evento, setEvento] = useState<Evento | null>(null);
 
     useEffect(() => {
-        fetch(`http://localhost:3000/api/eventos/${id}`, {
-            method: "GET",
-            credentials: "include",
-        })
-        .then((res) => res.json())
-        .then((data) => setEvento(data));
-    }, [id]);
+    fetch(`http://localhost:3000/api/eventos/id_evento?id_evento=${id}`, {
+        method: "GET",
+        credentials: "include",
+    })
+    .then((res) => res.json())
+    .then((data) => setEvento(data));
+}, [id]);
 
-    if (!evento) return <p>Cargando evento...</p>;
+    if (!evento) return (
+    <div className="detalle-cargando">
+        <div className="spinner"></div>
+        <p>Cargando los detalles del evento, por favor espera...</p>
+    </div>
+    )
 
     return (
         <div className="detalle-evento">
