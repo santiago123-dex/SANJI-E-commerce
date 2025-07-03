@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../styles/ResultadosBusqueda.css";
 import { useLocation } from "react-router-dom";
-import { EventosDestacados } from "../components/EventosDestacados";
+import { EventoAdmin } from "../admin/EventosAdmin";
 
 interface Evento {
     id_evento: number;
@@ -56,9 +56,9 @@ export function ResultadosBusquedaAdmin() {
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <div className="grid-eventos">
                 {eventos.map((evento) => (
-                    <EventosDestacados
+                    <EventoAdmin
                         key={evento.id_evento}
-                        id={evento.id_evento}
+                        id_evento={evento.id_evento}
                         titulo={evento.nombre_evento}
                         fecha={new Date(evento.fecha_evento).toLocaleDateString()}
                         ubicacion={evento.ubicacion}

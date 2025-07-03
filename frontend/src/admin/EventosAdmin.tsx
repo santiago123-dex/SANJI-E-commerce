@@ -2,13 +2,14 @@ import React from "react";
 import { useState } from "react";
 import "../styles/EventosAdmin.css"
 
+
 interface EventoDestacadoProps {
     id_evento: number;
     titulo: string;
     fecha: string;
     ubicacion: string;
     imagen?: string;
-    onEditar: () => void
+    onEditar?: () => void
 }
 
 export const EventoAdmin: React.FC<EventoDestacadoProps> = ({ id_evento, titulo, fecha, ubicacion, imagen, onEditar, }) => {

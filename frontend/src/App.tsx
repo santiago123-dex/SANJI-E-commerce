@@ -58,7 +58,6 @@ export function App() {
                 <Route path="admin_login" element={<FormularioLoginAdmin />} />
                 <Route path="inicio_admin" element={<InicioAdmin />} />
                 <Route path="resultados_admin" element={<ResultadosBusquedaAdmin />} />
-
             </Route>
         </Routes>
     );

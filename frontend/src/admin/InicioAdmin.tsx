@@ -11,7 +11,7 @@ interface Evento {
     nombre_evento: string
     fecha_evento: string
     ubicacion: string
-    descripcion?: string
+    descripcion_evento?: string
     imagen_evento?: string
 }
 
@@ -239,9 +239,9 @@ export function InicioAdmin() {
                             }
                         />
                         <textarea
-                            value={eventoEditando.descripcion}
+                            value={eventoEditando.descripcion_evento || ""}
                             onChange={(e) =>
-                                setEventoEditando({ ...eventoEditando, descripcion: e.target.value || "" })
+                                setEventoEditando({ ...eventoEditando, descripcion_evento: e.target.value || "" })
                             }
                         />
                         <input
@@ -278,7 +278,7 @@ export function InicioAdmin() {
                                                 id_evento: eventoEditando.id_evento,
                                                 id_categoria: 1,
                                                 nombre_evento: eventoEditando.nombre_evento,
-                                                descripcion_evento: eventoEditando.descripcion,
+                                                descripcion_evento: eventoEditando.descripcion_evento,
                                                 fecha_evento: eventoEditando.fecha_evento,
                                                 ubicacion: eventoEditando.ubicacion,
                                                 imagen_evento: eventoEditando.imagen_evento,
