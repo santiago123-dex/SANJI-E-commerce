@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../styles/PerfilAdmin.css";
+import "../styles/InicioAdmin.css";
 
 
 import { EventoAdmin } from "./EventosAdmin";
