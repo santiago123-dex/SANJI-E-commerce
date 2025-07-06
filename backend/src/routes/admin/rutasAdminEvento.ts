@@ -4,12 +4,12 @@ import { actualizarBoleto, actualizarEvento, crearBoleto, crearEvento, eliminarB
 const router = Router()
 
 router.post("/crearEvento", crearEvento)
-router.post("/actualizarEvento", actualizarEvento)
-router.get("/eliminarEvento", eliminarEvento)
+router.put("/actualizarEvento", actualizarEvento)
+router.delete("/eliminarEvento", eliminarEvento)
 
 router.post("/crearBoleto", crearBoleto)
-router.post("/actualizarBoleto", actualizarBoleto)
-router.get("/eliminarBoleto", eliminarBoleto)
+router.put("/actualizarBoleto", actualizarBoleto)
+router.delete("/eliminarBoleto", eliminarBoleto)
 
 
 export default router

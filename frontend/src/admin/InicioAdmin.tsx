@@ -271,7 +271,7 @@ export function InicioAdmin() {
                                 onClick={async () => {
                                     try {
                                         const res = await fetch(`http://localhost:3000/api/admin/eventos/actualizarEvento`, {
-                                            method: "POST",
+                                            method: "PUT",
                                             credentials: "include",
                                             headers: { "Content-Type": "application/json" },
                                             body: JSON.stringify({

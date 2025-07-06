@@ -2,7 +2,6 @@ import {Request, Response} from 'express'
 import { HttpError } from '../utils/errorManager'
 import jwt from 'jsonwebtoken'
 import { generarTokenAcceso } from '../utils/generarToken'
-import { DatosToken, DatosTokenAdmin } from '../types/tokenType'
 
 export const refreshCookie = async (req: Request, res: Response) => {
     const tokenRefresh = req.cookies['tokenRefresh']

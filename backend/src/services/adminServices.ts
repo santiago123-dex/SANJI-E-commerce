@@ -1,4 +1,4 @@
-import {PrismaClient} from '@prisma/client'
+import {Prisma, PrismaClient} from '@prisma/client'
 import { DatosAdminLogin } from '../types/adminType'
 import bcrypt from 'bcrypt'
 import { HttpError } from '../utils/errorManager'
@@ -16,5 +16,12 @@ export const loginAdmin = async (data: DatosAdminLogin) => {
 
     if(!passwordValido) throw new HttpError("Contraseña incorrecta", 401);
 
-    return {id_admin: admin.id_admin, email_admin: admin.email_admin, tipo_admin: 'admin'}
+    try{
+        return {id_admin: admin.id_admin, email_admin: admin.email_admin, tipo_admin: 'admin'}
+    }catch(error){
+        if(error instanceof Prisma.PrismaClientKnownRequestError){
+            if(error.code === 'P2025') throw new HttpError("Usuario no encontrado", 404);
+        }
+        throw error
+    }
 }
