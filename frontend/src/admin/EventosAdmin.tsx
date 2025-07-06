@@ -21,7 +21,7 @@ export const EventoAdmin: React.FC<EventoDestacadoProps> = ({id_boleto, id_event
         try {
             // Primero eliminar los boletos asociados al evento
             const eliminarBoletos = await fetch(`http://localhost:3000/api/admin/eventos/eliminarBoleto?id_boleto=${id_evento}`, {
-                method: "GET",
+                method: "DELETE",
                 credentials: "include"
             });
             if (!eliminarBoletos.ok) {
