@@ -7,6 +7,7 @@ export function Navbar() {
     const [menuAbierto, setMenuAbierto] = useState(false);
     const [logueo, setLogueo] = useState(false);
     const [busqueda, setBusqueda] = useState("");
+    const [modalCarrito, setModalCarrito] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -14,13 +15,13 @@ export function Navbar() {
         e.preventDefault();
         try {
             const res = await fetch(`http://localhost:3000/api/eventos/buscar_nombre?nombre_evento=${encodeURIComponent(busqueda)}`,
-            {
-                method: "GET",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json",
-                },   
-            }
+                {
+                    method: "GET",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
             );
 
             const data = await res.json();
@@ -36,9 +37,9 @@ export function Navbar() {
     };
 
     useEffect(() => {
-    if (location.pathname === "/resultados") {
-        setBusqueda("");
-    }
+        if (location.pathname === "/resultados") {
+            setBusqueda("");
+        }
     }, [location]);
 
     function toggle() {
@@ -104,7 +105,36 @@ export function Navbar() {
                             <Link className='Menu__Item' to="/login">INICIO SESION</Link>
                         </>
                     )}
-                    <Link className="Menu__Item" to="/perfil">
+                    {modalCarrito && (
+                        <div className="CarritoOverlay" onClick={() => setModalCarrito(false)}>
+                            <div
+                                className="CarritoSidebar"
+                                onClick={(e) => e.stopPropagation()} // Evita que se cierre al hacer click dentro
+                            >
+                                <div className="CarritoHeader">
+                                    <h3>Tu Carrito</h3>
+                                    <button
+                                        className="CerrarCarrito"
+                                        onClick={() => setModalCarrito(false)}
+                                    >
+                                        ✖
+                                    </button>
+                                </div>
+                                <div className="CarritoContenido">
+                                    {/* Aquí pones los productos del carrito */}
+                                    <p>No tienes productos aún.</p>
+                                </div>
+                                <div className="CarritoFooter">
+                                    <button className="IrAlCheckout">Ir al Checkout</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    <div className="carrito-icono" onClick={() => setModalCarrito(true)}>
+                        <img className="LogoUser" src="../../public/logoCarrito.png" alt="" />
+                    </div>
+                    <Link className="user-icono" to="/perfil">
                         <img className="LogoUser" src="../../public/logoUser.png" alt="" />
                     </Link>
                 </nav>

@@ -66,7 +66,7 @@ export function NavbarAdmin() {
                 </form>
 
                 <nav className={menuAbierto ? "NavBar__Menu--Open" : "NavBar__Menu--Close"}>
-
+                    <Link className='Menu__Item' to="/inicio">INICIO</Link>
                     {!logueo && (
                         <>
                             <Link className='Menu__Item' to="/admin_login">INICIO SESION</Link>
