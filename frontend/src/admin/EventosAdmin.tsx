@@ -19,7 +19,7 @@ export const EventoAdmin: React.FC<EventoDestacadoProps> = ({ id_evento, titulo,
     const eliminarEvento = async () => {
         try {
             const eliminar = await fetch(`http://localhost:3000/api/admin/eventos/eliminarEvento?id_evento=${id_evento}`, {
-                method: "GET",
+                method: "DELETE",
                 credentials: "include"
             });
             if (eliminar.ok) {

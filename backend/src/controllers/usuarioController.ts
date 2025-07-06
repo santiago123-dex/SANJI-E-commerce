@@ -29,6 +29,8 @@ export const loginUsuario = async (req: Request, res: Response) => {
 
         const usuario = await usuarioServices.loginUsuario(req.body)
 
+        if(!usuario) return res.status(401).json({message: 'Credenciales incorrectas'})
+
         const tokenAcceso = generarTokenAcceso(usuario)
         const tokenRefresh = generarTokenRefresh(usuario)
 

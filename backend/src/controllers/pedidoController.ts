@@ -9,7 +9,7 @@ export const generarPedido = async (req: Request, res: Response) => {
         
         if(!id_usuario) return res.status(401).json({message: 'Primero inicia sesión'});
         
-        const id_pedido = await pedidoServices.genararPedido(id_usuario)
+        const id_pedido = await pedidoServices.generarPedido(id_usuario)
 
         if(!id_pedido) return res.status(400).json({message: 'No se pudo generar el pedido'});
         
@@ -22,8 +22,18 @@ export const generarPedido = async (req: Request, res: Response) => {
         for(const d of carritoPedido){
             const id_boleto = d.id_boleto
             const cantidad = d.cantidad
+            const boletoInfo = await pedidoServices.mostrarBoletoInfo(id_boleto)
+
+            if(!boletoInfo) return res.status(400).json({message: 'No se pudo generar el pedido'});
+
+            if(cantidad > boletoInfo.stock){
+                await pedidoServices.cancelarPedido(id_pedido)
+                await carritoUsuarioServices.eliminarCarrito(d.id_carrito)
+                return res.status(400).json({message: 'No se pudo realizar el pedido, ya que la cantidad de boletos disponibles no es suficiente'});
+            }
+
             const subtotal = await pedidoServices.crearPedidoDetallado({id_pedido, id_boleto, cantidad})
-            total_pedido += subtotal
+            total_pedido += subtotal as number
         }
 
         const actualizarPedido = await pedidoServices.actualizarPedido(id_pedido, {total_pedido})
