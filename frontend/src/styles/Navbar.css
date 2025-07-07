@@ -1,0 +1,259 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    transition-duration: 0.5s;
+}
+
+.Search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.Search__Input {
+    color: #fff;
+    outline: none;
+    padding: 0.4rem 1rem;
+    border-radius: 1rem;
+    border: 2px solid #ffffff;
+    font-size: 1rem;
+    background-color: transparent;
+}
+
+.Search__Input::placeholder {
+    color: #fff9;
+}
+
+.Search__Button {
+
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.NavBar {
+    background-color: #48f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+}
+
+nav {
+    transition-duration: 0s;
+}
+
+.NavBar__Menu--Close {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.Menu__Item {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    align-items: center;
+    gap: 20px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.user-icono {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.LogoUser {
+    width: 30px;
+    filter: invert(1);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    width: 100dvw;
+    height: 100dvh;
+    z-index: 1000;
+}
+
+/*Boton Hamburguesa*/
+.Hamburger {
+    display: none;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+/*CARRITO ICONO*/
+.carrito-icono {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/*MODAL*/
+/* Fondo oscuro */
+.CarritoOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: flex-end;
+    z-index: 999;
+    /* encima de todo */
+}
+
+/* Panel lateral */
+.CarritoSidebar {
+    background-color: #fff;
+    width: 320px;
+    max-width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    animation: slideIn 0.3s ease-out forwards;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Cabecera del carrito */
+.CarritoHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Botón de cerrar */
+.CerrarCarrito {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* Contenido del carrito */
+.CarritoContenido {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+/* Footer con botón */
+.CarritoFooter {
+    padding: 1rem;
+    border-top: 1px solid #ddd;
+}
+
+.IrAlCheckout {
+    width: 100%;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+
+@media (min-width: 1300px) {
+    .NavBar {
+        align-items: center;
+        gap: 30px;
+        height: 10%;
+    }
+
+    .NavBar__Menu--Close {
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .Menu__Item {
+        border-radius: 100px;
+    }
+
+    .Menu__Item:hover {
+        padding: 10px 15px;
+        letter-spacing: 3px;
+        background-color: #fff;
+        color: #48f;
+    }
+}
+
+@media (max-width: 1300px) {
+
+    .Hamburger {
+        display: block;
+        z-index: 2000;
+    }
+
+    .overlay {
+        background-color: #000a;
+    }
+
+    nav {
+        transition-duration: 1s;
+        background-color: #48f;
+        position: fixed;
+        display: flex;
+        flex-direction: row;
+        padding-top: 100px;
+        top: 0;
+        height: 100dvh;
+        gap: 20px;
+    }
+
+    .NavBar__Menu--Close {
+        left: -100%;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        z-index: 1001;
+    }
+
+    .NavBar__Menu--Open {
+        flex-direction: column;
+        left: 0;
+        z-index: 1001;
+    }
+
+    .Menu__Item {
+        flex-direction: column;
+        gap: 15px;
+        padding: 10px;
+        margin: 0;
+        width: 250px;
+        text-align: center;
+    }
+
+    .Menu__Item:hover {
+        letter-spacing: 3px;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}

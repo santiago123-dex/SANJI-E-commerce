@@ -1,0 +1,16 @@
+.containerLogo{
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.logo-tubo {
+  color: #fff;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.logo-leta {
+  color: #ffd600;
+  font-weight: bold;
+  font-size: 2rem;
+}

@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    font-family: sans-serif;
+    background-color: #f9f9f9;
+}
+
+.profile {
+    display: flex;
+    margin: 2rem auto;
+    flex-flow: row wrap;
+    border: 1px solid #48f;
+    border-radius: 1rem;
+    width: fit-content;
+    padding: 1rem;
+}
+
+.profile__logo {
+    width: 200px;
+    height: 200px;
+    padding: 1rem;
+}
+
+
+.profile__content {
+    flex: 1 1 50%;
+    display: grid;
+    padding: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.info__name, .info__email {
+    font-style: italic;
+}
+
+strong {
+    text-transform: uppercase;
+    font-style: normal;
+    color: #48f;
+}
+
+
+.content__logout {
+    width: fit-content;
+    padding: 0.4rem;
+    background: none;
+    border: 1px solid #48f;
+    border-radius: 0.4rem;
+    margin: 10px 10px 0 0;
+    color: #48f;
+    &:hover {
+        background-color: #48f;
+        color: #fff;
+    }
+}
+
+/* Modal genérico para feedback de acciones */
+.editar-perfil {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.editar-perfil-contenido {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+    padding: 2.5rem 2rem 2rem 2rem;
+    min-width: 420px;
+    max-width: 90vw;
+    text-align: center;
+    animation: modalFadeIn 0.3s;
+}
+
+.editar-perfil input {
+    width: 90%;
+    margin: 0.5rem auto;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    outline: none;
+    background: #fff;
+    display: block;
+    transition: border 0.2s;
+}
+
+.editar-perfil input:focus {
+    background: #fff;
+}
+
+.editar-perfil button {
+    margin-top: 1.2rem;
+    width: 80%;
+    padding: 0.7rem 0;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    border: none;
+    background: #48f;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.editar-perfil button:hover {
+    background: #005be7;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
