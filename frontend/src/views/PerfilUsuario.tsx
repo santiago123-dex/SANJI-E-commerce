@@ -19,19 +19,6 @@ export function PerfilUsuario() {
     const [error, setError] = useState<string>("")
     const [editar, setEditar] = useState<boolean>(false)
 
-    const getPerfil = async () => {
-        fetch('http://localhost:3000/api/usuario/perfil', {
-            method: "GET",
-            credentials: "include"
-        })
-            .then(res => {
-                if (!res.ok) throw new Error("Error al obtener el perfil")
-                return res.json()
-            })
-            .then(data => setPerfil(data))
-            .catch(err => setError(err.message))
-    }
-
     const obtenerPerfil = async () => {
         try {
             const response = await fetch('http://localhost:3000/api/usuario/perfil', {
