@@ -10,39 +10,53 @@ body {
     background-color: #f9f9f9;
 }
 
-.container{
-    width: 6    0%;
-    height: auto;
-    margin: auto;
+.profile {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 2rem auto;
+    flex-flow: row wrap;
+    border: 1px solid #48f;
+    border-radius: 1rem;
+    width: fit-content;
+    padding: 1rem;
 }
 
-.logo-perfil {
-    width: 100%;
-    height: 200px;
-    margin:3rem 0 3rem 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.logo-perfil img {
+.profile__logo {
     width: 200px;
     height: 200px;
-    grid-column: 2/4;
+    padding: 1rem;
 }
 
-.datos-usuario{
-    width: 100%;
-    height: auto;
+.profile__content {
+    flex: 1 1 50%;
+    display: grid;
+    padding: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
 
-.datos-usuario strong{
-    font-size:2rem;
+.info__name, .info__email {
+    font-style: italic;
 }
 
-.datos-usuario p{
-    font-size: 2rem;
+strong {
+    text-transform: uppercase;
+    font-style: normal;
+    color: #48f;
+}
+
+
+.content__logout {
+    width: fit-content;
+    padding: 0.4rem;
+    background: none;
+    border: 1px solid #48f;
+    border-radius: 0.4rem;
+    color: #48f;
+    &:hover {
+        background-color: #48f;
+        color: #fff;
+    }
 }

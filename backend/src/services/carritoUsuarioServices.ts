@@ -1,4 +1,4 @@
-import {PrismaClient} from '@prisma/client'
+import {Prisma, PrismaClient} from '@prisma/client'
 import { HttpError } from '../utils/errorManager'
 import { DatosAgregarCarrito } from '../types/carritoType'
 
@@ -26,7 +26,8 @@ export const agregarProductoCarrito = async (id: number, data: DatosAgregarCarri
                 cantidad,
             }
         })
-    }catch{
+    }catch(error){
+        if(error instanceof Prisma.PrismaClientValidationError) throw new HttpError("Datos inválidos para el registro", 400);
         throw new HttpError("Error al agregar el producto al carrito", 409);
     }
 
@@ -39,11 +40,18 @@ export const eliminarCarrito = async (id: number) => {
 
     if(!productoExisteAntes) throw new HttpError("El producto que intentas eliminar no existe", 404);
 
-    await prisma.carrito.delete({where: {id_carrito}})
-
-    const productoExiste = await prisma.carrito.findUnique({where: {id_carrito}})
-
-    if(productoExiste) throw new HttpError("No se pudo eliminar el carrito", 400);
+    try{
+        await prisma.carrito.delete({where: {id_carrito}})
+        
+        const productoExiste = await prisma.carrito.findUnique({where: {id_carrito}})
+        
+        if(productoExiste) throw new HttpError("No se pudo eliminar el carrito", 400);
+    }catch(error){
+        if(error instanceof Prisma.PrismaClientKnownRequestError){
+            if(error.code === 'P2025') throw new HttpError("El producto que intentas eliminar no existe", 404);
+        }
+        throw new HttpError("Error al eliminar el carrito", 409);
+    }
 }
 
 export const eliminarTodoCarrito = async (id: number) => {
@@ -52,7 +60,10 @@ export const eliminarTodoCarrito = async (id: number) => {
 
         await prisma.carrito.deleteMany({where: {id_usuario}})
     
-    }catch{
+    }catch(error){
+        if(error instanceof Prisma.PrismaClientKnownRequestError){
+            if(error.code === 'P2025') throw new HttpError("El producto que intentas eliminar no existe", 404);
+        }
         throw new HttpError("Error al eliminar el carrito", 409);
     }
 }

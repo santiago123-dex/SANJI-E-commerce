@@ -29,6 +29,8 @@ export const agregarProductoCarrito = async (req: Request, res: Response) => {
 
         if(!id_usuario || !id_boleto || !cantidad) return res.status(400).json({message: 'Faltan datos'});
 
+        if(cantidad <= 0) return res.status(400).json({message: 'La cantidad debe ser mayor a 0'});
+
         await carritoUsuarioServices.agregarProductoCarrito(id_usuario, req.body)
 
         res.status(200).json({message: 'Producto agregado al carrito'})

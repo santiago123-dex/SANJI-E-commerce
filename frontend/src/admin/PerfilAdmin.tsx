@@ -67,14 +67,14 @@ export function PerfilUsuario() {
 
     return (
         <div>
-            <div className="profile">
-                <img src="../../public/logoUser.png" alt="Foto de perfil"  className="profile__logo"/>
-                <div className="profile__content">
-                    <div className="content__info">
-                        <p className="info__name"><strong>Nombre:</strong> {perfil.nombre_usuario}</p>
-                        <p className="info__email"><strong>Email:</strong> {perfil.email_usuario}</p>
-                    </div>
-                    <button className="content__logout" onClick={handleLogout}>Cerrar Sesion</button>
+            <div className="container">
+                <div className="logo-perfil">
+                    <img src="../../public/logoUser.png" alt="" />
+                </div>
+                <div className="datos-usuario">
+                    <p><strong>Nombre:</strong> {perfil.nombre_usuario}</p>
+                    <p><strong>Email:</strong> {perfil.email_usuario}</p>
+                    <button onClick={handleLogout}>Cerrara Sesion</button>
                 </div>
             </div>
         </div>
