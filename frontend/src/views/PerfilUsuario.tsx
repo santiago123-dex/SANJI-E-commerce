@@ -1,5 +1,6 @@
 import "../styles/PerfilUsuario.css"
 import { useState, useEffect } from "react"
+import Swal from "sweetalert2"
 import { useNavigate } from "react-router-dom"
 
 
@@ -84,10 +85,18 @@ export function PerfilUsuario() {
                 credentials: "include"
             })
             if (logout.ok) {
-                alert("se cerro la sesion correctamente")
+                Swal.fire({
+                    title: "Sesión cerrada correctamente",
+                    icon: "success",
+                    draggable: true
+                });
                 navigate("/inicio")
             } else {
-                alert("Error al cerrar la sesion")
+                Swal.fire({
+                    title: "Error al cerrar la sesión",
+                    icon: "success",
+                    draggable: true
+                });
             }
         } catch (error) {
             setError("No se pudo cerrar sesion")
