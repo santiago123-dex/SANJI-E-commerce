@@ -26,6 +26,7 @@ body {
     padding: 1rem;
 }
 
+
 .profile__content {
     flex: 1 1 50%;
     display: grid;
@@ -54,6 +55,7 @@ strong {
     background: none;
     border: 1px solid #48f;
     border-radius: 0.4rem;
+    margin: 10px 10px 0 0;
     color: #48f;
     &:hover {
         background-color: #48f;

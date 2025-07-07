@@ -19,24 +19,38 @@ export function PerfilUsuario() {
     const [error, setError] = useState<string>("")
     const [editar, setEditar] = useState<boolean>(false)
 
-    useEffect(() => {
-        const obtenerPerfil = async () => {
-            try {
-                const response = await fetch('http://localhost:3000/api/usuario/perfil', {
-                    method: "GET",
-                    credentials: "include"
-                })
+    const getPerfil = async () => {
+        fetch('http://localhost:3000/api/usuario/perfil', {
+            method: "GET",
+            credentials: "include"
+        })
+            .then(res => {
+                if (!res.ok) throw new Error("Error al obtener el perfil")
+                return res.json()
+            })
+            .then(data => setPerfil(data))
+            .catch(err => setError(err.message))
+    }
 
-                if (!response.ok) throw new Error("Error al obtener el perfil")
+    const obtenerPerfil = async () => {
+        try {
+            const response = await fetch('http://localhost:3000/api/usuario/perfil', {
+                method: "GET",
+                credentials: "include"
+            })
 
-                const data = await response.json()
-                setPerfil(data)
-            } catch (error) {
-                setError("No estas logueado")
-            } finally {
-                setLoading(false)
-            }
+            if (!response.ok) throw new Error("Error al obtener el perfil")
+
+            const data = await response.json()
+            setPerfil(data)
+        } catch (error) {
+            setError("No estas logueado")
+        } finally {
+            setLoading(false)
         }
+    }
+
+    useEffect(() => {
         obtenerPerfil()
     }, [])
 
@@ -69,7 +83,7 @@ export function PerfilUsuario() {
             const data = await response.json()
             setPerfil(data)
             setEditar(false)
-            window.location.reload();
+            obtenerPerfil() // Actualizar el perfil después de editar
         } catch (error) {
             setError("No se pudo editar el perfil")
         }
@@ -95,17 +109,17 @@ export function PerfilUsuario() {
 
     return (
         <div>
-            <div className="container">
-                <div className="logo-perfil">
-                    <img src="../../public/logoUser.png" alt="" />
-                </div>
-                <div className="datos-usuario">
-                    <p><strong>Nombre:</strong> {perfil.nombre_usuario}</p>
-                    <p><strong>Apellido:</strong> {perfil.apellido_usuario}</p>
-                    <p><strong>Email:</strong> {perfil.email_usuario}</p>
-                    <p><strong>Teléfono:</strong> {perfil.telefono_usuario}</p>
-                    <button onClick={handleLogout}>Cerrara Sesion</button>
-                    <button onClick={() => setEditar(true)}>editar Perfil</button>
+            <div className="profile">
+                <img src="../../public/logoUser.png" alt="" className="profile__logo" />
+                <div className="profile__content">
+                    <div className="content__info">
+                        <p><strong>Nombre:</strong> {perfil.nombre_usuario}</p>
+                        <p><strong>Apellido:</strong> {perfil.apellido_usuario}</p>
+                        <p><strong>Email:</strong> {perfil.email_usuario}</p>
+                        <p><strong>Teléfono:</strong> {perfil.telefono_usuario}</p>
+                        <button className="content__logout" onClick={handleLogout}>Cerrara Sesion</button>
+                        <button className="content__logout" onClick={() => setEditar(true)}>editar Perfil</button>
+                    </div>
                     {editar && (
                         <div className="editar-perfil">
                             <div className="editar-perfil-contenido">

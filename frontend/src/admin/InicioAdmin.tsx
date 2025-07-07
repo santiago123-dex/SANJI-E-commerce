@@ -105,14 +105,18 @@ export function InicioAdmin() {
         }
     }
 
-    useEffect(() => {
-        fetch("http://localhost:3000/api/eventos")
+    const getEvents = async () =>{
+          fetch("http://localhost:3000/api/eventos")
             .then(res => {
                 if (!res.ok) throw new Error("Error al cargar eventos")
                 return res.json()
             })
             .then(data => setEventos(data))
             .catch(err => setError(err.message))
+    }
+
+    useEffect(() => {
+        getEvents();
     }, [])
 
 
@@ -288,7 +292,7 @@ export function InicioAdmin() {
                                         if (res.ok) {
                                             alert("Evento actualizado correctamente");
                                             setEventoEditando(null);
-                                            window.location.reload();
+                                            getEvents();
                                         } else {
                                             alert("Error al actualizar el evento");
                                         }
