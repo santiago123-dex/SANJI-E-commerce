@@ -12,7 +12,7 @@ export const mostrarEventos = async () => {
 }
 
 export const mostrarEventoId = async (id_evento: number) => {
-    const evento= await prisma.eventos.findUnique({where: {id_evento}})
+    const evento = await prisma.eventos.findUnique({where: {id_evento}})
 
     if(!evento) throw new HttpError("No hay eventos registrados hasta el momento con ese id", 404)
 
