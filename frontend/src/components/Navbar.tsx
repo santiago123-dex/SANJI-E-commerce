@@ -82,7 +82,8 @@ export function Navbar() {
                 <div className="Logo-principal">
                     <LogoMiboleta />
                 </div>
-                <form className="Search" onSubmit={handleBuscar}>
+                <nav className={menuAbierto ? "NavBar__Menu--Open" : "NavBar__Menu--Close"}>
+                           <form className="Search" onSubmit={handleBuscar}>
                     <input
                         type="text"
                         placeholder="Buscar evento..."
@@ -93,7 +94,6 @@ export function Navbar() {
                     <button type="submit" className="Search__Button">🔍</button>
                 </form>
 
-                <nav className={menuAbierto ? "NavBar__Menu--Open" : "NavBar__Menu--Close"}>
 
                     <Link className='Menu__Item' to="/inicio">CONCIERTOS</Link>
                     <Link className='Menu__Item' to="/inicio">TEATRO</Link>

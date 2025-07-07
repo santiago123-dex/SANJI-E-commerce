@@ -1,3 +1,4 @@
+
 main {
   flex: 1;
   min-height: calc(100dvh - 87px);
@@ -83,3 +84,9 @@ body {
   color: #fff;
 }
 
+
+@media(max-width:768px){
+  .Hero{
+    width: 70% !important;
+  }
+}
