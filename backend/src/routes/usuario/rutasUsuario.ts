@@ -12,7 +12,7 @@ router.post("/login", loginUsuario)
 router.get("/logout", logoutUsuario)
 
 router.get("/perfil", verificarUsuario, perfilUsuario)
-router.post("/actualizarPerfil", verificarUsuario, actualizarPerfil)
+router.put("/actualizarPerfil", verificarUsuario, actualizarPerfil)
 router.get("/borrarCuenta", verificarUsuario, borrarCuenta)
 
 router.get("/carrito", verificarUsuario, mostrarCarrito)
