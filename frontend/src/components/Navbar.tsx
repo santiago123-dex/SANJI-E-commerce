@@ -13,7 +13,7 @@ export function Navbar() {
     const handleBuscar = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const res = await fetch(`http://localhost:3000/api/eventos/buscar-nombre?nombre_evento=${encodeURIComponent(busqueda)}`,
+            const res = await fetch(`http://localhost:3000/api/eventos/buscar_nombre?nombre_evento=${encodeURIComponent(busqueda)}`,
             {
                 method: "GET",
                 credentials: "include",

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../styles/ResultadosBusqueda.css";
 import { useLocation } from "react-router-dom";
+import { EventosDestacados } from "../components/EventosDestacados";
 
 interface Evento {
     id_evento: number;
@@ -27,7 +28,7 @@ export function ResultadosBusqueda() {
     }
     
     
-    fetch(`http://localhost:3000/api/eventos/buscar-nombre?nombre_evento=${encodeURIComponent(nombre)}`, {
+    fetch(`http://localhost:3000/api/eventos/buscar_nombre?nombre_evento=${encodeURIComponent(nombre)}`, {
         method: "GET",
         credentials: "include",
         headers: {
@@ -55,14 +56,14 @@ export function ResultadosBusqueda() {
             {error && <p style={{ color: 'red' }}>{error}</p>}
                 <div className="grid-eventos">
                     {eventos.map((evento) => (
-                        <div key={evento.id_evento} className="evento-destacado">
-                            <img src={evento.imagen_evento ? evento.imagen_evento : "../../public/placeholder.jpg"} alt={evento.nombre_evento} />
-                            <div>
-                                <h3>{evento.nombre_evento}</h3>
-                                <p>{new Date(evento.fecha_evento).toLocaleDateString()}</p>
-                                <p>{evento.ubicacion}</p>
-                            </div>
-                        </div>
+                        <EventosDestacados
+                            key={evento.id_evento}
+                            id={evento.id_evento}
+                            titulo={evento.nombre_evento}
+                            fecha={new Date(evento.fecha_evento).toLocaleDateString()}
+                            ubicacion={evento.ubicacion}
+                            imagen={evento.imagen_evento}
+                        />
                     ))}
                 </div>
         </div>
