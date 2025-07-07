@@ -39,6 +39,7 @@
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
+  height: 220px;
 }
 
 .FeaturedEvent:hover {
@@ -48,6 +49,9 @@
 }
 
 .FeaturedEvent__Img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   flex: 1 1 50%;
   border-radius: 1rem;

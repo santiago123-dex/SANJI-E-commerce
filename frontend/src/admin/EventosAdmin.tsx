@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "../styles/EventosAdmin.css"
+import Swal from "sweetalert2";
 
 
 interface EventoDestacadoProps {
@@ -13,37 +14,34 @@ interface EventoDestacadoProps {
     onEditar?: () => void
 }
 
-export const EventoAdmin: React.FC<EventoDestacadoProps> = ({id_boleto, id_evento, titulo, fecha, ubicacion, imagen, onEditar, }) => {
+export const EventoAdmin: React.FC<EventoDestacadoProps> = ({ id_evento, titulo, fecha, ubicacion, imagen, onEditar, }) => {
 
     const [error, setError] = useState<string>("")
 
     const eliminarEvento = async () => {
         try {
-            // Primero eliminar los boletos asociados al evento
-            const eliminarBoletos = await fetch(`http://localhost:3000/api/admin/eventos/eliminarBoleto?id_boleto=${id_evento}`, {
-                method: "DELETE",
-                credentials: "include"
-            });
-            if (!eliminarBoletos.ok) {
-                alert("Error al borrar los boletos asociados al evento");
-                return;
-            }
             // Luego eliminar el evento
             const eliminar = await fetch(`http://localhost:3000/api/admin/eventos/eliminarEvento?id_evento=${id_evento}`, {
                 method: "DELETE",
                 credentials: "include"
             });
             if (eliminar.ok) {
-                alert("El evento y sus boletos se eliminaron correctamente");
-                window.location.reload();
+                Swal.fire({
+                    title: "El evento y sus boletos se eliminaron correctamente",
+                    icon: "success",
+                    draggable: true
+                });
             } else {
-                alert("Error al borrar el evento");
+                Swal.fire({
+                    title: "Error al borrar el evento",
+                    icon: "error",
+                    draggable: true
+                });
             }
         } catch (error) {
             setError("No se pudo eliminar el evento o sus boletos");
         }
     };
-
 
 
     return (
