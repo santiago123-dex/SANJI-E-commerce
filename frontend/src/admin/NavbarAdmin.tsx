@@ -2,6 +2,7 @@ import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import "../styles/Navbar.css";
 import { LogoMiboleta } from "./LogoAdmin";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 export function NavbarAdmin() {
     const [menuAbierto, setMenuAbierto] = useState(false);
@@ -28,10 +29,18 @@ export function NavbarAdmin() {
             if (res.ok) {
                 navigate(`/resultados_admin?nombre_evento=${encodeURIComponent(busqueda)}`);
             } else {
-                alert(data.message || "No se encontraron resultados");
+                Swal.fire({
+                    title: data.message || "No se encontraron resultados",
+                    icon: "info",
+                    draggable: true
+                });
             }
         } catch (error) {
-            alert("Error al buscar eventos");
+            Swal.fire({
+                title: "Error al buscar eventos",
+                icon: "error",
+                draggable: true
+            });
         }
     };
 

@@ -2,6 +2,7 @@ import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import "../styles/Navbar.css";
 import { LogoMiboleta } from "./LogoMiboleta";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 // Define la interfaz para los items del carrito
 interface CarritoItem {
@@ -39,10 +40,18 @@ export function Navbar() {
             if (res.ok) {
                 navigate(`/resultados?nombre_evento=${encodeURIComponent(busqueda)}`);
             } else {
-                alert(data.message || "No se encontraron resultados");
+                Swal.fire({
+                    title: data.message || "No se encontraron resultados",
+                    icon: "info",
+                    draggable: true
+                });
             }
         } catch (error) {
-            alert("Error al buscar eventos");
+            Swal.fire({
+                title: "Error al buscar eventos",
+                icon: "error",
+                draggable: true
+            });
         }
     };
 
@@ -135,18 +144,19 @@ export function Navbar() {
                 <div className="Logo-principal">
                     <LogoMiboleta />
                 </div>
-                <form className="Search" onSubmit={handleBuscar}>
-                    <input
-                        type="text"
-                        placeholder="Buscar evento..."
-                        value={busqueda}
-                        onChange={(e) => setBusqueda(e.target.value)}
-                        className="Search__Input"
-                    />
-                    <button type="submit" className="Search__Button">🔍</button>
-                </form>
-
                 <nav className={menuAbierto ? "NavBar__Menu--Open" : "NavBar__Menu--Close"}>
+                    <form className="Search" onSubmit={handleBuscar}>
+                        <input
+                            type="text"
+                            placeholder="Buscar evento..."
+                            value={busqueda}
+                            onChange={(e) => setBusqueda(e.target.value)}
+                            className="Search__Input"
+                        />
+                        <button type="submit" className="Search__Button">🔍</button>
+                    </form>
+
+
                     <button className='Menu__Item' onClick={() => navigate('/categoria?nombre_categoria=CONCIERTOS')}>CONCIERTOS</button>
                     <button className='Menu__Item' onClick={() => navigate('/categoria?nombre_categoria=TEATRO')}>TEATRO</button>
                     <button className='Menu__Item' onClick={() => navigate('/categoria?nombre_categoria=DEPORTES')}>DEPORTES</button>

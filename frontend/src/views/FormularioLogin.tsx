@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/FormularioLogin.css"
+import Swal from "sweetalert2";
 
 interface Usuario {
     email_usuario: string
@@ -22,15 +23,15 @@ export function Formulario() {
         const { name, value } = e.target
         setLogin((prev) => ({
             ...prev,
-            [name]: value
-        }))
-    }
+            [name]: value,
+        }));
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
 
         try {
-            const res = await fetch("http://localhost:3000/api/usuario/login", {    
+            const res = await fetch("http://localhost:3000/api/usuario/login", {
                 method: "POST",
                 credentials: "include",
                 headers: {
@@ -45,12 +46,11 @@ export function Formulario() {
 
             if (res.ok) {
                 setMensaje(data.message)
-
-                setLogin({
-                    email_usuario: "",
-                    password_usuario: "",
-                })
-
+                Swal.fire({
+                    title: "Login exitoso",
+                    icon: "success",
+                    draggable: true
+                });
                 navigate("/inicio")
             } else {
                 setMensaje(data.message || "Error al iniciar sesión")
@@ -64,26 +64,26 @@ export function Formulario() {
     const [logueado, setLogueado] = useState(false)
 
     useEffect(() => {
-        const token = async () =>{
-            try{
+        const token = async () => {
+            try {
                 const res = await fetch("http://localhost:3000/api/usuario/perfil", {
                     method: "GET",
                     credentials: "include"
                 })
 
-                if(res.ok){
+                if (res.ok) {
                     const data = await res.json()
                     setLogueado(true)
-                    navigate("/", {replace: true})
-                }else{
+                    navigate("/", { replace: true })
+                } else {
                     setLogueado(false)
                 }
-            }catch(error){
+            } catch (error) {
                 setLogueado(false)
             }
         }
         token()
-        }, [navigate])
+    }, [navigate])
 
     return (
         <div className="box">

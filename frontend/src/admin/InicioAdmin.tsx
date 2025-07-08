@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/InicioAdmin.css";
-
-
+import Swal from "sweetalert2";
 import { EventoAdmin } from "./EventosAdmin";
 
 
@@ -74,14 +73,26 @@ export function InicioAdmin() {
                     imagen_evento: "",
                     estado_evento: 1,
                 });
-                window.alert("Evento creado correctamente");
+                Swal.fire({
+                    title: "Evento creado correctamente",
+                    icon: "success",
+                    draggable: true
+                });
             } else {
                 setMostrarModalCrear(false);
-                window.alert("ha ocurrido un error");
+                Swal.fire({
+                    title: "Ha ocurrido un error al crear el evento",
+                    icon: "success",
+                    draggable: true
+                });
             }
         } catch (error) {
             setMostrarModalCrear(false);
-            window.alert("Error de conexión o inesperado");
+            Swal.fire({
+                title: "Error de conexión o inesperado",
+                icon: "error",
+                draggable: true
+            });
         }
     }
 
@@ -96,16 +107,24 @@ export function InicioAdmin() {
             body: JSON.stringify(nuevoBoleto)
         });
         if (res.ok) {
-            alert("Boleto creado correctamente")
+            Swal.fire({
+                title: "Boleto creado correctamente",
+                icon: "success",
+                draggable: true
+            });
             setMostrarModalBoleto(false)
         } else {
             const errorData = await res.json();
             console.error("Error al crear boleto:", errorData);
-            alert("Error al crear boleto")
+            Swal.fire({
+                title: "Error al crear boleto",
+                icon: "error",
+                draggable: true
+            });
         }
     }
 
-    useEffect(() => {
+    const getEvents = async () => {
         fetch("http://localhost:3000/api/eventos")
             .then(res => {
                 if (!res.ok) throw new Error("Error al cargar eventos")
@@ -113,6 +132,10 @@ export function InicioAdmin() {
             })
             .then(data => setEventos(data))
             .catch(err => setError(err.message))
+    }
+
+    useEffect(() => {
+        getEvents();
     }, [])
 
 
@@ -286,11 +309,19 @@ export function InicioAdmin() {
                                             }),
                                         });
                                         if (res.ok) {
-                                            alert("Evento actualizado correctamente");
+                                            Swal.fire({
+                                                title: "Evento actualizado correctamente",
+                                                icon: "success",
+                                                draggable: true
+                                            });
                                             setEventoEditando(null);
-                                            window.location.reload();
+                                            getEvents();
                                         } else {
-                                            alert("Error al actualizar el evento");
+                                            Swal.fire({
+                                                title: "Error al actualizar el evento",
+                                                icon: "error",
+                                                draggable: true
+                                            });
                                         }
                                     } catch (error) {
                                         console.error(error);

@@ -27,7 +27,6 @@ function LayoutSesion() {
     return (
         <>
             <NavbarSesion />
-            <Footer />
         </>
     );
 }
@@ -48,13 +47,14 @@ export function App() {
                 <Route path="/" element={<Inicio />} />
                 <Route path="inicio" element={<Inicio />} />
                 <Route path="resultados" element={<ResultadosBusqueda />} />
-                <Route path="perfil" element={<PerfilUsuario />} />
                 <Route path="DetallesEvento/:id" element={<DetallesEvento />} />
                 <Route path="categoria" element={<EventosCategoria />} />
             </Route>
             <Route element={<LayoutSesion />}>
                 <Route path="registrar" element={<FormularioRegistro />} />
                 <Route path="login" element={<Formulario />} />
+                <Route path="perfil" element={<PerfilUsuario />} />
+
             </Route>
             <Route element={<LayoutAdmin />}>
                 <Route path="admin_login" element={<FormularioLoginAdmin />} />

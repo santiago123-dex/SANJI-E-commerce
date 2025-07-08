@@ -38,7 +38,8 @@ export function Inicio() {
             <section className='FeaturedEvents'>
                 <h2 className="FeaturedEvents__Title">Eventos destacados</h2>
                 <div className="FeaturedEvents__Content">
-                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                    {error && <p style={{ color: 'red', textAlign: 'center' }} >{error}</p>}
+
                     {eventos.map(evento => (
                                 <EventosDestacados
                                     key={evento.id_evento}
