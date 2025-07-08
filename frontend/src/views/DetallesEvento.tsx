@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "../styles/DetallesEvento.css";
 import { AñadirBoleta } from "../components/AñadirBoleta";
-
+import Swal from "sweetalert2";
 interface Evento {
   id_evento: number;
   id_categoria: number;
@@ -200,7 +200,7 @@ export function DetallesEvento({ fetchCarrito }: DetallesEventoProps) {
                 }
               );
               if (res.ok) {
-                alert("Boleto añadido al carrito");
+                Swal.fire("Boleto añadido al carrito");
                 if (typeof fetchCarrito === "function") fetchCarrito();
               } else {
                 const data = await res.json();
@@ -208,13 +208,13 @@ export function DetallesEvento({ fetchCarrito }: DetallesEventoProps) {
                   data.message &&
                   data.message.toLowerCase().includes("token")
                 ) {
-                  alert("Debes iniciar sesión para añadir boletos al carrito.");
+                  Swal.fire("Debes iniciar sesión para añadir boletos al carrito.");
                 } else {
-                  alert(data.message || "No se pudo añadir al carrito");
+                  Swal.fire(data.message || "No se pudo añadir al carrito");
                 }
               }
             } catch (err) {
-              alert("Error al añadir al carrito");
+              Swal.fire("Error al añadir al carrito");
             }
             setModalAbierto(false);
           }}

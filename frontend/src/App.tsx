@@ -3,6 +3,7 @@ import { Inicio } from "./views/Inicio"
 import { DetallesEvento } from "./views/DetallesEvento"
 import { ResultadosBusqueda } from "./views/ResultadosBusqueda"
 import { Navbar } from "./components/Navbar"
+import { Pago } from "./views/Pago"
 import { EventosCategoria } from "./views/EventosCategoria"
 import { NavbarSesion } from "./components/NavbarSesion"
 import { Formulario } from "./views/FormularioLogin"
@@ -49,6 +50,7 @@ export function App() {
                 <Route path="resultados" element={<ResultadosBusqueda />} />
                 <Route path="DetallesEvento/:id" element={<DetallesEvento />} />
                 <Route path="categoria" element={<EventosCategoria />} />
+                <Route path="/pago" element={<Pago />} />
             </Route>
             <Route element={<LayoutSesion />}>
                 <Route path="registrar" element={<FormularioRegistro />} />

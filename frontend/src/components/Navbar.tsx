@@ -201,7 +201,13 @@ export function Navbar() {
                                     )}
                                 </div>
                                 <div className="CarritoFooter">
-                                    <button className="Comprar">Comprar</button>
+                                    <button className="Comprar" onClick={() => {
+                                        setModalCarrito(false);    
+                                        navigate("/pago");          
+                                    }}>
+                                        Comprar
+                                    </button>
+
                                     <button className= "EliminarTodo" onClick={eliminarTodo}>Eliminar todo</button>
                                 </div>
                             </div>
