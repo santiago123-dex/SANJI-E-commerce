@@ -22,6 +22,3 @@ export const EventosDestacados: React.FC<EventoDestacadoProps> = ({ id, titulo, 
         </div>
     );
 };
-
-        
-            

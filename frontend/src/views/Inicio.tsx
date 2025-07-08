@@ -38,7 +38,8 @@ export function Inicio() {
             <section className='FeaturedEvents'>
                 <h2 className="FeaturedEvents__Title">Eventos destacados</h2>
                 <div className="FeaturedEvents__Content">
-                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                    {error && <p style={{ color: 'red', textAlign: 'center' }} >{error}</p>}
+
                     {eventos.map(evento => (
                                 <EventosDestacados
                                     key={evento.id_evento}
@@ -55,10 +56,9 @@ export function Inicio() {
             <section className='categorias'>
                 <h2>Categorías</h2>
                 <div className='grid-categorias'>
-                    <Link to="" className='categoria'>CONCIERTOS</Link>
-                    <Link to="" className='categoria'>TEATRO</Link>
-                    <Link to="" className='categoria'>DEPORTES</Link>
-                    <Link to="" className='categoria'>OTROS</Link>
+                    <Link to="/categoria?nombre_categoria=CONCIERTOS" className='categoria'>CONCIERTOS</Link>
+                    <Link to="/categoria?nombre_categoria=TEATRO" className='categoria'>TEATRO</Link>
+                    <Link to="/categoria?nombre_categoria=DEPORTES" className='categoria'>DEPORTES</Link>
                 </div>
             </section>
         </main>

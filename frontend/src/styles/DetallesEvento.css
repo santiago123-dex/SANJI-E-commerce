@@ -31,6 +31,10 @@
     margin-bottom: 1rem;
 }
 
+.detalle-info p {
+    line-height: 40px;
+}
+
 .btn-comprar {
     background-color: royalblue;
     color: white;
@@ -42,7 +46,7 @@
     margin-top: 1rem;
 }
 
-.detalle-descripcion, .detalle-precios {
+.detalle-precios {
     margin-top: 2rem;
 }
 
@@ -83,4 +87,108 @@ th {
 
 @keyframes spin {
     to { transform: rotate(360deg); }
+}
+
+.evento-categoria-estado {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.evento-categoria {
+    background: #e3e6f3;
+    color: #3949ab;
+    border-radius: 6px;
+    padding: 3px 12px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.evento-estado {
+    border-radius: 6px;
+    padding: 3px 12px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+.estado-activo {
+    background: #c8e6c9;
+    color: #388e3c;
+}
+.estado-inactivo {
+    background: #ffcdd2;
+    color: #d32f2f;
+}
+
+.recomendacion-descripcion {
+    margin: 10px 0 0 0;
+    color: royalblue;
+    font-weight: 500;
+}
+
+/* Información adicional */
+.detalle-extra-info {
+    margin: 2rem 0;
+    background: #f5f7fa;
+    border-radius: 8px;
+    padding: 18px 20px;
+}
+
+.detalle-extra-info h2 {
+    color: #1a237e;
+    margin-bottom: 8px;
+}
+
+.detalle-extra-info ul {
+    list-style: disc inside;
+    padding-left: 0;
+}
+
+.detalle-extra-info li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.detalle-precios {
+    margin: 2rem 0;
+}
+
+.detalle-precios h2 {
+    color: #1a237e;
+    margin-bottom: 8px;
+}
+
+.detalle-precios table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px #e3e6f3;
+}
+
+.detalle-precios th, .detalle-precios td {
+    padding: 10px 14px;
+    text-align: left;
+}
+
+.detalle-precios th {
+    background: #e3e6f3;
+    color: #3949ab;
+}
+
+.detalle-precios tr:nth-child(even) {
+    background: #f5f7fa;
+}
+
+.detalle-descripcion {
+    margin: 2rem 0;
+    background: #f5f7fa;
+    border-radius: 8px;
+    padding: 18px 20px;
+}
+
+.detalle-descripcion h2 {
+    color: #1a237e;
+    margin-bottom: 8px;
 }

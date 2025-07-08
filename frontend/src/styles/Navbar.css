@@ -63,6 +63,8 @@ nav {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+    background: transparent;
+    border: none;
 }
 
 .user-icono {
@@ -156,13 +158,38 @@ nav {
 
 /* Footer con botón */
 .CarritoFooter {
+    display: flex;
+    flex-direction: column;
     padding: 1rem;
     border-top: 1px solid #ddd;
 }
 
-.IrAlCheckout {
+.Comprar {
     width: 100%;
     background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.Eliminar {
+    width: 30%;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.30rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 4px;
+}
+
+.EliminarTodo {
+    text-align: center;
+    background-color: #dc3545;
     color: white;
     border: none;
     padding: 0.75rem;
