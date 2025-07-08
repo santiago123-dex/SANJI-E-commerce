@@ -73,6 +73,7 @@ export function Formulario() {
 
                 if (res.ok) {
                     const data = await res.json()
+                    console.log("Respuesta del perfil:", res.status, data)
                     setLogueado(true)
                     navigate("/", { replace: true })
                 } else {

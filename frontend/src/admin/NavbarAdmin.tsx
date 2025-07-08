@@ -11,6 +11,22 @@ export function NavbarAdmin() {
     const location = useLocation();
     const navigate = useNavigate();
 
+    // Nuevo: Verificar sesión admin al cargar
+    useEffect(() => {
+        const verificarSesion = async () => {
+            try {
+                const res = await fetch("http://localhost:3000/api/admin/perfil", {
+                    method: "GET",
+                    credentials: "include"
+                });
+                setLogueo(res.ok);
+            } catch {
+                setLogueo(false);
+            }
+        };
+        verificarSesion();
+    }, []);
+
     const handleBuscar = async (e: React.FormEvent) => {
         e.preventDefault();
         try {

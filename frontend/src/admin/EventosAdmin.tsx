@@ -33,7 +33,7 @@ export const EventoAdmin: React.FC<EventoDestacadoProps> = ({ id_evento, titulo,
                 });
             } else {
                 Swal.fire({
-                    title: "Error al borrar el evento",
+                    title: error || "Error al eliminar el evento o sus boletos",
                     icon: "error",
                     draggable: true
                 });
