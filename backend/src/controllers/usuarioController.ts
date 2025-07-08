@@ -36,15 +36,15 @@ export const loginUsuario = async (req: Request, res: Response) => {
 
         res.cookie('tokenRefresh', tokenRefresh, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax',
+            secure: true,
+            sameSite: 'none',
             maxAge: 1000 * 60 * 60 * 24 * 7   // para mantener la sesion por 7 dias
         })
 
         res.cookie('tokenAcceso', tokenAcceso, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax',
+            secure: true,
+            sameSite: 'none',
             maxAge: 1000 * 60 * 15
         })
 
