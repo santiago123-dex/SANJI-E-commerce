@@ -1,8 +1,7 @@
 import {Prisma, PrismaClient} from '@prisma/client'
 import { BoletoCompleto, EventoCompleto } from '../types/adminEventoType'
 import { HttpError } from '../utils/errorManager'
-
-const prisma = new PrismaClient()
+import {prisma} from '../utils/prisma'
 
 export const crearEvento = async (data: EventoCompleto) => {
     const {id_categoria, nombre_evento, descripcion_evento, fecha_evento, ubicacion, imagen_evento, estado_evento} = data

@@ -1,7 +1,6 @@
 import {PrismaClient} from '@prisma/client'
 import { HttpError } from '../utils/errorManager';
-
-const prisma = new PrismaClient()
+import {prisma} from '../utils/prisma'
 
 export const mostrarEventos = async () => {
     const eventos = await prisma.eventos.findMany()

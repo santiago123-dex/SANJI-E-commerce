@@ -2,8 +2,7 @@ import {Prisma, PrismaClient} from '@prisma/client'
 import { DatosAdminLogin } from '../types/adminType'
 import bcrypt from 'bcrypt'
 import { HttpError } from '../utils/errorManager'
-
-const prisma = new PrismaClient()
+import {prisma} from '../utils/prisma'
 
 export const loginAdmin = async (data: DatosAdminLogin) => {
     const {email_admin, password_admin} = data

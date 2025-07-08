@@ -1,8 +1,7 @@
 import { Prisma, PrismaClient } from "@prisma/client"
 import { HttpError } from "../utils/errorManager"
 import { DatosPago } from "../types/pagosType"
-
-const prisma = new PrismaClient()
+import {prisma} from '../utils/prisma'
 
 export const sistemaPago = async (id_pedido: number, data: DatosPago) => {
     try{
