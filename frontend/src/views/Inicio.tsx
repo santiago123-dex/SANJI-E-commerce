@@ -55,10 +55,9 @@ export function Inicio() {
             <section className='categorias'>
                 <h2>Categorías</h2>
                 <div className='grid-categorias'>
-                    <Link to="" className='categoria'>CONCIERTOS</Link>
-                    <Link to="" className='categoria'>TEATRO</Link>
-                    <Link to="" className='categoria'>DEPORTES</Link>
-                    <Link to="" className='categoria'>OTROS</Link>
+                    <Link to="/categoria?nombre_categoria=CONCIERTOS" className='categoria'>CONCIERTOS</Link>
+                    <Link to="/categoria?nombre_categoria=TEATRO" className='categoria'>TEATRO</Link>
+                    <Link to="/categoria?nombre_categoria=DEPORTES" className='categoria'>DEPORTES</Link>
                 </div>
             </section>
         </main>

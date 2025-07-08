@@ -3,11 +3,21 @@ import "../styles/Navbar.css";
 import { LogoMiboleta } from "./LogoMiboleta";
 import { useEffect, useState } from "react";
 
+// Define la interfaz para los items del carrito
+interface CarritoItem {
+    id_carrito:number;
+    id_boleto: number;
+    cantidad: number;
+    descripcion_boleto?: string;
+}
+
 export function Navbar() {
     const [menuAbierto, setMenuAbierto] = useState(false);
     const [logueo, setLogueo] = useState(false);
     const [busqueda, setBusqueda] = useState("");
     const [modalCarrito, setModalCarrito] = useState(false);
+    const [carrito, setCarrito] = useState<CarritoItem[]>([]);
+    const [loadingCarrito, setLoadingCarrito] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -73,6 +83,49 @@ export function Navbar() {
         document.body.style.overflow = menuAbierto ? "hidden" : "auto";
     }, [menuAbierto]);
 
+    // Fetch carrito
+    const fetchCarrito = async () => {
+        setLoadingCarrito(true);
+        try {
+            const res = await fetch("http://localhost:3000/api/usuario/carrito", {
+                credentials: "include",
+            });
+            if (res.ok) {
+                const data = await res.json();
+                setCarrito(data);
+            } else {
+                setCarrito([]);
+            }
+        } catch {
+            setCarrito([]);
+        }
+        setLoadingCarrito(false);
+    };
+
+    // Abrir modal carrito y cargar datos
+    const handleAbrirCarrito = () => {
+        fetchCarrito();
+        setModalCarrito(true);
+    };
+
+    // Eliminar un producto del carrito
+    const eliminarItem = async (id_carrito: number) => {
+        await fetch(`http://localhost:3000/api/usuario/eliminarCarrito?id_carrito=${id_carrito}`, {
+            method: "DELETE",
+            credentials: "include",
+        });
+        fetchCarrito();
+    };
+
+    // Eliminar todo el carrito
+    const eliminarTodo = async () => {
+        await fetch("http://localhost:3000/api/usuario/eliminarTodoCarrito", {
+            method: "DELETE",
+            credentials: "include",
+        });
+        fetchCarrito();
+    };
+
     return (
         <div>
             <div className="NavBar">
@@ -94,10 +147,9 @@ export function Navbar() {
                 </form>
 
                 <nav className={menuAbierto ? "NavBar__Menu--Open" : "NavBar__Menu--Close"}>
-
-                    <Link className='Menu__Item' to="/inicio">CONCIERTOS</Link>
-                    <Link className='Menu__Item' to="/inicio">TEATRO</Link>
-                    <Link className='Menu__Item' to="/inicio">DEPORTES</Link>
+                    <button className='Menu__Item' onClick={() => navigate('/categoria?nombre_categoria=CONCIERTOS')}>CONCIERTOS</button>
+                    <button className='Menu__Item' onClick={() => navigate('/categoria?nombre_categoria=TEATRO')}>TEATRO</button>
+                    <button className='Menu__Item' onClick={() => navigate('/categoria?nombre_categoria=DEPORTES')}>DEPORTES</button>
 
                     {!logueo && (
                         <>
@@ -121,17 +173,32 @@ export function Navbar() {
                                     </button>
                                 </div>
                                 <div className="CarritoContenido">
-                                    {/* Aquí pones los productos del carrito */}
-                                    <p>No tienes productos aún.</p>
+                                    {loadingCarrito ? (
+                                        <p>Cargando...</p>
+                                    ) : carrito.length === 0 ? (
+                                        <p>No tienes productos aún.</p>
+                                    ) : (
+                                        <ul>
+                                            {carrito.map((item) => (
+                                                <li key={item.id_carrito} style={{ marginBottom: "10px", marginLeft: "10px" }}>
+                                                    {item.descripcion_boleto || `Boleto #${item.id_boleto}`} x{item.cantidad}
+                                                    <button className ="Eliminar" onClick={() => eliminarItem(item.id_carrito)}>
+                                                        Eliminar
+                                                    </button>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
                                 </div>
                                 <div className="CarritoFooter">
-                                    <button className="IrAlCheckout">Ir al Checkout</button>
+                                    <button className="Comprar">Comprar</button>
+                                    <button className= "EliminarTodo" onClick={eliminarTodo}>Eliminar todo</button>
                                 </div>
                             </div>
                         </div>
                     )}
 
-                    <div className="carrito-icono" onClick={() => setModalCarrito(true)}>
+                    <div className="carrito-icono" onClick={handleAbrirCarrito}>
                         <img className="LogoUser" src="../../public/logoCarrito.png" alt="" />
                     </div>
                     <Link className="user-icono" to="/perfil">

@@ -42,7 +42,7 @@ export const mostrarEventosNombre = async (req: Request, res: Response) => {
 
 export const mostrarEventosCategoria = async (req: Request, res: Response) => {
     try{    
-        const {nombre_categoria} = req.params
+        const nombre_categoria = req.query.nombre_categoria as string;
 
         if(!nombre_categoria) return res.status(400).json({message: "No se ha recibido el nombre de la categoria"});
 
@@ -80,7 +80,7 @@ export const mostrarEventosId = async (req: Request, res: Response) => {
 }
 
 export const mostrarBoletosPorEvento = async (req: Request, res: Response) => {
-    const {id_evento} = req.params
+    const id_evento = req.query.id_evento as string;
 
     if(!id_evento) return res.status(400).json({message: "No se ha recibido el id de evento"});
 
