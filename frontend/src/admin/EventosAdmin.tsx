@@ -16,7 +16,7 @@ interface EventoDestacadoProps {
 
 export const EventoAdmin: React.FC<EventoDestacadoProps> = ({ id_evento, titulo, fecha, ubicacion, imagen, onEditar, }) => {
 
-    const [error, setError] = useState<string>("")
+    const [, setError] = useState<string>("")
 
     const eliminarEvento = async () => {
         try {
@@ -33,7 +33,7 @@ export const EventoAdmin: React.FC<EventoDestacadoProps> = ({ id_evento, titulo,
                 });
             } else {
                 Swal.fire({
-                    title: error || "Error al eliminar el evento o sus boletos",
+                    title: "Error al borrar el evento",
                     icon: "error",
                     draggable: true
                 });

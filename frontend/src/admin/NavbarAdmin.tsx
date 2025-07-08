@@ -6,26 +6,10 @@ import Swal from "sweetalert2";
 
 export function NavbarAdmin() {
     const [menuAbierto, setMenuAbierto] = useState(false);
-    const [logueo, setLogueo] = useState(false);
+    const [logueo,] = useState(false);
     const [busqueda, setBusqueda] = useState("");
     const location = useLocation();
     const navigate = useNavigate();
-
-    // Nuevo: Verificar sesión admin al cargar
-    useEffect(() => {
-        const verificarSesion = async () => {
-            try {
-                const res = await fetch("http://localhost:3000/api/admin/perfil", {
-                    method: "GET",
-                    credentials: "include"
-                });
-                setLogueo(res.ok);
-            } catch {
-                setLogueo(false);
-            }
-        };
-        verificarSesion();
-    }, []);
 
     const handleBuscar = async (e: React.FormEvent) => {
         e.preventDefault();
