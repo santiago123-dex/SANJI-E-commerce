@@ -22,7 +22,7 @@ export function PerfilUsuario() {
 
     const obtenerPerfil = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/usuario/perfil', {
+            const response = await fetch('https://sanji-e-commerce.onrender.com/api/usuario/perfil', {
                 method: "GET",
                 credentials: "include"
             })
