@@ -1,6 +1,6 @@
 import {Prisma, PrismaClient} from '@prisma/client'
 import bcrypt from 'bcrypt'
-import {DatosUsuario, DatosUsuarioLogin} from '../types/usuarioType'
+import {DatosActualizarUsuario, DatosUsuario, DatosUsuarioLogin} from '../types/usuarioType'
 import { DatosToken } from '../types/tokenType'
 import { HttpError } from '../utils/errorManager'
 
@@ -75,12 +75,10 @@ export const perfilUsuario = async (data: DatosToken) => {
     }
 }
 
-export const actualizarPerfil = async (id: number, data: DatosUsuario) => {
+export const actualizarPerfil = async (id: number, data: DatosActualizarUsuario) => {
     try{
         const id_usuario = id
-        const {nombre_usuario, apellido_usuario, email_usuario, password_usuario, telefono} = data
-
-        const pwEncriptado = await bcrypt.hash(password_usuario, 10)
+        const {nombre_usuario, apellido_usuario, email_usuario, telefono} = data
 
         const usuario = await prisma.usuarios.update({
             where: {
@@ -90,7 +88,6 @@ export const actualizarPerfil = async (id: number, data: DatosUsuario) => {
                 nombre_usuario,
                 apellido_usuario,
                 email_usuario,
-                password_usuario: pwEncriptado,
                 telefono: telefono || null,
             }
         })
