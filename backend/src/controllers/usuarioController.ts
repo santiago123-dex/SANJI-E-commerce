@@ -86,9 +86,9 @@ export const actualizarPerfil = async (req: Request, res: Response) => {
     const id_usuario = req.usuario?.id_usuario
     if(!id_usuario || id_usuario == undefined) return res.status(401).json({message: 'Primero inicia sesión'});
 
-    const {nombre_usuario, apellido_usuario, email_usuario, password_usuario, telefono} = req.body
+    const {nombre_usuario, apellido_usuario, email_usuario, telefono} = req.body
 
-    if(!id_usuario || !nombre_usuario || !apellido_usuario || !email_usuario || !password_usuario) return res.status(400).json({message: 'Faltan datos'});
+    if(!id_usuario || !nombre_usuario || !apellido_usuario || !email_usuario) return res.status(400).json({message: 'Faltan datos'});
 
     try{
         const usuario = await usuarioServices.actualizarPerfil(id_usuario, req.body)
