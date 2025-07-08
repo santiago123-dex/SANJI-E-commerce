@@ -66,7 +66,7 @@ export function Formulario() {
     useEffect(() => {
         const token = async () => {
             try {
-                const res = await fetch("http://localhost:3000/api/usuario/perfil", {
+                const res = await fetch("https://sanji-e-commerce.onrender.com/api/usuario/perfil", {
                     method: "GET",
                     credentials: "include"
                 })

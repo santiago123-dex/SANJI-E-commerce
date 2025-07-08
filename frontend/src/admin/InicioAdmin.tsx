@@ -51,7 +51,7 @@ export function InicioAdmin() {
 
     const crearEvento = async () => {
         try {
-            const res = await fetch("http://localhost:3000/api/admin/eventos/crearEvento", {
+            const res = await fetch("https://sanji-e-commerce.onrender.com/api/admin/eventos/crearEvento", {
                 method: "POST",
                 credentials: "include",
                 headers: {
@@ -98,7 +98,7 @@ export function InicioAdmin() {
 
     const crearBoleto = async () => {
         console.log("Enviando boleto:", nuevoBoleto);
-        const res = await fetch("http://localhost:3000/api/admin/eventos/crearBoleto", {
+        const res = await fetch("https://sanji-e-commerce.onrender.com/api/admin/eventos/crearBoleto", {
             method: "POST",
             credentials: "include",
             headers: {
@@ -125,7 +125,7 @@ export function InicioAdmin() {
     }
 
     const getEvents = async () => {
-        fetch("http://localhost:3000/api/eventos")
+        fetch("https://sanji-e-commerce.onrender.com/api/eventos")
             .then(res => {
                 if (!res.ok) throw new Error("Error al cargar eventos")
                 return res.json()
@@ -293,7 +293,7 @@ export function InicioAdmin() {
                                 className="boton-crear"
                                 onClick={async () => {
                                     try {
-                                        const res = await fetch(`http://localhost:3000/api/admin/eventos/actualizarEvento`, {
+                                        const res = await fetch(`https://sanji-e-commerce.onrender.com/api/admin/eventos/actualizarEvento`, {
                                             method: "PUT",
                                             credentials: "include",
                                             headers: { "Content-Type": "application/json" },

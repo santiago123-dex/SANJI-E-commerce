@@ -80,7 +80,7 @@ export function PerfilUsuario() {
 
     const handleLogout = async () => {
         try {
-            const logout = await fetch('http://localhost:3000/api/usuario/logout', {
+            const logout = await fetch('https://sanji-e-commerce.onrender.com/api/usuario/logout', {
                 method: "GET",
                 credentials: "include"
             })

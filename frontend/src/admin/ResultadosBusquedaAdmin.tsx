@@ -30,7 +30,7 @@ export function ResultadosBusquedaAdmin() {
         }
 
 
-        fetch(`http://localhost:3000/api/eventos/buscar_nombre?nombre_evento=${encodeURIComponent(nombre)}`, {
+        fetch(`https://sanji-e-commerce.onrender.com/api/eventos/buscar_nombre?nombre_evento=${encodeURIComponent(nombre)}`, {
             method: "GET",
             credentials: "include",
             headers: {
@@ -98,7 +98,7 @@ export function ResultadosBusquedaAdmin() {
                                 className="boton-crear"
                                 onClick={async () => {
                                     try {
-                                        const res = await fetch(`http://localhost:3000/api/admin/eventos/actualizarEvento`, {
+                                        const res = await fetch(`https://sanji-e-commerce.onrender.com/api/admin/eventos/actualizarEvento`, {
                                             method: "PUT",
                                             credentials: "include",
                                             headers: { "Content-Type": "application/json" },
