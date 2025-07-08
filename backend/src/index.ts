@@ -7,8 +7,6 @@ import cookieParser from 'cookie-parser'
 import rutasUsuario from './routes/usuario/rutasUsuario'
 import rutasEventos from './routes/eventos/rutasEventos'
 import rutasAdmin from './routes/admin/rutasAdmin'
-import rutasAdminEvento from './routes/admin/rutasAdminEvento'
-import rutasDEV from './DEV/datosdb'
 
 //CONFIGURAMOS VARIABLES DE ENTORNO PARA CONECTARNOS A LA DB Y OTRAS CONFIGURACIONES
 dotenv.config()
@@ -35,8 +33,6 @@ app.use("/api/usuario", rutasUsuario)
 app.use("/api/admin", rutasAdmin)
 
 app.use("/api/eventos", rutasEventos) //en proceso
-
-app.use("/dev", rutasDEV)
 
 //RUTA DE PRUEBA PARA VERIFICAR QUE EL SERVIDOR ESTÁ CORRIENDO
 // app.get("/api", (_req, res) => {
