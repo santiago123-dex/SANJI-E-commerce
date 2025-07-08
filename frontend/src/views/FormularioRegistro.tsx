@@ -8,7 +8,7 @@ interface FormularioRegistroData {
     apellido_usuario: string
     email_usuario: string
     password_usuario: string
-    telefono?: string
+    telefono: string
 }
 
 export const FormularioRegistro = () => {
@@ -46,10 +46,10 @@ export const FormularioRegistro = () => {
         e.preventDefault()
         try {
             /*USAMOS EL FETCH PARA ENVIAR UNA PETICION HTTP AL SERVIDOR BACKEND */
-            const res = await fetch("http://localhost:3000/api/usuario/registro", {  
+            const res = await fetch("https://sanji-e-commerce.onrender.com/api/usuario/registro", {  
                 /*USAMOS METODO POST PARA DECIR QUE VAMOS A ENVIAR DATOS*/
                 method: "POST",
-                credentials:"include",
+                credentials: "include",
                 /*LE DECIMOS AL BACK QUE ESTAMOS ENVIANDO DATOS EN FORMATO JSON*/
                 headers: {
                     /*Content-type indica al servidor en que formato se estan enviando los datos*/
@@ -120,6 +120,17 @@ export const FormularioRegistro = () => {
                         name="email_usuario"
                         placeholder="tu@gmail.com"
                         value={form.email_usuario}
+                        onChange={handleChange}
+                        required
+                    />
+
+                    <label>Telefono</label>
+                    <input
+                        className="box_formulario_inputs"
+                        type="text"
+                        name="telefono"
+                        placeholder="1234567890"
+                        value={form.telefono}
                         onChange={handleChange}
                         required
                     />

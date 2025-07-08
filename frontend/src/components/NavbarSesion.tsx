@@ -33,7 +33,7 @@ export function NavbarSesion() {
                 </nav>
                 <div className="logo-usuario">
                     <Link to="/perfil">
-                        <img src="../../public/logoUser.png" alt="" />
+                        <img src="logoUser.png" alt="" />
                     </Link>
                 </div>
             </div>

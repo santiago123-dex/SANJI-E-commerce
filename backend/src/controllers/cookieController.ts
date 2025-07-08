@@ -14,16 +14,16 @@ export const refreshCookie = async (req: Request, res: Response) => {
             const nuevotokenAcceso = generarTokenAcceso({id_admin: decoded.id_admin, email_admin: decoded.email_admin, tipo_admin: decoded.tipo_admin})
             res.cookie('tokenAcceso', nuevotokenAcceso, {
                 httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
-                sameSite: "lax",
+                secure: true,
+                sameSite: "none",
                 maxAge: 1000 * 60 * 15
             })
         }else if(typeof decoded === 'object' && decoded !== null){
             const nuevotokenAcceso = generarTokenAcceso({id_usuario: decoded.id_usuario, email_usuario: decoded.email_usuario})
             res.cookie('tokenAcceso', nuevotokenAcceso, {
                 httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
-                sameSite: "lax",
+                secure: true,
+                sameSite: "none",
                 maxAge: 1000 * 60 * 15
             })
         }

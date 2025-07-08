@@ -8,7 +8,7 @@ interface Perfil {
     nombre_usuario: string
     email_usuario: string
     apellido_usuario?: string
-    telefono_usuario?: string
+    telefono: string
 }
 
 export function PerfilUsuario() {
@@ -22,7 +22,7 @@ export function PerfilUsuario() {
 
     const obtenerPerfil = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/usuario/perfil', {
+            const response = await fetch('https://sanji-e-commerce.onrender.com/api/usuario/perfil', {
                 method: "GET",
                 credentials: "include"
             })
@@ -55,7 +55,7 @@ export function PerfilUsuario() {
     const editarPerfil = async () => {
         try {
             console.log("Enviando perfil:", perfil);
-            const response = await fetch('http://localhost:3000/api/usuario/actualizarPerfil', {
+            const response = await fetch('https://sanji-e-commerce.onrender.com/api/usuario/actualizarPerfil', {
                 method: "PUT",
                 credentials: "include",
                 headers: {
@@ -80,7 +80,7 @@ export function PerfilUsuario() {
 
     const handleLogout = async () => {
         try {
-            const logout = await fetch('http://localhost:3000/api/usuario/logout', {
+            const logout = await fetch('https://sanji-e-commerce.onrender.com/api/usuario/logout', {
                 method: "GET",
                 credentials: "include"
             })
@@ -106,13 +106,13 @@ export function PerfilUsuario() {
     return (
         <div>
             <div className="profile">
-                <img src="../../public/logoUser.png" alt="" className="profile__logo" />
+                <img src="logoUser.png" alt="" className="profile__logo" />
                 <div className="profile__content">
                     <div className="content__info">
                         <p><strong>Nombre:</strong> {perfil.nombre_usuario}</p>
                         <p><strong>Apellido:</strong> {perfil.apellido_usuario}</p>
                         <p><strong>Email:</strong> {perfil.email_usuario}</p>
-                        <p><strong>Teléfono:</strong> {perfil.telefono_usuario}</p>
+                        <p><strong>Teléfono:</strong> {perfil.telefono}</p>
                         <button className="content__logout" onClick={handleLogout}>Cerrara Sesion</button>
                         <button className="content__logout" onClick={() => setEditar(true)}>editar Perfil</button>
                     </div>
@@ -137,8 +137,8 @@ export function PerfilUsuario() {
                                 />
                                 <input
                                     type="tel"
-                                    value={perfil.telefono_usuario}
-                                    onChange={(e) => setPerfil({ ...perfil, telefono_usuario: e.target.value })}
+                                    value={perfil.telefono}
+                                    onChange={(e) => setPerfil({ ...perfil, telefono: e.target.value })}
                                 />
                                 <button onClick={editarPerfil}>Guardar Cambios</button>
                                 <button onClick={() => setEditar(false)}>Cancelar</button>

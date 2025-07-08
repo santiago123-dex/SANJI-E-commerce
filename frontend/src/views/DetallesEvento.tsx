@@ -19,7 +19,7 @@ export function DetallesEvento() {
     const [evento, setEvento] = useState<Evento | null>(null);
 
     useEffect(() => {
-    fetch(`http://localhost:3000/api/eventos/id_evento?id_evento=${id}`, {
+    fetch(`https://sanji-e-commerce.onrender.com/api/eventos/id_evento?id_evento=${id}`, {
         method: "GET",
         credentials: "include",
     })

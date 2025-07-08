@@ -15,7 +15,7 @@ export function Navbar() {
     const handleBuscar = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const res = await fetch(`http://localhost:3000/api/eventos/buscar_nombre?nombre_evento=${encodeURIComponent(busqueda)}`,
+            const res = await fetch(`https://sanji-e-commerce.onrender.com/api/eventos/buscar_nombre?nombre_evento=${encodeURIComponent(busqueda)}`,
                 {
                     method: "GET",
                     credentials: "include",
@@ -59,7 +59,7 @@ export function Navbar() {
         const verificarSesion = async () => {
             try {
                 const response = await fetch(
-                    "http://localhost:3000/api/usuario/perfil",
+                    "https://sanji-e-commerce.onrender.com/api/usuario/perfil",
                     {
                         method: "GET",
                         credentials: "include",
@@ -141,10 +141,10 @@ export function Navbar() {
                     )}
 
                     <div className="carrito-icono" onClick={() => setModalCarrito(true)}>
-                        <img className="LogoUser" src="../../public/logoCarrito.png" alt="" />
+                        <img className="LogoUser" src="/logoCarrito.png" alt="" />
                     </div>
                     <Link className="user-icono" to="/perfil">
-                        <img className="LogoUser" src="../../public/logoUser.png" alt="" />
+                        <img className="LogoUser" src="/logoUser.png" alt="" />
                     </Link>
                 </nav>
             </div>

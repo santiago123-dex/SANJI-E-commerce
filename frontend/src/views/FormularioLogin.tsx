@@ -31,7 +31,7 @@ export function Formulario() {
         e.preventDefault()
 
         try {
-            const res = await fetch("http://localhost:3000/api/usuario/login", {
+            const res = await fetch("https://sanji-e-commerce.onrender.com/api/usuario/login", {
                 method: "POST",
                 credentials: "include",
                 headers: {
@@ -66,13 +66,13 @@ export function Formulario() {
     useEffect(() => {
         const token = async () => {
             try {
-                const res = await fetch("http://localhost:3000/api/usuario/perfil", {
+                const res = await fetch("https://sanji-e-commerce.onrender.com/api/usuario/perfil", {
                     method: "GET",
                     credentials: "include"
                 })
 
+                await res.json()
                 if (res.ok) {
-                    const data = await res.json()
                     setLogueado(true)
                     navigate("/", { replace: true })
                 } else {

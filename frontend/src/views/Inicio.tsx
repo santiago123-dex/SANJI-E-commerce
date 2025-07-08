@@ -17,7 +17,7 @@ export function Inicio() {
     const [error, setError] = useState<string>("")
 
     useEffect(() => {
-        fetch("http://localhost:3000/api/eventos", { 
+        fetch("https://sanji-e-commerce.onrender.com/api/eventos", { 
             method: "GET",
             credentials: "include"
         })

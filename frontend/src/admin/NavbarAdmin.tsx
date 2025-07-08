@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 export function NavbarAdmin() {
     const [menuAbierto, setMenuAbierto] = useState(false);
-    const [logueo, setLogueo] = useState(false);
+    const [logueo,] = useState(false);
     const [busqueda, setBusqueda] = useState("");
     const location = useLocation();
     const navigate = useNavigate();
@@ -14,7 +14,7 @@ export function NavbarAdmin() {
     const handleBuscar = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const res = await fetch(`http://localhost:3000/api/eventos/buscar_nombre?nombre_evento=${encodeURIComponent(busqueda)}`,
+            const res = await fetch(`https://sanji-e-commerce.onrender.com/api/eventos/buscar_nombre?nombre_evento=${encodeURIComponent(busqueda)}`,
             {
                 method: "GET",
                 credentials: "include",

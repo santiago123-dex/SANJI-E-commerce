@@ -28,7 +28,7 @@ export function ResultadosBusqueda() {
         }
 
 
-        fetch(`http://localhost:3000/api/eventos/buscar_nombre?nombre_evento=${encodeURIComponent(nombre)}`, {
+        fetch(`https://sanji-e-commerce.onrender.com/api/eventos/buscar_nombre?nombre_evento=${encodeURIComponent(nombre)}`, {
             method: "GET",
             credentials: "include",
             headers: {
