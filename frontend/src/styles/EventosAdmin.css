@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Eventos Destacados */
+
+.FeaturedEvents {
+  width: 100%;
+}
+
+.FeaturedEvents__Title {
+  text-align: center;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #48f;
+  margin: 50px auto;
+}
+
+
+.FeaturedEvents__Content {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-auto-flow: row;
+  gap: 20px;
+}
+
+/* Evento Destacado */
+
+.FeaturedEvent {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  background: #fffb;
+  border-radius: 2rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  height: 220px;
+}
+
+.FeaturedEvent:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.FeaturedEvent__Img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex: 1 1 50%;
+  border-radius: 1rem;
+  object-fit: cover;
+  background: #555;
+}
+
+.FeaturedEvent__Info {
+  flex: 1 1 50%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+.Info__Title {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #48f;
+  text-transform: uppercase;
+}
+
+.Info__Date,
+.Info__Place {
+  margin: 0.2rem 0;
+  color: #555;
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+/**/
+
+
+
+
+
