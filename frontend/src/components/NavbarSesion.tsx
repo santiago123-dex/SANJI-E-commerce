@@ -22,7 +22,7 @@ export function NavbarSesion() {
                 <div className="hamburgerSesion" onClick={toggleMenu}>
                     {menuAbierto ? '✖' : '☰'}
                 </div>
-                <div >
+                <div className="logo-sesion">
                     <LogoMiboleta />
                 </div>
                 <nav className={menuAbierto ? "nav-menu open" : "nav-menu"}>
