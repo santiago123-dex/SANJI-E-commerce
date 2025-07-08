@@ -71,13 +71,14 @@ export function Formulario() {
                     credentials: "include"
                 })
 
+                const data = await res.json()
                 if (res.ok) {
-                    const data = await res.json()
-                    console.log("Respuesta del perfil:", res.status, data)
+                    setMensaje(data.message || "Usuario logueado correctamente")
                     setLogueado(true)
                     navigate("/", { replace: true })
                 } else {
                     setLogueado(false)
+                    setMensaje(data.message || "No estas logueado")
                 }
             } catch (error) {
                 setLogueado(false)
