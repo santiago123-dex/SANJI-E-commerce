@@ -16,24 +16,32 @@ const app = express()
 //CORS PARA RUTAS Y EXPRESS.JSON PARA DECIR QUE LOS DATOS QUE RECIBIMOS SON EN FORMATO JSON
 
 const allowedOrigins = [
-    'https://sanji-e-commerce-8ufm.vercel.app',
-    'http://localhost:5173'
-]
+  'http://localhost:5173',
+  'https://sanji-e-commerce-8ufm.vercel.app'
+];
 
-app.use(cors({
+app.use(
+  cors({
     origin: (origin, callback) => {
-        // Si no hay origin (por ejemplo, una petición de cURL), permitimos
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.includes(origin)) {
-            // Origen permitido
-            return callback(null, true);
-        } else {
-            // Origen no permitido
-            return callback(new Error('Not allowed by CORS'));
-        }
+      // Si no hay origin (por ejemplo, Postman), permite
+      if (!origin) return callback(null, true);
+
+      // Permite tu dominio principal de producción
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      // Permite cualquier subdominio de Vercel
+      if (origin.endsWith('.vercel.app')) {
+        return callback(null, true);
+      }
+
+      // Si no coincide, bloquea
+      return callback(new Error('Not allowed by CORS'));
     },
     credentials: true
-}))
+  })
+);
 
 app.use(cookieParser())
 
