@@ -15,11 +15,23 @@ const app = express()
 
 //CORS PARA RUTAS Y EXPRESS.JSON PARA DECIR QUE LOS DATOS QUE RECIBIMOS SON EN FORMATO JSON
 
-const allowedOrigins =
-    process.env.NODE_ENV === 'production' ? ['https://sanji-e-commerce-njcx.vercel.app'] : ['http://localhost:5173']
+const allowedOrigins = [
+    'https://sanji-e-commerce-8ufm.vercel.app',
+    'http://localhost:5173'
+]
 
 app.use(cors({
-    origin: allowedOrigins,
+    origin: (origin, callback) => {
+        // Si no hay origin (por ejemplo, una petición de cURL), permitimos
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.includes(origin)) {
+            // Origen permitido
+            return callback(null, true);
+        } else {
+            // Origen no permitido
+            return callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true
 }))
 

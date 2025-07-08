@@ -55,7 +55,7 @@ export function PerfilUsuario() {
     const editarPerfil = async () => {
         try {
             console.log("Enviando perfil:", perfil);
-            const response = await fetch('http://localhost:3000/api/usuario/actualizarPerfil', {
+            const response = await fetch('https://sanji-e-commerce.onrender.com/api/usuario/actualizarPerfil', {
                 method: "PUT",
                 credentials: "include",
                 headers: {
