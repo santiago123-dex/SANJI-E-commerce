@@ -7,9 +7,9 @@ export function Pago() {
   const [numeroTarjeta, setNumeroTarjeta] = useState("");
   const [cvc, setCvc] = useState("");
   const [nombrePaga, setNombrePaga] = useState("");
-  const [tipoDocumento, setTipoDocumento] = useState("");
+  const [tipoDocumento, setTipoDocumento] = useState("cc");
   const [numeroDocumento, setNumeroDocumento] = useState("");
-  const [metodoPago, setMetodoPago] = useState();
+  const [metodoPago, setMetodoPago] = useState(1);
   const [pedido, setPedido] = useState<any>(null);
 
   const navigate = useNavigate();
@@ -40,6 +40,7 @@ export function Pago() {
   }, []);
 
 
+
   const handlePago = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -55,6 +56,15 @@ export function Pago() {
       if (!verificacion.ok) {
         return Swal.fire("Tarjeta inválida", "", "error");
       }
+
+      console.log("Datos enviados al backend:", {
+  id_metodo: metodoPago,
+  nombre_paga: nombrePaga,
+  tipo_documento: tipoDocumento,
+  numero_documento: numeroDocumento,
+  monto: pedido.total_pedido
+});
+
 
 
       const res = await fetch(`http://localhost:3000/api/usuario/pagarPedido?id_pedido=${pedido.id_pedido}`, {
@@ -97,6 +107,17 @@ export function Pago() {
     <form onSubmit={handlePago} className="formulario-pago">
       <h2>Realizar Pago</h2>
       <p className="total-pago">Total a pagar: <strong>${pedido.total_pedido}</strong></p>
+
+      <select
+        value={metodoPago}
+        onChange={(e) => setMetodoPago(Number(e.target.value))}
+        required
+    >
+        <option value={1}>Tarjeta de crédito</option>
+        <option value={2}>PSE</option>
+        <option value={3}>Efecty</option>
+    </select>
+
 
       <input
         type="text"
