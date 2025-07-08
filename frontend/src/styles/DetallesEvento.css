@@ -192,3 +192,38 @@ th {
     color: #1a237e;
     margin-bottom: 8px;
 }
+
+@media (max-width: 700px) {
+    .detalle-evento {
+        padding: 1rem;
+    }
+    .detalle-top {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .detalle-imagen {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+    }
+    .detalle-info h1 {
+        font-size: 1.3rem;
+    }
+    .detalle-info p {
+        line-height: 1.5;
+        font-size: 1rem;
+    }
+    .detalle-precios table,
+    .detalle-precios th,
+    .detalle-precios td {
+        font-size: 0.95rem;
+        padding: 8px 6px;
+    }
+    .detalle-extra-info,
+    .detalle-descripcion {
+        padding: 12px 8px;
+        margin: 1rem 0;
+    }
+}
