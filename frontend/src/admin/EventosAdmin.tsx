@@ -31,6 +31,8 @@ export const EventoAdmin: React.FC<EventoDestacadoProps> = ({ id_evento, titulo,
                     icon: "success",
                     draggable: true
                 });
+                // Recargar la página o actualizar el estado del componente
+                window.location.reload();
             } else {
                 Swal.fire({
                     title: "Error al borrar el evento",

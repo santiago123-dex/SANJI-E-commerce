@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom"
 interface Perfil {
     nombre_usuario: string
     email_usuario: string
-    apellido_usuario?: string
-    telefono_usuario?: string
+    apellido_usuario: string
+    telefono: string
 }
 
 export function PerfilUsuario() {
@@ -72,6 +72,11 @@ export function PerfilUsuario() {
             setPerfil(data)
             setEditar(false)
             obtenerPerfil() // Actualizar el perfil después de editar
+            Swal.fire({
+                title: "Perfil editado correctamente",
+                icon: "success",
+                draggable: true
+            });
         } catch (error) {
             setError("No se pudo editar el perfil")
         }
@@ -112,7 +117,7 @@ export function PerfilUsuario() {
                         <p><strong>Nombre:</strong> {perfil.nombre_usuario}</p>
                         <p><strong>Apellido:</strong> {perfil.apellido_usuario}</p>
                         <p><strong>Email:</strong> {perfil.email_usuario}</p>
-                        <p><strong>Teléfono:</strong> {perfil.telefono_usuario}</p>
+                        <p><strong>Teléfono:</strong> {perfil.telefono}</p>
                         <button className="content__logout" onClick={handleLogout}>Cerrara Sesion</button>
                         <button className="content__logout" onClick={() => setEditar(true)}>editar Perfil</button>
                     </div>
@@ -136,9 +141,9 @@ export function PerfilUsuario() {
                                     onChange={(e) => setPerfil({ ...perfil, email_usuario: e.target.value })}
                                 />
                                 <input
-                                    type="tel"
-                                    value={perfil.telefono_usuario}
-                                    onChange={(e) => setPerfil({ ...perfil, telefono_usuario: e.target.value })}
+                                    type="telefono"
+                                    value={perfil.telefono}
+                                    onChange={(e) => setPerfil({ ...perfil, telefono: e.target.value })}
                                 />
                                 <button onClick={editarPerfil}>Guardar Cambios</button>
                                 <button onClick={() => setEditar(false)}>Cancelar</button>

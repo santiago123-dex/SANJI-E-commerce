@@ -8,7 +8,7 @@ interface FormularioRegistroData {
     apellido_usuario: string
     email_usuario: string
     password_usuario: string
-    telefono?: string
+    telefono: string
 }
 
 export const FormularioRegistro = () => {
@@ -120,6 +120,17 @@ export const FormularioRegistro = () => {
                         name="email_usuario"
                         placeholder="tu@gmail.com"
                         value={form.email_usuario}
+                        onChange={handleChange}
+                        required
+                    />
+
+                    <label>Telefono</label>
+                    <input
+                        className="box_formulario_inputs"
+                        type="tel"
+                        name="telefono"
+                        placeholder="1234567890"
+                        value={form.telefono}
                         onChange={handleChange}
                         required
                     />
