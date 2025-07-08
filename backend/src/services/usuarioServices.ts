@@ -3,8 +3,7 @@ import bcrypt from 'bcrypt'
 import {DatosActualizarUsuario, DatosUsuario, DatosUsuarioLogin} from '../types/usuarioType'
 import { DatosToken } from '../types/tokenType'
 import { HttpError } from '../utils/errorManager'
-
-const prisma = new PrismaClient()
+import {prisma} from '../utils/prisma'
 
 export const registrarUsuario = async (data: DatosUsuario) => {
     const {nombre_usuario, apellido_usuario, email_usuario, password_usuario, telefono} = data

@@ -57,16 +57,6 @@ export function Pago() {
         return Swal.fire("Tarjeta inválida", "", "error");
       }
 
-      console.log("Datos enviados al backend:", {
-  id_metodo: metodoPago,
-  nombre_paga: nombrePaga,
-  tipo_documento: tipoDocumento,
-  numero_documento: numeroDocumento,
-  monto: pedido.total_pedido
-});
-
-
-
       const res = await fetch(`http://localhost:3000/api/usuario/pagarPedido?id_pedido=${pedido.id_pedido}`, {
         method: "POST",
         credentials: "include",

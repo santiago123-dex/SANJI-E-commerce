@@ -1,8 +1,7 @@
 import {Prisma, PrismaClient} from '@prisma/client'
 import { HttpError } from '../utils/errorManager'
 import { DatosAgregarCarrito } from '../types/carritoType'
-
-const prisma = new PrismaClient()
+import {prisma} from '../utils/prisma'
 
 export const mostrarCarrito = async (id: number) => {
     const id_usuario = id

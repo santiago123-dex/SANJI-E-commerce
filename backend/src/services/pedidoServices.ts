@@ -1,8 +1,7 @@
 import {Prisma, PrismaClient} from '@prisma/client'
 import { DatosActualizarPedido, DatosPedidoDetallado } from '../types/pagosType'
 import { HttpError } from '../utils/errorManager'
-
-const prisma = new PrismaClient()
+import {prisma} from '../utils/prisma'
 
 export const mostrarBoletoInfo = async (id_boleto: number) => {
     try{
